@@ -1,249 +1,146 @@
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="dynamic-title">Cheap Flights & Travel Deals 2026</title>
-<meta name="description" id="dynamic-description" content="Find cheap flights, budget airlines, and flight deals updated daily. Save on airfare with expert tips for domestic and international travel.">
-<meta name="robots" content="index, follow, max-image-preview:large">
-<link rel="stylesheet" href="style.css">
+<!-- Book Flights CTA -->
+<a class="cta" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">
+  Book Flights Now
+</a>
+
+<!-- ===== New Content Between CTA and AI Box ===== -->
+<section id="pre-ai-tips">
+  <h3>💡 Quick Travel Tips Before You Ask Our AI</h3>
+  <ul>
+    <li>Compare multiple airlines to find the lowest fares.</li>
+    <li>Set price alerts for your favorite routes.</li>
+    <li>Consider off-peak times or midweek flights for cheaper tickets.</li>
+    <li>Check nearby airports for alternative options.</li>
+    <li>Use reward points or travel credit cards to save even more.</li>
+  </ul>
+</section>
 
 <style>
-body {font-family: Arial, sans-serif; line-height:1.6; margin:0; padding:0; background:#fff; color:#333;}
-header, footer {background:#1e90ff; color:#fff; text-align:center; padding:20px;}
-.container {max-width:1000px; margin:0 auto; padding:20px;}
-h1 {margin-bottom:15px;}
-h2 {margin-top:25px; color:#1e90ff;}
-h3 {margin-top:20px; color:#1e90ff; font-size:20px;}
-ul {margin-left:20px;}
-a.cta {display:inline-block;padding:15px 30px;background-color:#ff6b00;color:#fff;font-size:18px;font-weight:bold;text-decoration:none;border-radius:8px;transition:0.3s;margin:15px 0; position:sticky; top:20px; z-index:100;}
-a.cta:hover {background-color:#ff8500;transform:scale(1.05);}
-input[type=text] {width:70%;max-width:100%;padding:12px;margin-right:10px;border-radius:5px;border:1px solid #ccc;}
-button {padding:12px 20px;background:#ff6b00;color:#fff;border:none;border-radius:5px;font-weight:bold;cursor:pointer;}
-section {margin-bottom:40px;}
-strong {color:#1e90ff;}
-details summary {cursor:pointer; font-weight:bold; color:#1e90ff; margin-bottom:5px;}
-.micro-tip {background:#f1f8ff; border-left:5px solid #1e90ff; padding:10px 15px; margin:10px 0; border-radius:5px;}
-.last-updated {font-size:14px; color:#666; margin-top:5px;}
-a.internal-link {color:#1e90ff; font-weight:bold; text-decoration:underline;}
-.highlight {background:#fffbcc; border-radius:3px; padding:2px 4px;}
-.bold-keyword {font-weight:bold; color:#1e90ff;}
-#ai-travel-inline {padding: 20px; background:#f9f9f9; border-radius:10px; margin-top:3in; margin-bottom:20px;}
-#aiAnswerInline {margin-top:20px; background:#fff; padding:15px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);}
-#related-queries, #daily-questions {background:#f1f8ff; border-left:5px solid #1e90ff; padding:10px 15px; border-radius:5px; margin-top:15px;}
-#related-queries ul, #daily-questions ul {margin:0; padding-left:20px;}
-#related-queries li, #daily-questions li {margin-bottom:8px;}
+  #pre-ai-tips {
+    background: #f1f8ff;
+    border-left: 5px solid #1e90ff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin: 20px 0; /* space between button and AI box */
+  }
+  #pre-ai-tips h3 {
+    margin-top: 0;
+    color: #1e90ff;
+  }
+  #pre-ai-tips ul {
+    margin: 10px 0 0 20px;
+  }
+  #pre-ai-tips li {
+    margin-bottom: 8px;
+  }
 </style>
-</head>
-<body>
-<header>
-  <h1 id="site-title"></h1>
-  <p id="site-subtitle"></p>
-</header>
 
-<main class="container">
-  <section id="daily-article"></section>
-</main>
+<!-- ===== AI Box (unchanged, stays in place) ===== -->
+<section id="ai-travel-inline">
+  <h3>🤖 Ask Our Travel AI</h3>
+  <p>Type your question below and get instant AI-powered answers:</p>
+  <input type="text" id="userQuestionInline" placeholder="e.g., Best time to fly NYC → Paris?">
+  <button id="askAIButton">Ask AI</button>
+  <div id="aiAnswerInline"></div>
+</section>
 
-<footer>
-  <p>Independent travel affiliate site. Prices and availability are subject to change. All affiliate links go through our trusted partner. &copy; <span id="footer-year"></span></p>
-</footer>
+<style>
+  /* AI Box Styling */
+  #ai-travel-inline {
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    margin-top: 20px; /* keeps it close to new content */
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    transition: transform 0.2s;
+  }
+  #ai-travel-inline:hover { transform: translateY(-2px); }
+
+  #userQuestionInline {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+
+  #askAIButton {
+    padding: 12px 20px;
+    background: #ff6b00;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  #askAIButton:hover {
+    background: #ff8500;
+    transform: scale(1.05);
+  }
+
+  #aiAnswerInline {
+    margin-top: 20px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  #aiAnswerInline p a {
+    color: #ff6b00;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+</style>
 
 <script>
-// ===== Date & Globals =====
-const today = new Date();
-const currentYear = today.getFullYear();
-const fullDate = today.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+async function getAIAnswerInline() {
+  const question = document.getElementById("userQuestionInline").value.trim();
+  const answerDiv = document.getElementById("aiAnswerInline");
+  if (!question) {
+    answerDiv.innerHTML = "<em>Please type a question.</em>";
+    return;
+  }
 
-// ===== Keyword Highlighting =====
-function highlightAndLink(text, keywords){
-  let newText=text;
-  keywords.forEach(kw=>{
-    const regex=new RegExp(`\\b(${kw})\\b`,"gi");
-    newText=newText.replace(regex, `<a href="#daily-article" class="internal-link highlight">$1</a>`);
-  });
-  return newText;
-}
+  answerDiv.innerHTML = "<em>Generating answer...</em>";
 
-// ===== Generate AI-powered Keywords =====
-async function generateDailyKeywords(){
-  try{
-    const prompt = `Generate 15 unique long-tail keywords for cheap flights, budget airlines, flight deals, and travel. Format as JSON array of strings.`;
-    const response = await fetch("https://api.openai.com/v1/chat/completions",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json",
-        "Authorization":"Bearer YOUR_OPENAI_API_KEY"
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_OPENAI_API_KEY"
       },
-      body:JSON.stringify({
-        model:"gpt-4",
-        messages:[{role:"user", content:prompt}],
-        temperature:0.7
+      body: JSON.stringify({
+        model: "gpt-4",
+        messages: [{ role: "user", content: question }],
+        temperature: 0.7
       })
     });
+
     const data = await response.json();
-    const keywords = JSON.parse(data.choices[0].message.content);
-    return keywords;
-  }catch(err){
-    console.error("Keyword generation error:", err);
-    return ["cheap flights","budget airlines","flight deals","airfare discounts","travel hacks"];
+    const answerText = data.choices[0].message.content;
+
+    answerDiv.innerHTML = `
+      ${answerText}
+      <p><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Book Flights Here</a></p>
+    `;
+  } catch (err) {
+    answerDiv.innerHTML = "<em>Sorry, there was an error generating the answer. Try again later.</em>";
+    console.error(err);
   }
 }
 
-// ===== Generate Related Queries =====
-function generateRelatedQueries(keywords){
-  return keywords.slice(5,12).map(k=>`How to find ${k}?`);
-}
-
-// ===== Generate Daily AI Questions =====
-function generateDailyQuestions(keywords){
-  return keywords.slice(2,6).map(k=>`What is the best strategy for ${k}?`);
-}
-
-// ===== Generate FAQ =====
-const faqQuestions = ["When is the best time to book domestic flights?","When should I book international flights?","Which days are cheapest to fly?","How can I save money on flights?","What are the best tools for finding flight deals?"];
-const faqAnswersPool = {
-"When is the best time to book domestic flights?":["1–3 months before departure is ideal for domestic flights.","Book domestic flights at least 6–8 weeks ahead for best prices.","Early morning or late evening flights can be cheaper for domestic routes."],
-"When should I book international flights?":["2–6 months in advance is recommended for international travel.","Booking 3–5 months ahead usually gets the best international airfare.","Consider shoulder seasons for lower international flight prices."],
-"Which days are cheapest to fly?":["Midweek flights, especially Tuesday and Wednesday, are usually cheaper.","Flying on Thursday or Saturday can also save money on some routes.","Avoid Friday and Sunday for peak pricing on most airlines."],
-"How can I save money on flights?":["Use price alerts, flexible dates, budget airlines, and check nearby airports.","Combine airline newsletters with comparison tools for the best deals.","Consider connecting flights or alternative airports to reduce costs."],
-"What are the best tools for finding flight deals?":["Flight comparison tools and airfare alert services help find the cheapest tickets.","Apps like Google Flights, Skyscanner, and Hopper track prices effectively.","Use both airline websites and aggregators for cross-checking deals."]
-};
-function getRotatedFAQ(keywords){
-  return faqQuestions.map(q=>{
-    const pool=faqAnswersPool[q];
-    const answer=pool[Math.floor(Math.random()*pool.length)];
-    return {question: highlightAndLink(q, keywords), answer: highlightAndLink(answer, keywords)};
-  });
-}
-
-// ===== Keyword Bold =====
-function applyKeywordFrequencyBold(keywords){
-  const allContent=document.querySelector("#daily-article").innerHTML;
-  let keywordCounts={};
-  keywords.forEach(kw=>{
-    const regex=new RegExp(`\\b${kw}\\b`,"gi");
-    const count=(allContent.match(regex)||[]).length;
-    keywordCounts[kw]=count;
-  });
-  const topKeywords=Object.entries(keywordCounts).sort((a,b)=>b[1]-a[1]).filter(k=>k[1]>0).slice(0,5).map(k=>k[0]);
-  let updatedContent=allContent;
-  topKeywords.forEach(kw=>{
-    const regex=new RegExp(`\\b(${kw})\\b`,"gi");
-    updatedContent=updatedContent.replace(regex, `<span class="bold-keyword">$1</span>`);
-  });
-  document.querySelector("#daily-article").innerHTML=updatedContent;
-}
-
-// ===== Generate Article & AI Box =====
-async function generateDailyArticle(){
-  const keywords = await generateDailyKeywords();
-  const container = document.getElementById("daily-article");
-  const dailyTips = keywords.slice(0,5);
-  const faqData = getRotatedFAQ(keywords);
-  const relatedQueries = generateRelatedQueries(keywords);
-  const dailyQuestions = generateDailyQuestions(keywords);
-
-  // Dynamic meta
-  const title = `Cheap Flights & Travel Deals - ${dailyTips.join(", ")}`;
-  const description = `Save on airfare today with tips on ${dailyTips.join(", ")}. Find budget airlines, flight deals, and travel hacks updated daily!`;
-  document.getElementById("dynamic-title").textContent = title;
-  document.getElementById("dynamic-description").setAttribute("content",description);
-
-  // Build HTML
-  const articleHTML = `
-    <h2>✈️ Today's Travel Tips (${fullDate})</h2>
-    <div class="last-updated">Last Updated: ${fullDate}</div>
-    <p>${highlightAndLink("Looking for the best ways to save on cheap flights and travel deals? We’ve compiled practical tips and top deals to help you find affordable airfare without compromising on convenience or comfort.", keywords)}</p>
-    <a class="cta" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Book Flights Now</a>
-    
-    <section id="ai-travel-inline">
-      <h3>🤖 Ask Our Travel AI</h3>
-      <p>Type your question below and get real AI-powered answers instantly:</p>
-      <input type="text" id="userQuestionInline" placeholder="e.g., Best time to fly NYC → Paris?">
-      <button id="askAIButton">Ask AI</button>
-      <div id="aiAnswerInline"></div>
-      ${dailyTips.map(k=>`<div class="micro-tip">Daily Tip: Focus on <strong>${highlightAndLink(k, keywords)}</strong> today!</div>`).join('')}
-      
-      <!-- Related Queries -->
-      <div id="related-queries">
-        <strong>Related Searches:</strong>
-        <ul>${relatedQueries.map(q=>`<li>${highlightAndLink(q, keywords)}</li>`).join('')}</ul>
-      </div>
-
-      <!-- Daily AI-generated Questions -->
-      <div id="daily-questions">
-        <strong>Daily AI Questions:</strong>
-        <ul>${dailyQuestions.map(q=>`<li>${highlightAndLink(q, keywords)}</li>`).join('')}</ul>
-      </div>
-    </section>
-
-    <h3>Top Tips for Finding Cheap Flights & Budget Airlines</h3>
-    <ul>
-      <li>${highlightAndLink("Use reliable flight comparison tools to check multiple airlines at once.", keywords)}</li>
-      <li>${highlightAndLink("Monitor budget airline deals for both domestic and international destinations.", keywords)}</li>
-      <li>${highlightAndLink("Set alerts for last-minute flight deals and seasonal discounts.", keywords)}</li>
-      <li>${highlightAndLink("Consider flying midweek or during off-peak hours to reduce costs.", keywords)}</li>
-      <li>${highlightAndLink("Compare nearby airports for better rates.", keywords)}</li>
-    </ul>
-
-    <h3>How to Maximize Your Travel Savings</h3>
-    <ul>
-      <li>${highlightAndLink("Book early for domestic flights and 2–6 months in advance for international travel.", keywords)}</li>
-      <li>${highlightAndLink("Combine flexible dates with airfare discounts to get the lowest prices.", keywords)}</li>
-      <li>${highlightAndLink("Use loyalty programs or travel credit card rewards where applicable.", keywords)}</li>
-      <li>${highlightAndLink("Check multiple booking platforms to ensure you get the best deal.", keywords)}</li>
-    </ul>
-
-    <section id="faq">
-      <h3>Frequently Asked Questions</h3>
-      ${faqData.map(f=>`<details><summary>${f.question}</summary><p>${f.answer}</p></details>`).join('')}
-    </section>
-  `;
-  container.innerHTML = articleHTML;
-  applyKeywordFrequencyBold(keywords);
-
-  // ===== Real AI for user questions =====
-  async function getAIAnswerInline(){
-    const question=document.getElementById("userQuestionInline").value.trim();
-    const answerDiv=document.getElementById("aiAnswerInline");
-    if(!question){answerDiv.innerHTML="<em>Please type a question.</em>"; return;}
-    answerDiv.innerHTML="<em>Generating answer...</em>";
-
-    try{
-      const response = await fetch("https://api.openai.com/v1/chat/completions",{
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json",
-          "Authorization":"Bearer YOUR_OPENAI_API_KEY"
-        },
-        body:JSON.stringify({
-          model:"gpt-4",
-          messages:[{role:"user", content:question}],
-          temperature:0.7
-        })
-      });
-      const data = await response.json();
-      const answerText = data.choices[0].message.content;
-      answerDiv.innerHTML = highlightAndLink(answerText, keywords)+`<p><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored" style="color:#ff6b00;font-weight:bold;">Book Flights Here</a></p>`;
-    }catch(err){
-      answerDiv.innerHTML="<em>Sorry, there was an error generating the answer. Try again later.</em>";
-      console.error(err);
-    }
-  }
-  document.getElementById("askAIButton").addEventListener("click", getAIAnswerInline);
-  document.getElementById("userQuestionInline").addEventListener("keypress", (e)=>{if(e.key==="Enter") getAIAnswerInline();});
-}
-
-// ===== On Load =====
-document.addEventListener("DOMContentLoaded", ()=>{
-  generateDailyArticle();
-  const headerTitle=document.getElementById("site-title");
-  const headerSubtitle=document.getElementById("site-subtitle");
-  headerTitle.textContent=`Cheap Flights & Travel Deals ${currentYear}`;
-  headerSubtitle.textContent=`Find affordable domestic and international flights, budget airline deals, and travel tips to save money in ${currentYear}.`;
-  document.getElementById("footer-year").textContent=currentYear;
+// Button click & Enter key
+document.getElementById("askAIButton").addEventListener("click", getAIAnswerInline);
+document.getElementById("userQuestionInline").addEventListener("keypress", (e) => {
+  if (e.key === "Enter") getAIAnswerInline();
 });
 </script>
-</body>
-</html>
