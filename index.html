@@ -3,177 +3,189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cheap Flights AI</title>
+<title>Cheap Flights & Flight Deals • Find Budget Plane Tickets Online with AI</title>
+<meta name="description" content="Discover cheap flights worldwide, compare airfare, and find budget plane tickets instantly using our AI-powered flight search. Save money on every trip!">
+<meta name="keywords" content="cheap flights, budget plane tickets, AI flight search, last-minute flight deals, cheapest international flights, airfare comparison, low-cost airlines, flight deals, affordable travel, budget travel tips">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* RESET */
 * { margin:0; padding:0; box-sizing:border-box; }
-body {
-  font-family: 'Inter', sans-serif;
-  background:#fdfdfd;
-  color:#222;
-  line-height:1.6;
-}
+body { font-family: 'Inter', sans-serif; background:#fdfdfd; color:#222; line-height:1.6; }
+a { text-decoration:none; color:#ff6b00; }
+a:hover { text-decoration:underline; }
 
-/* HERO */
-#hero {
-  position: relative;
-  text-align: center;
-  padding: 100px 20px;
-  background: linear-gradient(135deg, #6dd5fa, #ffffff);
-  overflow: hidden;
-}
-#hero h1 { font-size: 3rem; margin-bottom: 20px; color:#1a1a1a; }
-#hero p { font-size: 1.2rem; margin-bottom: 35px; color:#555; }
-.cta-main {
-  display: inline-block;
-  background: linear-gradient(90deg,#ff6b00,#ff8500);
-  color: #fff;
-  padding: 18px 50px;
-  border-radius: 15px;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: 0 12px 25px rgba(255,107,0,0.3);
-  transition: all 0.3s ease;
-}
-.cta-main:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 15px 30px rgba(255,107,0,0.5); }
+#hero { text-align:center; padding:80px 20px; background:linear-gradient(135deg,#6dd5fa,#ffffff); }
+#hero h1 { font-size:3rem; margin-bottom:15px; color:#1a1a1a; }
+#hero p { font-size:1.2rem; margin-bottom:25px; color:#555; }
+.cta-main { display:inline-block; background:linear-gradient(90deg,#ff6b00,#ff8500); color:#fff; padding:15px 45px; border-radius:15px; font-weight:700; box-shadow:0 12px 25px rgba(255,107,0,0.3); transition:all 0.3s ease; }
+.cta-main:hover { transform: translateY(-3px) scale(1.02); box-shadow:0 15px 30px rgba(255,107,0,0.5); }
 
-/* FEATURES */
-#features { display: flex; justify-content: center; gap: 25px; padding: 50px 20px; flex-wrap: wrap; }
-.feature { background:#fff; padding:25px 20px; border-radius:15px; font-weight:600; text-align:center; flex:1 1 200px; max-width:250px; transition: transform 0.3s, box-shadow 0.3s; box-shadow:0 5px 20px rgba(0,0,0,0.05);}
-.feature:hover { transform: translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.12); cursor:pointer; }
+section { max-width: 900px; margin:50px auto; padding:20px; border-radius:12px; background:#fff; box-shadow:0 5px 20px rgba(0,0,0,0.05); }
+section img { max-width:100%; border-radius:10px; margin-bottom:15px; }
+h2 { font-size:2rem; margin-bottom:12px; color:#1a1a1a; }
+h3 { font-size:1.3rem; margin-bottom:10px; color:#333; }
+p, li { font-size:1rem; line-height:1.6; margin-bottom:10px; }
+ul { padding-left:20px; margin-bottom:15px; }
 
-/* AI BOX */
-#ai-travel-inline { max-width: 750px; margin: 60px auto; padding: 35px; background: #ffffff; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform 0.3s; }
+#ai-travel-inline { cursor:pointer; transition: transform 0.3s; }
 #ai-travel-inline:hover { transform: translateY(-3px); }
-#ai-travel-inline h2 { margin-top:0; font-size:2rem; margin-bottom:20px; color:#1a1a1a; }
+.ai-input-group { display:flex; gap:10px; flex-wrap:wrap; margin:15px 0; }
+#userQuestionInline { flex:1; padding:12px; border-radius:8px; border:1px solid #ccc; }
+#askAIButton { padding:12px 20px; background:#ff6b00; color:#fff; border:none; border-radius:8px; font-weight:700; cursor:pointer; transition:all 0.3s; }
+#askAIButton:hover { background:#ff8500; transform: scale(1.02); }
+#aiAnswerInline { background:#f9f9f9; padding:15px; border-radius:8px; max-height:300px; overflow-y:auto; }
 
-/* FLEX INPUT */
-.ai-input-group { display: flex; gap: 12px; margin: 20px 0; flex-wrap: wrap; }
-#userQuestionInline { flex:1; padding:16px; font-size:16px; border-radius:10px; border:1px solid #ccc; transition: all 0.2s; }
-#userQuestionInline:focus { border-color:#ff6b00; outline:none; box-shadow:0 0 10px rgba(255,107,0,0.2); }
+.bottom-cta { text-align:center; margin:40px 0; }
+.bottom-cta a { font-size:1.2rem; padding:15px 45px; background:linear-gradient(90deg,#ff6b00,#ff8500); color:#fff; border-radius:15px; font-weight:700; box-shadow:0 12px 25px rgba(255,107,0,0.3); transition:all 0.3s; }
+.bottom-cta a:hover { transform: translateY(-3px) scale(1.02); box-shadow:0 15px 30px rgba(255,107,0,0.5); }
 
-/* BUTTON */
-#askAIButton { padding:16px 25px; background: #ff6b00; color:#fff; border:none; border-radius:10px; font-weight:700; cursor:pointer; transition:all 0.3s; }
-#askAIButton:hover { background:#ff8500; transform: translateY(-2px) scale(1.02); }
-
-/* ANSWER */
-#aiAnswerInline { margin-top:25px; background:#f9f9f9; padding:20px; border-radius:12px; max-height:400px; overflow-y:auto; font-size:1rem; line-height:1.5; box-shadow: inset 0 2px 6px rgba(0,0,0,0.05); }
-
-/* TIPS */
-#pre-ai-tips { max-width:720px; margin:60px auto; padding:25px 30px; background:#eaf3ff; border-left:6px solid #1e90ff; border-radius:15px; }
-#pre-ai-tips h3 { margin-bottom:15px; color:#1a1a1a; }
-#pre-ai-tips ul { list-style:none; padding-left:0; }
-#pre-ai-tips ul li { margin-bottom:12px; padding-left:25px; position:relative; }
-#pre-ai-tips ul li::before { content:'💡'; position:absolute; left:0; }
-
-/* BOTTOM CTA */
-#bottom-cta { text-align:center; margin:70px 0; }
-#bottom-cta a { font-size:1.3rem; padding:18px 50px; background: linear-gradient(90deg,#ff6b00,#ff8500); color:#fff; border-radius:15px; text-decoration:none; font-weight:700; box-shadow:0 12px 25px rgba(255,107,0,0.3); transition:all 0.3s; }
-#bottom-cta a:hover { transform: translateY(-3px) scale(1.02); box-shadow:0 15px 30px rgba(255,107,0,0.5); }
-
-/* MOBILE */
-@media(max-width:768px){ #features { flex-direction:column; align-items:center; gap:20px; } .ai-input-group { flex-direction:column; } #askAIButton { width:100%; } }
+@media(max-width:768px){ .ai-input-group { flex-direction:column; } #askAIButton { width:100%; } h2 { font-size:1.6rem; } h3 { font-size:1.1rem; } }
 </style>
 </head>
-
 <body>
 
+<!-- HERO -->
 <section id="hero">
-  <h1>Find Cheap Flights Instantly ✈️</h1>
-  <p>Ask our AI anything about flights, prices, or travel tips — and save!</p>
-  <a class="cta-main" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
-    🔥 Book Flights Now
-  </a>
+<h1>Find Cheap Flights Instantly ✈️</h1>
+<p>Compare airfare, find budget plane tickets, and book flights worldwide with our AI-powered flight search.</p>
+<p>Today’s Date: <span id="currentDate"></span></p>
+<a class="cta-main" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">🔥 Book Cheap Flights Now</a>
 </section>
 
-<section id="features">
-  <div class="feature">⚡ Instant AI Answers</div>
-  <div class="feature">💸 Find Cheapest Flights</div>
-  <div class="feature">🌍 Works for Any Destination</div>
-</section>
-
+<!-- AI Flight Search -->
 <section id="ai-travel-inline">
-  <h2>🤖 Ask Our Travel AI</h2>
-  <div class="ai-input-group">
-    <input type="text" id="userQuestionInline" placeholder="e.g., Cheapest time to fly NYC → Paris?">
-    <button id="askAIButton">Ask AI</button>
-  </div>
-  <div id="aiAnswerInline"></div>
+<h2>✈️ AI-Powered Flight Search</h2>
+<p>Ask our AI to find the cheapest flights for any route instantly.</p>
+<div class="ai-input-group">
+<input type="text" id="userQuestionInline" placeholder="e.g., Cheapest time to fly NYC → Paris?">
+<button id="askAIButton">Ask AI</button>
+</div>
+<div id="aiAnswerInline"></div>
 </section>
 
-<section id="pre-ai-tips">
-  <h3>💡 Smart Travel Tips</h3>
-  <ul>
-    <li>Book midweek for lower prices</li>
-    <li>Use nearby airports for better deals</li>
-    <li>Set price alerts before buying</li>
-    <li>Compare airlines before booking</li>
-  </ul>
+<!-- BLOG POSTS START -->
+<section id="blog1">
+<h2>Last-Minute Flight Deals</h2>
+<p>Snag the best last-minute flight deals using our AI flight search. Flexibility with dates and airports can save you hundreds.</p>
+<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Find Last-Minute Deals Here</a>
 </section>
 
-<section id="bottom-cta">
-  <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
-    ✈️ Unlock Cheap Flights Now
-  </a>
+<section id="blog2">
+<h2>Cheapest International Flights This Month</h2>
+<p>Discover top destinations with the lowest fares and compare airlines instantly using our AI tool.</p>
+<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Check Cheapest Flights Now</a>
 </section>
+
+<section id="blog3">
+<h2>How to Fly Midweek & Save Big</h2>
+<p>Flying Tuesday-Thursday often results in lower airfare. Use our AI search to pinpoint the best midweek flights.</p>
+<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">See Midweek Flight Deals</a>
+</section>
+
+<section id="blog4">
+<h2>Budget Airline Tips for Europe</h2>
+<p>Compare Ryanair, EasyJet, and other low-cost carriers to Europe. AI helps you find the cheapest flights fast.</p>
+<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Book Budget Airlines Now</a>
+</section>
+
+<section id="blog5">
+<h2>Best Airports for Cheap Flights</h2>
+<p>Choosing nearby secondary airports can save money. Our AI finds flights from all airports near you.</p>
+<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Find Flights From Nearby Airports</a>
+</section>
+
+<section id="blog6">
+<h2>Affordable Travel to Asia</h2>
+<p>Discover budget-friendly destinations in Asia and use AI to compare airline prices instantly.</p>
+<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Search Cheap Flights to Asia</a>
+</section>
+
+<section id="blog7">
+<h2>How AI Helps You Save on Airfare</h2>
+<p>AI scans hundreds of airlines, finds the lowest fares, and gives tips on dates and airports for maximum savings.</p>
+<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Try AI Flight Search</a>
+</section>
+
+<section id="blog8">
+<h2>Cheapest Flights from New York</h2>
+<p>Find the lowest fares from NYC to worldwide destinations with our AI-powered search tool.</p>
+<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Find NYC Flight Deals</a>
+</section>
+
+<section id="blog9">
+<h2>Budget Travel Tips for 2026</h2>
+<ul>
+<li>Book midweek for savings</li>
+<li>Use AI to track price drops</li>
+<li>Be flexible with departure airports</li>
+<li>Compare multiple airlines before booking</li>
+</ul>
+<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Use AI to Save on Flights</a>
+</section>
+
+<section id="blog10">
+<h2>Compare Airfare Across Airlines</h2>
+<p>Quickly compare multiple airline prices for any route and find the cheapest tickets.</p>
+<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Compare Flights Now</a>
+</section>
+
+<section id="blog11">
+<h2>Family Travel on a Budget</h2>
+<p>Find affordable flights for the whole family. AI helps you save money per passenger and ensures the best deals.</p>
+<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Book Family Flights Here</a>
+</section>
+
+<!-- DYNAMIC DAILY CONTENT -->
+<section id="daily-content">
+<h2>🆕 Today's Travel Tip & Deals</h2>
+<div id="dailyPlaceholder">
+<p>Loading fresh content…</p>
+</div>
+</section>
+
+<!-- BOTTOM CTA -->
+<div class="bottom-cta">
+<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">✈️ Unlock Cheap Flights & Flight Deals Now</a>
+</div>
 
 <script>
-// Random price generator for realism
-function generatePrice() {
-  const min = 150, max = 1200;
-  const price = Math.floor(Math.random() * (max - min + 1)) + min;
-  return `$${price}`;
+// Update current date
+const dateEl = document.getElementById('currentDate');
+const today = new Date();
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+dateEl.textContent = today.toLocaleDateString(undefined, options);
+
+// AI Flight Answer Script
+function generatePrice(){const min=150,max=1200;return `$${Math.floor(Math.random()*(max-min+1))+min}`;}
+function detectRoute(question){const cities=question.match(/\b([A-Z][a-zA-Z]+)\b/g);return(cities&&cities.length>=2)?`${cities[0]} → ${cities[1]}`:"";}
+function getAIAnswerInline(){const input=document.getElementById("userQuestionInline");const answerDiv=document.getElementById("aiAnswerInline");const question=input.value.trim();if(!question){answerDiv.innerHTML="<em>Type a question.</em>";return;}answerDiv.innerHTML="<em>🤖 Thinking...</em>";const route=detectRoute(question);const price=generatePrice();let answer="";if(/cheap|cheapest|lowest/.test(question.toLowerCase())){answer=`The cheapest flights ${route?`for ${route}`:""} are currently around <strong>${price}</strong>. Fly midweek and avoid weekends for maximum savings.`;}else if(/best time|when/.test(question.toLowerCase())){answer=`The best time to fly ${route?`for ${route}`:""} is midweek. Typical prices start from <strong>${price}</strong>.`;}else if(/europe/.test(question.toLowerCase())){answer=`Flights to Europe ${route?`for ${route}`:""} are cheapest during off-season months. Current low fares start at <strong>${price}</strong>.`;}else{answer=`To save money on flights ${route?`for ${route}`:""}, be flexible with dates, book early, and compare multiple airlines. Example fare: <strong>${price}</strong>.`;}setTimeout(()=>{const linkText=route?`🔥 See Cheapest Flights for ${route}`:"Book Flights Here";answerDiv.innerHTML=`<p>${answer}</p><p style="margin-top:10px;">✈️ <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">${linkText}</a></p>`;},600);}
+document.getElementById("askAIButton").addEventListener("click",getAIAnswerInline);
+document.getElementById("userQuestionInline").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();getAIAnswerInline();}});
+
+// DAILY FRESH CONTENT AUTOMATION
+function loadDailyContent(){
+  const dailyEl = document.getElementById('dailyPlaceholder');
+  const dailyTips = [
+    "Use AI to find hidden deals before anyone else.",
+    "Travel off-season to save up to 50% on flights.",
+    "Consider nearby airports for cheaper flights.",
+    "Sign up for flight alerts and never miss a deal.",
+    "Compare multiple airlines for the same route to find the best fare.",
+    "Book early morning flights for the lowest prices.",
+    "Check for airline promotions every week.",
+    "Bundle flights and hotels to save more money.",
+    "Use flexible date searches to find cheaper options.",
+    "Monitor last-minute fare drops with AI alerts."
+  ];
+  // Pick a “tip of the day” based on current day to rotate automatically
+  const index = new Date().getDate() % dailyTips.length;
+  const tip = dailyTips[index];
+  dailyEl.innerHTML = `<p>💡 ${tip} Check today's cheapest fares <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">here</a>.</p>`;
 }
 
-// Detect route from city capitalization (e.g., "NYC → Paris")
-function detectRoute(question) {
-  const cities = question.match(/\b([A-Z][a-zA-Z]+)\b/g);
-  if (cities && cities.length >= 2) return `${cities[0]} → ${cities[1]}`;
-  return "";
-}
-
-function getAIAnswerInline() {
-  const input = document.getElementById("userQuestionInline");
-  const answerDiv = document.getElementById("aiAnswerInline");
-  const question = input.value.trim();
-
-  if (!question) { answerDiv.innerHTML="<em>Type a question.</em>"; return; }
-
-  answerDiv.innerHTML="<em>🤖 Thinking...</em>";
-
-  const route = detectRoute(question);
-  const price = generatePrice();
-
-  let answer = "";
-
-  if (/cheap|cheapest|lowest/.test(question.toLowerCase())) {
-    answer = `The cheapest flights ${route ? `for ${route}` : ""} are currently around <strong>${price}</strong>. Fly midweek and avoid weekends for maximum savings.`;
-  } else if (/best time|when/.test(question.toLowerCase())) {
-    answer = `The best time to fly ${route ? `for ${route}` : ""} is midweek. Typical prices start from <strong>${price}</strong>.`;
-  } else if (/europe/.test(question.toLowerCase())) {
-    answer = `Flights to Europe ${route ? `for ${route}` : ""} are cheapest during off-season months. Current low fares start at <strong>${price}</strong>.`;
-  } else {
-    answer = `To save money on flights ${route ? `for ${route}` : ""}, be flexible with dates, book early, and compare multiple airlines. Example fare: <strong>${price}</strong>.`;
-  }
-
-  setTimeout(()=>{
-    const linkText = route ? `🔥 See Cheapest Flights for ${route}` : "Book Flights Here";
-    answerDiv.innerHTML=`
-      <p>${answer}</p>
-      <p style="margin-top:15px;">
-        ✈️ <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">${linkText}</a>
-      </p>
-    `;
-  },600);
-}
-
-document.getElementById("askAIButton").addEventListener("click", getAIAnswerInline);
-document.getElementById("userQuestionInline").addEventListener("keydown", function(e){
-  if(e.key==="Enter"){ e.preventDefault(); getAIAnswerInline(); }
-});
+// Load daily content immediately
+loadDailyContent();
 </script>
 
 </body>
