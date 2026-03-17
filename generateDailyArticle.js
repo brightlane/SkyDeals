@@ -8,7 +8,7 @@ async function run() {
     return;
   }
 
-  // Generate article using OpenAI
+  // Call OpenAI API to generate an article
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -21,19 +21,17 @@ async function run() {
         {
           role: "user",
           content: `
-Write a 300-500 word SEO-optimized travel article about cheap flights or travel deals for 2026.
+Write a 400-word SEO-optimized travel article about cheap flights or travel deals for 2026.
 
 Requirements:
 - Include an H2 title
 - Include helpful travel tips
-- Use keywords like cheap flights, travel deals, budget travel
-- Add a CTA button using this affiliate link:
-https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885
+- Use keywords: cheap flights, travel deals, budget travel, airfare savings
+- Include this CTA button with my affiliate link exactly as below:
 
-Format the CTA exactly like this:
 <a class="cta" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Book Cheap Flights Now</a>
 
-Return clean HTML only (no markdown, no backticks).
+Return only clean HTML, no markdown or backticks.
 `
         }
       ],
@@ -42,7 +40,6 @@ Return clean HTML only (no markdown, no backticks).
   });
 
   const data = await response.json();
-
   const article = data.choices?.[0]?.message?.content;
 
   if (!article) {
@@ -50,17 +47,17 @@ Return clean HTML only (no markdown, no backticks).
     return;
   }
 
-  // Wrap article in a section
-  const formattedArticle = `
+  // Wrap the article in a section
+  const newSection = `
 <section class="ai-article">
 ${article}
 </section>
 `;
 
-  // Read your index.html
+  // Read index.html
   let html = fs.readFileSync("index.html", "utf8");
 
-  // Insert article above placeholder
+  // Insert above placeholder
   const placeholder = "<!-- NEW AI ARTICLES GO HERE -->";
 
   if (!html.includes(placeholder)) {
@@ -68,13 +65,10 @@ ${article}
     return;
   }
 
-  html = html.replace(
-    placeholder,
-    formattedArticle + "\n" + placeholder
-  );
+  html = html.replace(placeholder, newSection + "\n" + placeholder);
 
-  // Save updated HTML
-  fs.writeFileSync("index.html", html, "utf8");
+  // Save updated index.html
+  fs.writeFileSync("index.html", html);
 
   console.log("✅ New AI article added!");
 }
