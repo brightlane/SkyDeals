@@ -1,0 +1,35 @@
+name: Daily AI Travel Article
+
+on:
+  schedule:
+    - cron: '0 9 * * *'   # runs every day at 9:00 UTC
+  workflow_dispatch:      # allows you to run it manually too
+
+jobs:
+  generate_article:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install openai
+
+      - name: Run article generator
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node generateDailyArticle.js
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add index.html
+          git commit -m "Daily AI article added" || echo "No changes to commit"
+          git push
