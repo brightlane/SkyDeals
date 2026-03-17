@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cheap Flights & Travel Deals 2026 | Domestic & International Offers</title>
+<title>Cheap Flights & Travel Deals</title>
 <meta name="description" content="Compare cheap flights, find affordable international and domestic travel deals, and book budget airline tickets with top tips.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="stylesheet" href="style.css">
@@ -14,15 +14,16 @@ header, footer {background:#1e90ff; color:#fff; text-align:center; padding:20px;
 .container {max-width:1000px; margin:0 auto; padding:20px;}
 h1 {margin-bottom:15px;}
 h2 {margin-top:25px; color:#1e90ff;}
+h3 {margin-top:20px; color:#1e90ff; font-size:20px;}
 ul {margin-left:20px;}
 a.cta {display:inline-block;padding:15px 30px;background-color:#ff6b00;color:#fff;font-size:18px;font-weight:bold;text-decoration:none;border-radius:8px;transition:0.3s;margin:15px 0;}
 a.cta:hover {background-color:#ff8500;transform:scale(1.05);}
 input[type=text] {width:70%;padding:12px;margin-right:10px;border-radius:5px;border:1px solid #ccc;}
 button {padding:12px 20px;background:#ff6b00;color:#fff;border:none;border-radius:5px;font-weight:bold;cursor:pointer;}
 section {margin-bottom:40px;}
+strong {color:#1e90ff;}
 </style>
 
-<!-- Schema: FAQ + TravelAction -->
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -49,28 +50,51 @@ section {margin-bottom:40px;}
 </script>
 
 <script>
-// ======= Daily Article Generator =======
+// ======= Global Setup =======
 const keywords = ["cheap flights","budget airlines","flight deals","international flights","domestic flights",
 "airfare discounts","last-minute flights","cheap summer travel","holiday flight deals","travel savings",
 "budget travel tips","affordable airfare","low-cost airlines","travel hacks","flight comparison"];
+
 const today = new Date();
-const year = today.getFullYear();
+const currentYear = today.getFullYear();
+const fullDate = today.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 const keywordIndex = today.getDate() % keywords.length;
 
+// ======= SEO Optimized Daily Article =======
 function generateDailyArticle() {
   const container = document.getElementById("daily-article");
   const selectedKeyword = keywords[keywordIndex];
 
   const articleHTML = `
-    <h2>✈️ Today's Travel Tip: ${selectedKeyword} (${year})</h2>
-    <p>Discover the best ways to save on ${selectedKeyword} today. Monitor airline promotions, compare multiple booking platforms, and consider flexible travel dates for maximum savings.</p>
+    <h2>✈️ Today's Travel Tip (${fullDate}): <strong>${selectedKeyword}</strong></h2>
+
+    <p>Looking for the best ways to save on <strong>${selectedKeyword}</strong>? We’ve compiled practical tips and top deals to help you find <strong>affordable airfare</strong> without compromising on convenience or comfort.</p>
+
+    <h3>Top Tips for Finding Cheap Flights</h3>
     <ul>
-      <li>Use flight comparison tools to find the lowest fares.</li>
-      <li>Check budget airlines for domestic and international options.</li>
-      <li>Set alerts for price drops and flash sales.</li>
-      <li>Travel during off-peak times to save money.</li>
-      <li>Compare nearby airports for better deals.</li>
+      <li>Use reliable <strong>flight comparison tools</strong> to check multiple airlines at once.</li>
+      <li>Monitor <strong>budget airline deals</strong> for both domestic and international destinations.</li>
+      <li>Set alerts for <strong>last-minute flight deals</strong> and seasonal discounts.</li>
+      <li>Consider flying midweek or during off-peak hours to reduce costs.</li>
+      <li>Compare nearby airports for <strong>better rates</strong>.</li>
     </ul>
+
+    <h3>How to Maximize Your Travel Savings</h3>
+    <ul>
+      <li>Book <strong>early for domestic flights</strong> and 2–6 months in advance for international travel.</li>
+      <li>Combine flexible dates with <strong>airfare discounts</strong> to get the lowest prices.</li>
+      <li>Use loyalty programs or travel credit card rewards where applicable.</li>
+      <li>Check multiple booking platforms to ensure you get the <strong>best deal</strong>.</li>
+    </ul>
+
+    <h3>Related Travel Guides</h3>
+    <ul>
+      <li><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Cheap International Flights</a></li>
+      <li><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Best Time to Book Flights</a></li>
+      <li><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Domestic Flight Deals</a></li>
+      <li><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Budget Airline Offers</a></li>
+    </ul>
+
     <a class="cta" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">
       Book Flights Now
     </a>
@@ -94,16 +118,27 @@ async function getAIAnswer(){
     answerDiv.innerHTML = selected + `<p><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored" style="color:#ff6b00;font-weight:bold;">Book Flights Here</a></p>`;
 }
 
-// Run daily article on page load
-window.onload = () => { generateDailyArticle(); };
+// ======= Dynamic Year Injection =======
+window.onload = () => {
+  generateDailyArticle();
+
+  // Header
+  const headerTitle = document.getElementById("site-title");
+  const headerSubtitle = document.getElementById("site-subtitle");
+  headerTitle.textContent = `Cheap Flights & Travel Deals ${currentYear}`;
+  headerSubtitle.textContent = `Find affordable domestic and international flights, budget airline deals, and travel tips to save money in ${currentYear}.`;
+
+  // Footer
+  document.getElementById("footer-year").textContent = currentYear;
+};
 </script>
 </head>
 
 <body>
 
 <header>
-  <h1>Cheap Flights & Travel Deals ${year}</h1>
-  <p>Find affordable domestic and international flights, budget airline deals, and travel tips to save money in ${year}.</p>
+  <h1 id="site-title"></h1>
+  <p id="site-subtitle"></p>
 </header>
 
 <main class="container">
@@ -120,22 +155,10 @@ window.onload = () => { generateDailyArticle(); };
   <div id="aiAnswer" style="margin-top:20px;background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.1);"></div>
 </section>
 
-<!-- Related Guides -->
-<section id="related-guides">
-  <h2>🔗 Related Travel Guides</h2>
-  <ul>
-    <li><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Cheap International Flights</a></li>
-    <li><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Best Time to Book Flights</a></li>
-    <li><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Domestic Flight Deals</a></li>
-    <li><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Budget Airline Offers</a></li>
-    <li><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Flight Comparison Tools</a></li>
-  </ul>
-</section>
-
 </main>
 
 <footer>
-  <p>Independent travel affiliate site. Prices and availability are subject to change. All affiliate links go through our trusted partner.</p>
+  <p>Independent travel affiliate site. Prices and availability are subject to change. All affiliate links go through our trusted partner. &copy; <span id="footer-year"></span></p>
 </footer>
 
 </body>
