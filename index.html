@@ -144,3 +144,80 @@ document.getElementById("userQuestionInline").addEventListener("keypress", (e) =
   if (e.key === "Enter") getAIAnswerInline();
 });
 </script>
+<!-- ===== Book Flights CTA with Flying Plane ===== -->
+<section id="book-flights-cta" style="text-align:center;margin:40px 0;position:relative;">
+  <div style="display:inline-block;position:relative;">
+    <span style="position:absolute;left:-30px;top:50%;transform:translateY(-50%);font-size:22px;animation:flyPlane 3s linear infinite;">✈️</span>
+    <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored"
+       style="display:inline-block;font-size:26px;font-weight:bold;color:#fff;text-decoration:none;padding:20px 50px;border-radius:14px;background:linear-gradient(90deg,#ff6b00,#ff8500);box-shadow:0 8px 20px rgba(255,107,0,0.4);transition:transform 0.3s,box-shadow 0.3s,background 0.3s;">
+      Book Flights Now
+    </a>
+  </div>
+</section>
+
+<!-- ===== Quick Travel Tips ===== -->
+<section id="pre-ai-tips" style="background:linear-gradient(135deg,#f1f8ff,#e0f0ff);border-left:6px solid #1e90ff;padding:22px 28px;border-radius:14px;margin:25px 0;box-shadow:0 5px 15px rgba(0,0,0,0.08);max-width:600px;margin-left:auto;margin-right:auto;">
+  <h3 style="margin-top:0;color:#1e90ff;font-size:23px;margin-bottom:12px;border-bottom:1px solid #cce4ff;padding-bottom:6px;">💡 Quick Travel Tips Before You Ask Our AI</h3>
+  <ul style="margin:12px 0 0 0;padding-left:0;list-style:none;">
+    <li style="margin-bottom:10px;line-height:1.6;padding-left:28px;position:relative;font-size:16px;">✈️ Compare multiple airlines to find the lowest fares.</li>
+    <li style="margin-bottom:10px;line-height:1.6;padding-left:28px;position:relative;font-size:16px;">⏰ Set price alerts for your favorite routes.</li>
+    <li style="margin-bottom:10px;line-height:1.6;padding-left:28px;position:relative;font-size:16px;">🗓️ Consider off-peak times or midweek flights for cheaper tickets.</li>
+    <li style="margin-bottom:10px;line-height:1.6;padding-left:28px;position:relative;font-size:16px;">🛫 Check nearby airports for alternative options.</li>
+    <li style="margin-bottom:10px;line-height:1.6;padding-left:28px;position:relative;font-size:16px;">💳 Use reward points or travel credit cards to save even more.</li>
+  </ul>
+</section>
+
+<!-- ===== AI Chat Box ===== -->
+<section id="ai-travel-inline" style="max-width:600px;margin:40px auto;padding:20px;border-radius:12px;background:#f9f9f9;box-shadow:0 4px 15px rgba(0,0,0,0.1);">
+  <h3>🤖 Ask Our Travel AI</h3>
+  <input type="text" id="userQuestionInline" placeholder="Ask anything..." style="width:100%;padding:12px;margin:10px 0;border-radius:6px;border:1px solid #ccc;font-size:16px;">
+  <button id="askAIButton" style="padding:10px 20px;background:#ff6b00;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:bold;">Ask AI</button>
+  <div id="aiAnswerInline" style="margin-top:20px;"></div>
+</section>
+
+<!-- ===== Animations ===== -->
+<style>
+@keyframes flyPlane {
+  0% { left: -30px; transform: translateY(-50%) rotate(0deg); opacity: 0; }
+  25% { opacity: 1; }
+  50% { left: 100%; transform: translateY(-50%) rotate(15deg); opacity: 1; }
+  75% { opacity: 1; }
+  100% { left: -30px; transform: translateY(-50%) rotate(0deg); opacity: 0; }
+}
+#book-flights-cta a:hover { transform: translateY(-5px) scale(1.02); box-shadow:0 12px 25px rgba(255,107,0,0.5); background:linear-gradient(90deg,#ff7f1a,#ffa038); }
+#askAIButton:hover { background:#ff8500; transform:scale(1.05); }
+</style>
+
+<!-- ===== AI Chat Script ===== -->
+<script>
+async function getAIAnswerInline() {
+  const question = document.getElementById("userQuestionInline").value.trim();
+  const answerDiv = document.getElementById("aiAnswerInline");
+  if (!question) { answerDiv.innerHTML = "<em>Type a question please.</em>"; return; }
+  answerDiv.innerHTML = "<em>Thinking...</em>";
+
+  try {
+    const response = await fetch("https://ai-proxy-demo.fly.dev/ask-ai", {
+      method: "POST",
+      headers: { "Content-Type":"application/json" },
+      body: JSON.stringify({ question })
+    });
+
+    const data = await response.json();
+    if (data.error) {
+      answerDiv.innerHTML = `<em>Error: ${data.error}</em>`;
+    } else {
+      answerDiv.innerHTML = `<p>${data.answer}</p>
+      <p><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Book Flights Here</a></p>`;
+    }
+  } catch (err) {
+    console.error(err);
+    answerDiv.innerHTML = "<em>Something went wrong.</em>";
+  }
+}
+
+document.getElementById("askAIButton").addEventListener("click", getAIAnswerInline);
+document.getElementById("userQuestionInline").addEventListener("keypress", e => {
+  if (e.key === "Enter") getAIAnswerInline();
+});
+</script>
