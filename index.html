@@ -3,25 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cheap Flights & Travel Deals 2026 | Domestic & International Flight Offers</title>
-<meta name="description" content="Compare cheap flights, budget airline deals, and travel tips for 2026. Find affordable domestic and international flights, airfare discounts, and travel guides.">
-<meta name="keywords" content="cheap flights, budget airlines, domestic flight deals, international flight deals, flight comparison, airline promotions, last-minute flights, travel tips 2026, best time to book flights, airfare discounts, low-cost flights, weekend getaway flights, multi-city flights, holiday travel deals">
+<title>Cheap Flights & Travel Deals 2026 | Domestic & International Offers</title>
+<meta name="description" content="Compare cheap flights, find affordable international and domestic travel deals, and book budget airline tickets with top tips.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="stylesheet" href="style.css">
 
 <style>
-  body {font-family: Arial, sans-serif; line-height:1.6; margin:0; padding:0; background:#fff; color:#333;}
-  header, footer {background:#1e90ff; color:#fff; text-align:center; padding:20px;}
-  .container {max-width:1000px; margin:0 auto; padding:20px;}
-  h1 {margin-bottom:15px;}
-  h2 {margin-top:25px; color:#1e90ff;}
-  ul {margin-left:20px;}
-  a.cta {display:inline-block;padding:15px 30px;background-color:#ff6b00;color:#fff;font-size:18px;font-weight:bold;text-decoration:none;border-radius:8px;transition:0.3s;margin:15px 0;}
-  a.cta:hover {background-color:#ff8500;transform:scale(1.05);}
-  input[type=text] {width:70%;padding:12px;margin-right:10px;border-radius:5px;border:1px solid #ccc;}
-  button {padding:12px 20px;background:#ff6b00;color:#fff;border:none;border-radius:5px;font-weight:bold;cursor:pointer;}
-  section {margin-bottom:40px;}
-  .daily-article {padding:20px;background:#f0f8ff;border-radius:8px;margin-bottom:40px;}
+body {font-family: Arial, sans-serif; line-height:1.6; margin:0; padding:0; background:#fff; color:#333;}
+header, footer {background:#1e90ff; color:#fff; text-align:center; padding:20px;}
+.container {max-width:1000px; margin:0 auto; padding:20px;}
+h1 {margin-bottom:15px;}
+h2 {margin-top:25px; color:#1e90ff;}
+ul {margin-left:20px;}
+a.cta {display:inline-block;padding:15px 30px;background-color:#ff6b00;color:#fff;font-size:18px;font-weight:bold;text-decoration:none;border-radius:8px;transition:0.3s;margin:15px 0;}
+a.cta:hover {background-color:#ff8500;transform:scale(1.05);}
+input[type=text] {width:70%;padding:12px;margin-right:10px;border-radius:5px;border:1px solid #ccc;}
+button {padding:12px 20px;background:#ff6b00;color:#fff;border:none;border-radius:5px;font-weight:bold;cursor:pointer;}
+section {margin-bottom:40px;}
 </style>
 
 <!-- Schema: FAQ + TravelAction -->
@@ -41,7 +39,7 @@
     },
     {
       "@type":"TravelAction",
-      "name":"Book Cheap Flights 2026",
+      "name":"Book Cheap Flights",
       "target":"https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885",
       "actionStatus":"PotentialActionStatus",
       "description":"Compare and book cheap domestic and international flights using top deals."
@@ -49,118 +47,90 @@
   ]
 }
 </script>
+
+<script>
+// ======= Daily Article Generator =======
+const keywords = ["cheap flights","budget airlines","flight deals","international flights","domestic flights",
+"airfare discounts","last-minute flights","cheap summer travel","holiday flight deals","travel savings",
+"budget travel tips","affordable airfare","low-cost airlines","travel hacks","flight comparison"];
+const today = new Date();
+const year = today.getFullYear();
+const keywordIndex = today.getDate() % keywords.length;
+
+function generateDailyArticle() {
+  const container = document.getElementById("daily-article");
+  const selectedKeyword = keywords[keywordIndex];
+
+  const articleHTML = `
+    <h2>✈️ Today's Travel Tip: ${selectedKeyword} (${year})</h2>
+    <p>Discover the best ways to save on ${selectedKeyword} today. Monitor airline promotions, compare multiple booking platforms, and consider flexible travel dates for maximum savings.</p>
+    <ul>
+      <li>Use flight comparison tools to find the lowest fares.</li>
+      <li>Check budget airlines for domestic and international options.</li>
+      <li>Set alerts for price drops and flash sales.</li>
+      <li>Travel during off-peak times to save money.</li>
+      <li>Compare nearby airports for better deals.</li>
+    </ul>
+    <a class="cta" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">
+      Book Flights Now
+    </a>
+  `;
+  container.innerHTML = articleHTML;
+}
+
+// ======= AI Travel Q&A Box =======
+async function getAIAnswer(){
+    const question = document.getElementById('userQuestion').value;
+    const answerDiv = document.getElementById('aiAnswer');
+    if(!question){ answerDiv.innerHTML = "Please type a question."; return; }
+    const answers = [
+      "Check multiple airlines and use flexible dates to save money.",
+      "Consider budget airlines and off-peak travel times for cheaper flights.",
+      "Sign up for fare alerts and monitor flash sales to get the best deals.",
+      "Compare prices across nearby airports to find the lowest fares.",
+      "Use travel comparison tools and apps for quick deal checks."
+    ];
+    const selected = answers[Math.floor(Math.random() * answers.length)];
+    answerDiv.innerHTML = selected + `<p><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored" style="color:#ff6b00;font-weight:bold;">Book Flights Here</a></p>`;
+}
+
+// Run daily article on page load
+window.onload = () => { generateDailyArticle(); };
+</script>
 </head>
 
 <body>
 
 <header>
-  <h1>Cheap Flights & Travel Deals 2026 | Domestic & International Flight Offers</h1>
-  <p>Find affordable domestic and international flights, budget airline deals, and travel tips to save money in 2026.</p>
+  <h1>Cheap Flights & Travel Deals ${year}</h1>
+  <p>Find affordable domestic and international flights, budget airline deals, and travel tips to save money in ${year}.</p>
 </header>
 
 <main class="container">
 
-<!-- Article 1 -->
-<section id="best-time-domestic">
-<h2>📅 Best Time to Book Cheap Domestic Flights 2026</h2>
-<p>For domestic flights, the ideal booking window is <strong>1–3 months before departure</strong>. Booking too early or too late can increase costs. Monitor seasonal trends, holidays, and airline promotions to get the best deals.</p>
-<a class="cta" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Book Domestic Flights Now</a>
-<p>Related: <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885">Domestic Flight Deals</a>, <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885">Budget Airline Offers</a></p>
-</section>
-
-<!-- Article 2 -->
-<section id="best-time-international">
-<h2>🌍 Best Time to Book Affordable International Flights</h2>
-<p>International flights typically require <strong>2–6 months of planning</strong> to access competitive fares. Travel during off-peak or shoulder seasons for cheaper rates. Monitor airline flash sales and discounted international flights for extra savings.</p>
-<a class="cta" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Book International Flights Now</a>
-<p>Related: <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885">Cheap International Flights</a>, <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885">Flight Comparison Tools</a></p>
-</section>
-
-<!-- Article 3 -->
-<section id="cheapest-days">
-<h2>📉 Cheapest Days to Fly & Save on Airfare</h2>
-<p>Flying midweek—especially on <strong>Tuesdays and Wednesdays</strong>—can save you money. Early morning and late evening flights are usually cheaper than peak daytime departures. Set airfare alerts to capture last-minute deals and discounted tickets.</p>
-</section>
-
-<!-- Article 4 -->
-<section id="money-tips">
-<h2>💡 Proven Tips to Save Money on Flights & Travel</h2>
-<ul>
-<li>Use flight comparison tools and set price alerts for the cheapest fares.</li>
-<li>Be flexible with travel dates and nearby airports to maximize savings.</li>
-<li>Consider budget airlines for domestic trips or short-haul international flights.</li>
-<li>Sign up for airline newsletters and flash sales to catch deals early.</li>
-<li>Travel light with carry-on only when possible to avoid extra fees.</li>
-</ul>
-</section>
-
-<!-- Article 5 -->
-<section id="international-tips">
-<h2>🌐 International Flight Planning Tips & Deals</h2>
-<ul>
-<li>Check visa and entry requirements before booking.</li>
-<li>Compare multiple booking platforms to ensure you get the best price.</li>
-<li>Travel during shoulder seasons for lower fares and fewer crowds.</li>
-<li>Consider multi-city or open-jaw tickets for more flexible itineraries.</li>
-</ul>
-<a class="cta" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Compare International Flights Now</a>
-</section>
-
-<!-- Article 6: Daily AI-generated Article -->
-<section id="daily-article">
-<h2>📰 Today's Travel Tip</h2>
-<div class="daily-article" id="dailyArticle">
-<p>Loading today's article...</p>
-</div>
-</section>
-
-<!-- Article 7 -->
-<section id="instant-deals">
-<h2>✈️ Instant Flight Deals & Discounts Today</h2>
-<p>Ready to book your next trip? Click below to access the latest domestic and international flight deals, discounted airfare, and budget travel options.</p>
-<a class="cta" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Book Domestic Flights</a>
-<a class="cta" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Book International Flights</a>
-</section>
+<!-- Daily Generated Article -->
+<section id="daily-article"></section>
 
 <!-- AI Travel Generator -->
 <section id="ai-travel" style="padding:30px;background:#f9f9f9;border-radius:10px;margin-bottom:40px;">
   <h2>🤖 Ask Our Travel AI</h2>
   <p>Have questions about flights, travel deals, or destinations? Type your question below and get instant tips & deals:</p>
-  <input type="text" id="userQuestion" placeholder="e.g., Best time to fly NYC → Paris in 2026?">
+  <input type="text" id="userQuestion" placeholder="e.g., Best time to fly NYC → Paris?">
   <button onclick="getAIAnswer()">Ask AI</button>
   <div id="aiAnswer" style="margin-top:20px;background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.1);"></div>
 </section>
 
-<script>
-// Load daily article from JSON generated by GitHub Action
-async function loadDailyArticle(){
-  try{
-    const res = await fetch('daily-article.json');
-    const data = await res.json();
-    document.getElementById('dailyArticle').innerHTML = data.html;
-  }catch(e){
-    document.getElementById('dailyArticle').innerHTML = '<p>Unable to load today\'s article. Please try again later.</p>';
-  }
-}
-
-// AI Question Box
-async function getAIAnswer(){
-  const question = document.getElementById('userQuestion').value;
-  const answerDiv = document.getElementById('aiAnswer');
-  if(!question){ answerDiv.innerHTML = "Please type a question."; return; }
-  answerDiv.innerHTML = 'Generating answer...';
-  const response = await fetch('/api/get-travel-answer', {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({question})
-  });
-  const data = await response.json();
-  answerDiv.innerHTML = data.answer + 
-    `<p><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored" style="color:#ff6b00;font-weight:bold;">Book Flights Here</a></p>`;
-}
-
-window.onload = loadDailyArticle;
-</script>
+<!-- Related Guides -->
+<section id="related-guides">
+  <h2>🔗 Related Travel Guides</h2>
+  <ul>
+    <li><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Cheap International Flights</a></li>
+    <li><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Best Time to Book Flights</a></li>
+    <li><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Domestic Flight Deals</a></li>
+    <li><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Budget Airline Offers</a></li>
+    <li><a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Flight Comparison Tools</a></li>
+  </ul>
+</section>
 
 </main>
 
