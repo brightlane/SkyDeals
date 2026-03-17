@@ -1,0 +1,8 @@
+body {font-family: Arial; margin:0; background:#f4f7fb; line-height:1.6;}
+header {background:#0071c2; color:white; padding:20px; text-align:center;}
+nav {background:#005999; padding:10px; text-align:center;}
+nav a {color:white; margin:0 15px; text-decoration:none;}
+.container {max-width:1000px; margin:auto; background:white; padding:20px;}
+.cta {background:#ff6b00; color:white; padding:15px 25px; text-decoration:none; border-radius:5px; display:inline-block; margin:10px 0;}
+footer {background:#222; color:#ccc; padding:20px; text-align:center; font-size:14px;}
+h1,h2,h3 {color:#0071c2;}
