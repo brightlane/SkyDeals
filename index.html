@@ -1,184 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Verification & Charset -->
-  <meta name="google-site-verification" content="eWVDN3vbam9nnaZQu7wAQKyfmJJdM7zjI80l4DGeUrQ" />
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Title & Meta -->
-  <title>Cheap Flights & Flight Deals • Skyscanner AI Search</title>
-  <meta name="description" content="Find cheap flights worldwide with Skyscanner. Compare airlines, book budget plane tickets, and get AI-powered travel deals. Save money on every trip!">
-  <meta name="keywords" content="cheap flights, budget plane tickets, AI flight search, flight deals, low-cost airlines, airfare comparison, last-minute flights, international flights, Skyscanner">
-  
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=GA-YOUR-ID-HERE"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'GA-YOUR-ID-HERE');
-  </script>
-  
-  <!-- Fonts & Styles -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: 'Inter', sans-serif; background:#fdfdfd; color:#222; line-height:1.6; }
-    a { text-decoration:none; color:#ff6b00; }
-    a:hover { text-decoration:underline; }
-    header, main, section, article { max-width:1000px; margin:auto; padding:20px; }
-    h1 { font-size:3rem; margin-bottom:20px; color:#1a1a1a; }
-    h2 { font-size:2rem; margin-bottom:15px; color:#1a1a1a; }
-    h3 { font-size:1.4rem; margin-bottom:10px; color:#333; }
-    p, li { font-size:1rem; line-height:1.6; margin-bottom:10px; }
-    ul { margin-left:20px; margin-bottom:15px; }
-    img { max-width:100%; border-radius:10px; margin-bottom:15px; }
-    .cta-main, .bottom-cta a, a.cta { display:inline-block; background:linear-gradient(90deg,#ff6b00,#ff8500); color:#fff; padding:15px 45px; border-radius:15px; font-weight:700; box-shadow:0 12px 25px rgba(255,107,0,0.3); transition:all 0.3s; }
-    .cta-main:hover, .bottom-cta a:hover, a.cta:hover { transform: translateY(-3px) scale(1.02); box-shadow:0 15px 30px rgba(255,107,0,0.5); }
-    #ai-travel-inline { cursor:pointer; transition: transform 0.3s; margin-bottom:30px; }
-    #ai-travel-inline:hover { transform: translateY(-3px); }
-    .ai-input-group { display:flex; gap:10px; flex-wrap:wrap; margin:15px 0; }
-    #userQuestionInline { flex:1; padding:12px; border-radius:8px; border:1px solid #ccc; }
-    #askAIButton { padding:12px 20px; background:#ff6b00; color:#fff; border:none; border-radius:8px; font-weight:700; cursor:pointer; transition:all 0.3s; }
-    #askAIButton:hover { background:#ff8500; transform: scale(1.02); }
-    #aiAnswerInline { background:#f9f9f9; padding:15px; border-radius:8px; max-height:300px; overflow-y:auto; }
-    .bottom-cta { text-align:center; margin:40px 0; }
-    nav a { margin-right:15px; }
-    @media(max-width:768px){ .ai-input-group { flex-direction:column; } #askAIButton { width:100%; } h2 { font-size:1.6rem; } h3 { font-size:1.1rem; } }
-  </style>
-  
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {"@type":"Question","name":"When is the best time to book flights?","acceptedAnswer":{"@type":"Answer","text":"Midweek flights, 1-3 months in advance for domestic, 2-6 months for international, often save the most."}},
-      {"@type":"Question","name":"How does Skyscanner compare to other flight search engines?","acceptedAnswer":{"@type":"Answer","text":"Skyscanner aggregates thousands of airlines and travel sites with AI-powered search for the cheapest fares, outperforming competitors in speed and coverage."}}
-    ]
-  }
-  </script>
-</head>
-<body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="eWVDN3vbam9nnaZQu7wAQKyfmJJdM7zjI80l4DGeUrQ" />
+<title>Find Cheap Flights & Flight Deals • AI-Powered Flight Search</title>
+<meta name="description" content="Discover cheap flights worldwide, compare airfare, and find budget plane tickets instantly using AI. Save money on every trip!">
+<meta name="keywords" content="
+cheap flights, budget flights, last minute flights, international flights, domestic flights, plane tickets, airfare deals, flight deals, travel discounts, airline offers, cheap tickets, best airfare, flight comparison, low cost airlines, flight search engine, Skyscanner alternative, flight booking online, travel deals, last minute airfare, cheap flights today,
+[PART 2 OF KEYWORDS GOES HERE],
+[PART 3 OF KEYWORDS GOES HERE],
+[PART 4 OF KEYWORDS GOES HERE],
+[PART 5 OF KEYWORDS GOES HERE]
+">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-<!-- NAVIGATION -->
-<nav>
-  <a href="#article">Article</a>
-  <a href="#competitors">Competitor Comparison</a>
-  <a href="#ai-travel-inline">AI Flight Search</a>
-  <a href="#daily-content">Daily Deals</a>
-</nav>
-
-<!-- HEADER -->
-<header>
-  <h1>Find Cheap Flights Instantly with Skyscanner ✈️</h1>
-  <p>Compare airfare worldwide, find budget tickets, and book instantly using AI-powered search.</p>
-  <p>Today’s Date: <span id="currentDate"></span></p>
-  <a class="cta-main" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">🔥 Book Cheap Flights Now</a>
-</header>
-
-<!-- AI FLIGHT SEARCH -->
-<section id="ai-travel-inline">
-  <h2>AI-Powered Flight Search</h2>
-  <p>Ask our AI to find the cheapest flights for any route instantly.</p>
-  <div class="ai-input-group">
-    <input type="text" id="userQuestionInline" placeholder="e.g., Cheapest time to fly NYC → Paris?">
-    <button id="askAIButton">Ask AI</button>
-  </div>
-  <div id="aiAnswerInline"></div>
-</section>
-
-<!-- LONG-FORM ARTICLE -->
-<article id="article">
-  <h2>Why Skyscanner is the Preferred Choice for Flight Booking</h2>
-  <img src="https://www.skyscanner.net/images/skyscanner-logo.png" alt="Skyscanner Logo" loading="lazy">
-  <p>[Insert full 2500+ word article here promoting Skyscanner, AI-powered search, budget flights, travel tips, and affiliate links <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">Book Now</a>]</p>
-</article>
-
-<!-- COMPETITOR COMPARISON -->
-<section id="competitors">
-  <h2>Skyscanner vs Other Flight Search Engines</h2>
-  <ul>
-    <li>Kayak – Wide coverage, slower AI search. Skyscanner is faster and simpler.</li>
-    <li>Google Flights – Great visuals, fewer budget deals. Skyscanner has more affordable options.</li>
-    <li>Momondo – Strong European coverage, lacks AI instant recommendations.</li>
-    <li>Expedia – Good for packages, limited standalone AI flight search.</li>
-    <li>Orbitz – Similar to Expedia; Skyscanner has broader coverage.</li>
-    <li>Travelocity – Package-focused; Skyscanner excels at single flights.</li>
-    <li>Priceline – Often higher fees; Skyscanner shows transparent fares.</li>
-    <li>CheapOair – Limited airlines; Skyscanner aggregates hundreds.</li>
-    <li>Hipmunk – Discontinued in some regions; Skyscanner fully global.</li>
-    <li>Trip.com – Strong in Asia; Skyscanner covers all continents.</li>
-    <li>FlightNetwork – Smaller network; Skyscanner finds hidden deals.</li>
-    <li>JustFly – Less reliable customer service; Skyscanner is trustworthy.</li>
-    <li>Opodo – Europe-centric; Skyscanner global coverage.</li>
-    <li>Airfare.com – Limited search depth; Skyscanner scans hundreds of airlines.</li>
-    <li>Travelgenio – Fewer reviews; Skyscanner integrates feedback.</li>
-    <li>Vayama – Intl flights only; Skyscanner offers AI recommendations.</li>
-    <li>StudentUniverse – Student-focused; Skyscanner for all travelers.</li>
-    <li>CheapTickets – Not AI-powered; Skyscanner gives instant AI suggestions.</li>
-    <li>Wego – Limited daily deals; Skyscanner has real-time updates.</li>
-    <li>eDreams – Europe bias; Skyscanner worldwide reach.</li>
-  </ul>
-</section>
-
-<!-- DAILY FRESH CONTENT -->
-<aside id="daily-content">
-  <h2>🆕 Today's Travel Tip & Deals</h2>
-  <div id="dailyPlaceholder"><p>Loading fresh content…</p></div>
-</aside>
-
-<!-- BOTTOM CTA -->
-<div class="bottom-cta">
-  <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">✈️ Unlock Cheap Flights & Flight Deals Now</a>
-</div>
-
-<!-- SCRIPTS -->
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=YOUR-GA-ID"></script>
 <script>
-  document.getElementById('currentDate').textContent = new Date().toLocaleDateString(undefined,{ weekday:'long', year:'numeric', month:'long', day:'numeric' });
-
-  // AI Flight Answer
-  function generatePrice(){const min=150,max=1200;return `$${Math.floor(Math.random()*(max-min+1))+min}`;}
-  function detectRoute(question){const cities=question.match(/\b([A-Z][a-zA-Z]+)\b/g);return(cities&&cities.length>=2)?`${cities[0]} → ${cities[1]}`:"";}
-  function getAIAnswerInline(){
-    const input=document.getElementById("userQuestionInline");
-    const answerDiv=document.getElementById("aiAnswerInline");
-    const question=input.value.trim();
-    if(!question){answerDiv.innerHTML="<em>Type a question.</em>";return;}
-    answerDiv.innerHTML="<em>🤖 Thinking...</em>";
-    const route=detectRoute(question);
-    const price=generatePrice();
-    let answer="";
-    if(/cheap|cheapest|lowest/.test(question.toLowerCase())){
-      answer=`The cheapest flights ${route?`for ${route}`:""} are currently around <strong>${price}</strong>. Fly midweek for savings.`;
-    } else { answer=`To save money on flights ${route?`for ${route}`:""}, be flexible with dates. Example fare: <strong>${price}</strong>.`;}
-    setTimeout(()=>{const linkText=route?`🔥 See Cheapest Flights for ${route}`:"Book Flights Here";answerDiv.innerHTML=`<p>${answer}</p><p style="margin-top:10px;">✈️ <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">${linkText}</a></p>`;},600);
-  }
-  document.getElementById("askAIButton").addEventListener("click",getAIAnswerInline);
-  document.getElementById("userQuestionInline").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();getAIAnswerInline();}});
-
-  // Daily Fresh Content
-  function loadDailyContent(){
-    const dailyEl=document.getElementById('dailyPlaceholder');
-    const dailyTips=[
-      "Use AI to find hidden deals before anyone else.",
-      "Travel off-season to save up to 50% on flights.",
-      "Consider nearby airports for cheaper flights.",
-      "Sign up for flight alerts and never miss a deal.",
-      "Compare multiple airlines for the same route to find the best fare.",
-      "Book early morning flights for the lowest prices.",
-      "Check for airline promotions every week.",
-      "Bundle flights and hotels to save more money.",
-      "Use flexible date searches to find cheaper options.",
-      "Monitor last-minute fare drops with AI alerts."
-    ];
-    const index=new Date().getDate()%dailyTips.length;
-    const tip=dailyTips[index];
-    dailyEl.innerHTML=`<p>💡 ${tip} Check today's cheapest fares <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank" rel="nofollow sponsored">here</a>.</p>`;
-  }
-  loadDailyContent();
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'YOUR-GA-ID');
 </script>
 
-</body>
-</html>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; background:#fdfdfd; color:#222; line-height:1.6; }
+a { text-decoration:none; color:#ff6b00; }
+a:hover { text-decoration:underline; }
+h1,h2,h3 { color:#1a1a1a; margin-bottom:12px; }
+section { max-width:900px; margin:40px auto; padding:20px; border-radius:12px; background:#fff; box-shadow:0 5px 20px rgba(0,0,0,0.05); }
+.cta-main, .bottom-cta a { display:inline-block; padding:15px 45px; background:linear-gradient(90deg,#ff6b00,#ff8500); color:#fff; border-radius:15px; font-weight:700; box-shadow:0 12px 25px rgba(255,107,0,0.3); transition:all 0.3s ease; }
+.cta-main:hover, .bottom-cta a:hover { transform: translateY(-3px) scale(1.02); box-shadow:0 15px 30px rgba(255,107,0,0.5); }
+.ai-input-group { display:flex; gap:10px; flex-wrap:wrap; margin:15px 0; }
+#userQuestionInline { flex:1; padding:12px; border-radius:8px; border:1px solid #ccc; }
+#askAIButton { padding:12px 20px; background:#ff6b00; color:#fff; border:none; border-radius:8px; font-weight:700; cursor:pointer; transition:all 0.3s; }
+#askAIButton:hover { background:#ff8500; transform: scale(1.02); }
+#aiAnswerInline { background:#f9f9f9; padding:15px; border-radius:8px; max-height:300px; overflow-y:auto; }
+@media(max-width:768px){ .ai-input-group { flex-direction:column; } #askAIButton { width:100%; } h2 { font-size:1.6rem; } h3 { font-size:1.1rem; } }
+</style>
+</head>
+<body>
