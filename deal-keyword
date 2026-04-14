@@ -1,0 +1,102 @@
+<script>
+  ;(function () {
+    // 1. Define your “fresh” keyword pool (per‑page or global)
+    const KEYWORD_POOL = [
+      "cheap flights from {origin} to {destination}",
+      "{origin} to {destination} deals",
+      "last minute flights {origin} {destination}",
+      "Skyscanner deals {origin} to {destination}",
+      "best time to book flights {origin} to {destination}",
+      "Skyscanner alerts for {origin} {destination}",
+      "Skyscanner price calendar {origin} to {destination}",
+      "Skyscanner hack {origin} to {destination}",
+      "cheap flights from {origin} to {destination} on a budget",
+      "{origin} to {destination} for families",
+      "{origin} to {destination} senior deals",
+      "{origin} to {destination} next week",
+      "{origin} to {destination} this weekend",
+      "{origin} to {destination} spring break deals",
+      "{origin} to {destination} winter sun flights",
+    ];
+
+    // 2. Detect routes (you can refine this per page)
+    function getRoute() {
+      const path = window.location.pathname.toLowerCase();
+      if (path.includes("nyc") && path.includes("mia")) return "NYC,MIA";
+      if (path.includes("phl") && path.includes("mco")) return "PHL,MCO";
+      if (path.includes("intl") || path.includes("international")) return "anywhere,anywhere";
+      return "anywhere,anywhere";
+    }
+
+    // 3. Replace “{origin},{destination}” pattern with actual route
+    const [orig, dest] = getRoute().split(",");
+    const routeWords = orig === "anywhere" ? "any city" : orig;
+
+    function applyRoute(text) {
+      return text
+        .replace(/\{origin\}/g, orig)
+        .replace(/\{destination\}/g, dest)
+        .replace(/\{anywhere\}/g, routeWords);
+    }
+
+    // 4. Inject keyword into any text node (without touching code / URLs)
+    function walkAndInjectKeywords() {
+      const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        {
+          acceptNode: function (node) {
+            if (
+              node.parentElement &&
+              ["SCRIPT", "STYLE", "NOSCRIPT", "CODE"].includes(
+                node.parentElement.tagName
+              )
+            ) {
+              return NodeFilter.FILTER_REJECT;
+            }
+            return NodeFilter.FILTER_ACCEPT;
+          },
+        }
+      );
+
+      const nodes = [];
+      let node;
+      while ((node = walker.nextNode())) nodes.push(node);
+
+      // Pick one random keyword per page load
+      const keyword = applyRoute(
+        KEYWORD_POOL[Math.floor(Math.random() * KEYWORD_POOL.length)]
+      );
+
+      // Only inject keyword into visible text, not URLs
+      nodes.forEach((textNode) => {
+        const text = textNode.nodeValue;
+
+        // If it already looks like a URL, skip to avoid breaking links
+        if (
+          text.includes("http://") ||
+          text.includes("https://") ||
+          text.includes("aff_c") ||
+          text.includes("convert.ctypy.com")
+        )
+          return;
+
+        // Replace generic placeholders with the keyword
+        const newText = text
+          .replace(/\{generic-deal-keyword\}/g, keyword)
+          .replace(/\{deal-keyword\}/g, keyword);
+
+        if (newText !== text) {
+          textNode.nodeValue = newText;
+        }
+      });
+    }
+
+    // 5. Run on page load
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", walkAndInjectKeywords);
+    } else {
+      walkAndInjectKeywords();
+    }
+  })();
+</script>
