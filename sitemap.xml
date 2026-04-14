@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Home page -->
+  <url>
+    <loc>https://brightlane.github.io/SkyDeals/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Best time to book flights -->
+  <url>
+    <loc>https://brightlane.github.io/SkyDeals/best-time-to-book-flights.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Cheap flights NYC → Miami -->
+  <url>
+    <loc>https://brightlane.github.io/SkyDeals/cheap-flights-new-york-miami.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Cheap flights PHL → Orlando -->
+  <url>
+    <loc>https://brightlane.github.io/SkyDeals/cheap-flights-philadelphia-to-orlando.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Cheap international flights -->
+  <url>
+    <loc>https://brightlane.github.io/SkyDeals/cheap-international-flights.htmls</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- FAQ page -->
+  <url>
+    <loc>https://brightlane.github.io/SkyDeals/cheap-flights-faq.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Privacy & disclaimer -->
+  <url>
+    <loc>https://brightlane.github.io/SkyDeals/privacy.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>
