@@ -1,0 +1,52 @@
+<!-- best-deals-sidebar.html (paste into each page) -->
+
+<div style="
+  position: sticky;
+  top: 2rem;
+  margin: 1.5rem 0;
+  padding: 1.2rem;
+  background: #fff4f4;
+  border: 1px solid #ffb3b2;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 10px rgba(255, 90, 95, 0.15);
+">
+  <p style="margin: 0 0 0.6rem 0; font-weight: 600;">
+    Looking for the best flight deals?
+  </p>
+  <a href="#" data-skydeal style="
+    display: inline-block;
+    padding: 0.7rem 1.2rem;
+    text-decoration: none;
+    color: #fff;
+    background: #ff5a5f;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+  ">
+    See the best deals now
+  </a>
+  <p style="margin: 0.8rem 0 0 0; font-size: 0.85rem; color: #777;">
+    Powered by special flight‑deals offers.
+  </p>
+</div>
+
+<!-- Keep the same JS you already have on every page -->
+<script>
+  // YOUR AFFILIATE LINK — I WILL NOT FORGET IT
+  const SKYDEALS_AFFILIATE_URL = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+
+  function injectAffiliateLinks() {
+    document.querySelectorAll("a[data-skydeal]").forEach((link) => {
+      link.href = SKYDEALS_AFFILIATE_URL;
+      link.target = "_blank";
+      link.rel = "noopener sponsored";
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", injectAffiliateLinks);
+  } else {
+    injectAffiliateLinks();
+  }
+</script>
