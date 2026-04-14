@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cheap Flights • SkyDeals</title>
+  <meta name="description" content="Find the cheapest flights worldwide, in multiple languages." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .lang-select { margin: 1rem 0; }
+    .lang-select a { margin: 0 0.5rem; }
+  </style>
+</head>
+<body>
+
+  <div class="lang-select">
+    <small>Language:</small>
+    <a href="?lang=en">English</a> |
+    <a href="?lang=es">Español</a> |
+    <a href="?lang=it">Italiano</a> |
+    <a href="?lang=fr">Français</a> |
+    <a href="?lang=pt">Português</a>
+  </div>
+
+  <div class="hero">
+    <h1 id="title">Cheap Flights & Flight Deals</h1>
+    <p id="intro">Find the cheapest flights worldwide.</p>
+  </div>
+
+  <div class="skydeal-cta">
+    <a href="#" data-skydeal id="cta-link">Find the cheapest flights worldwide</a>
+  </div>
+
+  <!-- Your language + affiliate wiring -->
+  <script>
+    // 1. Your affiliate URL — remains intact in all languages
+    const SKYDEALS_AFFILIATE_URL = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+
+    // 2. Language strings (you can grow this per page / article)
+    const translations = {
+      en: {
+        title: "Cheap Flights & Flight Deals",
+        intro: "Find the cheapest flights worldwide.",
+        "cta-text": "Find the cheapest flights worldwide",
+      },
+      es: {
+        title: "Vuelos Baratos y Ofertas de Vuelos",
+        intro: "Encuentre los vuelos más baratos en todo el mundo.",
+        "cta-text": "Encuentra los vuelos más baratos del mundo",
+      },
+      it: {
+        title: "Biglietti aerei economici e offerte di volo",
+        intro: "Trova i voli più economici in tutto il mondo.",
+        "cta-text": "Trova i voli più economici in tutto il mondo",
+      },
+      fr: {
+        title: "Vols pas chers et offres de vols",
+        intro: "Trouvez les vols les moins chers du monde.",
+        "cta-text": "Trouvez les vols les moins chers du monde",
+      },
+      pt: {
+        title: "Voos baratos e ofertas de voos",
+        intro: "Encontre os voos mais baratos em todo o mundo.",
+        "cta-text": "Encontre os voos mais baratos do mundo",
+      },
+    };
+
+    // 3. Detect language (URL param > browser > fallback)
+    function getLanguage() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get("lang");
+      if (urlLang && translations[urlLang]) return urlLang;
+
+      const browserLang = navigator.language.split("-")[0];
+      if (translations[browserLang]) return browserLang;
+
+      return "en"; // fallback
+    }
+
+    const lang = getLanguage();
+
+    // 4. Render translations
+    document.getElementById("title").textContent = translations[lang].title;
+    document.getElementById("intro").textContent = translations[lang].intro;
+    document.getElementById("cta-link").textContent = translations[lang]["cta-text"];
+
+    // 5. Keep affiliate link intact (same in all languages)
+    function injectAffiliateLinks() {
+      document.querySelectorAll("a[data-skydeal]").forEach((link) => {
+        link.href = SKYDEALS_AFFILIATE_URL;
+        link.target = "_blank";
+        link.rel = "noopener sponsored";
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", injectAffiliateLinks);
+    } else {
+      injectAffiliateLinks();
+    }
+  </script>
+
+</body>
+</html>
