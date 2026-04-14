@@ -1,38 +1,27 @@
 name: Generate Daily Article
 
 on:
-  # Run automatically every day at 02:00 UTC
-  schedule:
-    - cron: "0 2 * * *"
-
-  # Also allow manual runs (Use workflow -> "Run workflow")
   workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"   # once per day at midnight
 
 jobs:
   generate-daily-article:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: "lts/*"
 
-      - name: Install dependencies (if you have any package.json)
+      - name: Install deps (if you ever add any)
         run: npm ci
-        # If you don't have package.json, you can remove this step
 
-      - name: Generate daily article
-        run: |
-          node generateDailyArticle.js
-
-      - name: Commit changes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Actions"
-          git add .
-          git commit -m "Auto‑generate daily article and update pages" || echo "No changes to commit"
-          git push origin main
+      - name: Generate daily pages
+        run: node ./scripts/generateDailyArticle.js
