@@ -1,0 +1,23 @@
+<!-- ---------- HEAD SCRIPTS: Keeps your affiliate link working — DO NOT REMOVE ---------- -->
+
+<!-- 1. Your affiliate link (I will not forget it) -->
+<script>
+  const SKYDEALS_AFFILIATE_URL = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+</script>
+
+<!-- 2. Auto‑inject affiliate link into all data-skydeal anchors -->
+<script>
+  function injectAffiliateLinks() {
+    document.querySelectorAll("a[data-skydeal]").forEach((link) => {
+      link.href = SKYDEALS_AFFILIATE_URL;
+      link.target = "_blank";
+      link.rel = "noopener sponsored";
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", injectAffiliateLinks);
+  } else {
+    injectAffiliateLinks();
+  }
+</script>
