@@ -58,3 +58,72 @@ ${urls.join("\n")}
 if (require.main === module) {
   buildSitemap();
 }
+// generateSitemap.js
+const fs = require("fs");
+const path = require("path");
+
+const ROOT = __dirname;
+const OUTPUT = path.join(ROOT, "sitemap.xml");
+
+const ignore = new Set([
+  "node_modules",
+  ".git",
+  ".github",
+  "package-lock.json",
+  "package.json",
+  "generateDailyArticle.js",
+  "generateSitemap.js"
+]);
+
+function walk(dir) {
+  let files = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (ignore.has(entry.name)) continue;
+
+    const full = path.join(dir, entry.name);
+
+    if (entry.isDirectory()) {
+      files = files.concat(walk(full));
+    } else if (
+      entry.isFile() &&
+      entry.name.endsWith(".html") &&
+      entry.name !== "404.html"
+    ) {
+      files.push(path.relative(ROOT, full).replace(/\\/g, "/"));
+    }
+  }
+  return files;
+}
+
+function urlFor(file) {
+  return `https://brightlane.github.io/SkyDeals/${file}`;
+}
+
+function buildSitemap(files) {
+  const now = new Date().toISOString();
+
+  const urls = files
+    .sort()
+    .map(
+      (file) => `  <url>
+    <loc>${urlFor(file)}</loc>
+    <lastmod>${now}</lastmod>
+  </url>`
+    )
+    .join("\n");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>
+`;
+}
+
+function run() {
+  const files = walk(ROOT);
+  const sitemap = buildSitemap(files);
+  fs.writeFileSync(OUTPUT, sitemap, "utf8");
+  console.log(`Generated sitemap.xml with ${files.length} URLs`);
+}
+
+run();
