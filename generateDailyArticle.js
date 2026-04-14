@@ -1,43 +1,60 @@
-import fs from 'fs';
-import OpenAI from 'openai';
+// 1. Define affiliate config at the top
+const SkyscannerConfig = {
+  baseUrl: "https://partners.skyscanner.net/...",
+  aid: "YOUR-SKYSCANNER-AID", // replace with your ID
+  utmSource: "skydeals",
+  utmMedium: "web",
+  utmCampaign: "daily-article",
+};
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-});
-
-async function generateArticle() {
-  try {
-    const prompt = `
-Write a daily travel article (150-250 words) for a travel website. 
-
-Requirements:
-1. Focus on cheap flights, affordable travel, budget airline tickets, domestic and international deals, travel tips, last-minute flights, flight comparison, airfare savings, low-cost airlines, travel hacks, best time to book flights, and holiday travel discounts.
-2. Include at least 5 of the above keywords naturally.
-3. Include my affiliate link in at least one sentence: https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885
-4. Format the content in HTML <p> and <strong> tags for emphasis.
-5. Write in a friendly, helpful, and concise tone.
-6. Do NOT include a title – the website already has the section title.
-7. Include at least one actionable tip the reader can immediately use.
-`;
-
-    const completion = await openai.chat.completions.create({
-      model: "gpt-5-mini",
-      messages: [{ role: "user", content: prompt }],
-      temperature: 0.7,
-    });
-
-    const articleHtml = completion.choices[0].message.content;
-
-    const dailyArticle = {
-      date: new Date().toISOString().split('T')[0],
-      html: articleHtml
-    };
-
-    fs.writeFileSync('daily-article.json', JSON.stringify(dailyArticle, null, 2));
-    console.log('Daily SEO-optimized article generated!');
-  } catch (err) {
-    console.error('Error generating article:', err);
-  }
+// 2. Build Skyscanner URL with your params
+function buildSkyscannerUrl({ origin, destination, outboundDate, returnDate }) {
+  const params = new URLSearchParams({
+    aid: SkyscannerConfig.aid,
+    origin,
+    destination,
+    outboundDate: outboundDate || "",
+    returnDate: returnDate || "",
+    utm_source: SkyscannerConfig.utmSource,
+    utm_medium: SkyscannerConfig.utmMedium,
+    utm_campaign: SkyscannerConfig.utmCampaign,
+  });
+  return `${SkyscannerConfig.baseUrl}?${params.toString()}`;
 }
 
-generateArticle();
+// 3. Inject Skyscanner link into a target element
+function injectSkyscannerLink({ selector = "a[data-skydeal]", origin, destination, outboundDate, returnDate }) {
+  const links = document.querySelectorAll(selector);
+  links.forEach((link) => {
+    const url = buildSkyscannerUrl({ origin, destination, outboundDate, returnDate });
+    link.href = url;
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noopener sponsored");
+  });
+}
+
+// 4. Hook into your existing generateDailyArticle flow
+//   (example; adapt to your current function names)
+function generateDailyArticle(rawContent, metadata) {
+  // ... your existing generate logic ...
+
+  // AFTER your DOM/content is built, inject Skyscanner
+  injectSkyscannerLink({
+    selector: "a[data-skydeal]",
+    origin: metadata.origin || "anywhere",
+    destination: metadata.destination || "anywhere",
+    outboundDate: metadata.outboundDate,
+    returnDate: metadata.returnDate,
+  });
+
+  return finalHtml;
+}
+
+// 5. Export / entry point (Node.js context, if run in Actions)
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    generateDailyArticle,
+    buildSkyscannerUrl,
+    injectSkyscannerLink,
+  };
+}
