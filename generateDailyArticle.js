@@ -1,134 +1,220 @@
-// generateDailyArticle.js
+// scripts/generateDailyArticle.js
 
 const fs = require("fs");
 const path = require("path");
 
-// THE MASTER AFFILIATE LINK — YOU SAID: DO NOT FORGET IT
-const SKYDEALS_AFFILIATE_URL = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+// 1. Config
+const OUTPUT_DIR = path.join(__dirname, "../docs");        // adjust to your static output
+const BASE_URL = "https://skydeals.example.com";          // your domain
 
-// --- 1. Build article HTML around flights + destinations + airlines ---
-function generateDailyArticle({ title, intro, body, metadata }) {
-  const origin = metadata.origin || "anywhere";
-  const destination = metadata.destination || "anywhere";
-  const airline = metadata.airline || "multiple airlines";
-  const days = metadata.days || "7–14 days";
-  const month = metadata.month || "late summer";
+// 2. Routes to generate (example batch; you can grow this list)
+const ROUTES = [
+  { origin: "NYC", destination: "MIA", route: "nyc-mia" },
+  { origin: "PHL", destination: "MCO", route: "phl-mco" },
+  { origin: "PHL", destination: "MIA", route: "phl-mia" },
+  { origin: "NYC", destination: "MCO", route: "nyc-mco" },
+  { origin: "anywhere", destination: "MCO", route: "anywhere-to-orlando" },
+  { origin: "anywhere", destination: "MIA", route: "anywhere-to-miami" },
+];
 
-  const html = `
+// 3. Title / keyword templates (freshness engine)
+const TITLE_TEMPLATES = [
+  "{origin} to {destination} deals",
+  "cheap flights from {origin} to {destination}",
+  "{origin} {destination} last minute deals",
+  "Skyscanner‑style deals {origin} to {destination}",
+  "best time to book flights {origin} to {destination}",
+  "Skyscanner alerts {origin} to {destination}",
+  "{origin} to {destination} on a budget",
+  "{origin} to {destination} for families",
+  "{origin} to {destination} senior deals",
+  "{origin} to {destination} next week",
+];
+
+function randomTitle(origin, dest) {
+  const temp = TITLE_TEMPLATES[Math.floor(Math.random() * TITLE_TEMPLATES.length)];
+  return temp
+    .replace("{origin}", origin)
+    .replace("{destination}", dest);
+}
+
+// 4. Build one page HTML
+function buildPageHtml(routeObj) {
+  const { origin, destination, route } = routeObj;
+
+  const title = randomTitle(origin, destination);
+  const filename = `${route}.html`;
+  const fileUrl = `${BASE_URL}/${route}`;
+
+  return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>${title}</title>
-  <meta name="description" content="Explore the best ${origin} to ${destination} flight deals and when to book for the lowest fares." />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 1rem 1.2rem;
-    }
-    h1, h2, h3 {
-      margin-top: 1.8rem;
-      margin-bottom: 0.6rem;
-    }
-    .hero {
-      text-align: center;
-      padding: 1rem 0;
-      border-bottom: 1px solid #eee;
-      margin-bottom: 2rem;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      color: #555;
-    }
-    .skydeal-cta {
-      margin: 1.5rem 0;
-      padding: 1rem;
-      background: #f8f9ff;
-      border: 1px solid #e0e0ff;
-      border-radius: 8px;
-      text-align: center;
-      font-weight: 600;
-    }
-    .skydeal-cta a {
-      display: inline-block;
-      padding: 0.8rem 1.4rem;
-      text-decoration: none;
-      color: #fff;
-      background: #ff5a5f;
-      border-radius: 6px;
-      font-weight: 600;
-      transition: background 0.2s ease;
-    }
-    .skydeal-cta a:hover {
-      background: #e04044;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>${title} | SkyDeals</title>
+  <meta name="description" content="Get the latest Skyscanner‑style deals between ${origin} and ${destination}." />
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
+  <nav>
+    <a href="/index.html">Home</a>
+    <a href="/blog.html">Blog</a>
+  </nav>
 
-  <div class="hero">
+  <main>
     <h1>${title}</h1>
-    <p>${intro}</p>
-  </div>
+    <p>
+      SkyDeals finds the best Skyscanner‑style deals for trips from <strong>${origin}</strong> to <strong>${destination}</strong>.
+      Set alerts, compare prices, and book at the right time using our Skyscanner‑style tools.
+    </p>
 
-  <!-- Main Skyscanner‑style CTA (top of article) -->
-  <div class="skydeal-cta">
-    <a href="#" data-skydeal data-origin="${origin}" data-destination="${destination}">
-      Find the cheapest flights from ${origin} to ${destination}
-    </a>
-  </div>
+    <div>
+      <a
+        href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885&utm_source=skydeals&utm_medium=web&utm_campaign=${route}"
+        data-skydeal
+        data-origin="${origin}"
+        data-destination="${destination}"
+        target="_blank"
+        rel="noopener sponsored"
+      >
+        Check today’s Skyscanner‑style deals from ${origin} to ${destination}
+      </a>
+    </div>
 
-  <div class="article-body">
-    ${body}
-  </div>
+    <p>
+      Remember to check <strong>Skyscanner</strong> for price calendars, alerts, and last‑minute opportunities
+      on your route from ${origin} to ${destination}.
+    </p>
+  </main>
 
-  <!-- Footer‑style CTA -->
-  <div class="skydeal-cta">
-    <a href="#" data-skydeal data-origin="${origin}" data-destination="${destination}">
-      Ready to book? Click here for the best deals
-    </a>
-  </div>
-
-  <!-- Footer -->
-  <footer style="margin-top: 3rem; padding: 1rem 0; border-top: 1px solid #eee; text-align: center; font-size: 0.9rem; color: #777;">
-    © 2026 SkyDeals • Flight deals powered by 
-    <a href="#" data-skydeal data-origin="anywhere" data-destination="anywhere">
-      special flight‑deals offers
-    </a>.
+  <footer>
+    <p>&copy; 2026 SkyDeals. All rights reserved.</p>
   </footer>
 
-  <!-- JS that converts data-skydeal links into your real affiliate URL -->
+  <!-- universal keyword injector (you can minify this later) -->
   <script>
-    const SKYDEALS_AFFILIATE_URL = "${SKYDEALS_AFFILIATE_URL}";
+    (function () {
+      "use strict";
+      const KEYWORD_POOL = [
+        "cheap flights from {LOCATION} to {DESTINATION}",
+        "last minute deals {LOCATION} to {DESTINATION}",
+        "Skyscanner deals {LOCATION} to {DESTINATION}",
+        "Skyscanner price calendar {LOCATION} to {DESTINATION}",
+        "Skyscanner alerts for {LOCATION} {DESTINATION}",
+        "best time to book flights {LOCATION} to {DESTINATION}",
+        "Skyscanner hack for {LOCATION} to {DESTINATION}",
+        "{LOCATION} to {DESTINATION} on a budget",
+        "{LOCATION} to {DESTINATION} for families",
+        "{LOCATION} to {DESTINATION} senior deals",
+        "{LOCATION} to {DESTINATION} next week",
+        "{LOCATION} to {DESTINATION} this weekend",
+      ];
 
-    function injectAffiliateLinks() {
-      document.querySelectorAll("a[data-skydeal]").forEach((link) => {
-        link.href = SKYDEALS_AFFILIATE_URL;
-        link.target = "_blank";
-        link.rel = "noopener sponsored";
-      });
-    }
+      function pickFreshKeyword() {
+        return KEYWORD_POOL[Math.floor(Math.random() * KEYWORD_POOL.length)];
+      }
 
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", injectAffiliateLinks);
-    } else {
-      injectAffiliateLinks();
-    }
+      const LOCATION_PATTERN = /(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*|[A-Z]{2,3}|[0-9]{3,5})(?:\\s*(?:to|from|towards|to-from|for|via|between|→|–|-)\\s*(?:[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)*|[A-Z]{2,3}|[0-9]{3,5}))?/g;
+      const AIRLINE_PATTERN = /(?:airlines?|airline|carrier|skyscanner|kayak|google flights|flight search|cheap flights?|last minute flights?|deals?|sale|promo|discount|booking|trip|vacation|getaway|escape|break|holiday|spring break|summer deals|winter sun|family trip|senior travel|overnight|layover|connecting flights?|one‑way|round‑trip|direct flight|non‑stop flight|flight prices?)/gi;
+
+      function normalizePlaceholder(text, origin, dest) {
+        return text
+          .replace(/\{LOCATION\}/g, origin.trim())
+          .replace(/\{DESTINATION\}/g, dest.trim());
+      }
+
+      function walkAndInjectKeywords() {
+        const walker = document.createTreeWalker(
+          document.body,
+          NodeFilter.SHOW_TEXT,
+          {
+            acceptNode: function (node) {
+              if (
+                node.parentElement &&
+                ["SCRIPT", "STYLE", "NOSCRIPT", "CODE"].includes(
+                  node.parentElement.tagName
+                )
+              ) {
+                return NodeFilter.FILTER_REJECT;
+              }
+              return NodeFilter.FILTER_ACCEPT;
+            },
+          }
+        );
+
+        const nodes = [];
+        let node;
+        while ((node = walker.nextNode())) nodes.push(node);
+
+        let origin = "any city";
+        let dest = "anywhere";
+        const locationMatches = nodes
+          .map((n) => n.nodeValue.match(LOCATION_PATTERN))
+          .filter((x) => x)
+          .flat();
+        if (locationMatches.length > 0) {
+          const first = locationMatches[0];
+          const parts = first.split(/[–\\s-→]/).filter((s) => s.trim());
+          origin = parts[0] || "any city";
+          dest = parts.slice(-1)[0] || "anywhere";
+        }
+
+        const rawKeyword = pickFreshKeyword();
+        const keyword = normalizePlaceholder(rawKeyword, origin, dest);
+
+        nodes.forEach((textNode) => {
+          const text = textNode.nodeValue;
+          if (
+            text.includes("http://") ||
+            text.includes("https://") ||
+            text.includes("aff_c") ||
+            text.includes("convert.ctypy.com")
+          )
+            return;
+
+          if (
+            text.match(LOCATION_PATTERN) ||
+            text.match(AIRLINE_PATTERN)
+          ) {
+            if (!text.includes(keyword)) {
+              textNode.nodeValue = text + " — " + keyword;
+            }
+          }
+        });
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", walkAndInjectKeywords);
+      } else {
+        walkAndInjectKeywords();
+      }
+    })();
   </script>
 </body>
-</html>`;
-
-  return html;
+</html>
+`.trim();
 }
 
-// --- 2. Expose to Node.js / GitHub Actions ---
-if (typeof module !== "undefined" && module.exports) {
-  module.exports = {
-    generateDailyArticle,
-  };
+// 5. Generate all pages
+function generatePages() {
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+  }
+
+  ROUTES.forEach((routeObj) => {
+    const filename = `${routeObj.route}.html`;
+    const filepath = path.join(OUTPUT_DIR, filename);
+    const html = buildPageHtml(routeObj);
+
+    fs.writeFileSync(filepath, html);
+    console.log(`✓ Generated ${filepath}`);
+  });
+
+  console.log(`\n✅ All pages generated in ${OUTPUT_DIR}`);
+}
+
+// 6. Run if executed directly
+if (require.main === module) {
+  generatePages();
 }
