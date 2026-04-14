@@ -1,141 +1,123 @@
-/* ===== Reset & Base Styles ===== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* style.css */
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f9f9f9;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 1.2rem;
+  background: #fff;
 }
 
-/* ===== Header ===== */
-header {
-    background-color: #1e90ff;
-    color: #fff;
-    padding: 2rem 1rem;
-    text-align: center;
+h1, h2, h3 {
+  margin-top: 1.8rem;
+  margin-bottom: 0.6rem;
+  font-weight: 700;
 }
 
-header h1 {
-    margin-bottom: 0.5rem;
-    font-size: 2rem;
+/* Hero section (top of index / route pages) */
+.hero {
+  text-align: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 2rem;
 }
 
-header p {
-    font-size: 1rem;
-    font-weight: 500;
+.hero h1 {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
 }
 
-/* ===== Navigation ===== */
-nav {
-    display: flex;
-    justify-content: center;
-    background-color: #0077cc;
-    padding: 0.75rem 1rem;
-    flex-wrap: wrap;
+.hero p {
+  font-size: 1.1rem;
+  color: #555;
 }
 
-nav a {
-    color: #fff;
-    margin: 0 1rem;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 0.25rem 0.5rem;
-    transition: background 0.3s, color 0.3s;
+/* Main CTA box (high‑click zone) */
+.skydeal-cta {
+  margin: 1.8rem 0;
+  padding: 1rem 1.4rem;
+  background: #fff1f0; /* light pink‑tone, draws eye */
+  border: 1px solid #ffb3b2;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(255, 90, 95, 0.15); /* soft shadow */
 }
 
-nav a:hover {
-    background-color: #005fa3;
-    border-radius: 5px;
+/* Main CTA button (the thing that converts) */
+.skydeal-cta a {
+  display: inline-block;
+  padding: 0.9rem 1.6rem;
+  text-decoration: none;
+  color: #fff;
+  background: #ff5a5f; /* bright Skyscanner‑style red */
+  border-radius: 8px;
+  font-weight: 600;
+  text-transform: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 8px rgba(255, 90, 95, 0.25);
 }
 
-/* ===== Main Container ===== */
-.container {
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 2rem 1rem;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+.skydeal-cta a:hover,
+.skydeal-cta a:focus {
+  background: #e04044;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(255, 90, 95, 0.3);
 }
 
-/* ===== Sections ===== */
-h2 {
-    color: #1e90ff;
-    margin-bottom: 0.75rem;
-    font-size: 1.5rem;
+/* Inline article links (embedded in text) */
+article a[data-skydeal] {
+  color: #ff5a5f;
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.15s ease;
 }
 
-p {
-    margin-bottom: 1rem;
+article a[data-skydeal]:hover {
+  color: #cc4045;
 }
 
-/* ===== Call-to-Action Button ===== */
-.cta {
-    display: inline-block;
-    background-color: #ff6b6b;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 1rem;
-    transition: background 0.3s, transform 0.2s;
+/* Tips / highlight boxes in articles */
+.tip {
+  background: #f0fff0;
+  padding: 0.9rem;
+  border-left: 4px solid #48bb78;
+  margin: 1.2rem 0;
+  border-radius: 4px;
 }
 
-.cta:hover {
-    background-color: #ff4757;
-    transform: scale(1.05);
+.tip p {
+  margin: 0;
 }
 
-/* ===== Lists ===== */
-ul {
-    list-style-type: disc;
-    padding-left: 1.5rem;
-    margin-top: 1rem;
-}
-
-ul li {
-    margin-bottom: 0.5rem;
-}
-
-/* ===== Footer ===== */
+/* Footer */
 footer {
-    text-align: center;
-    padding: 1.5rem;
-    background-color: #eee;
-    margin-top: 2rem;
-    font-size: 0.9rem;
-    color: #555;
+  margin-top: 3rem;
+  padding: 1.2rem 0;
+  border-top: 1px solid #eee;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #777;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 600px) {
-    nav {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
+footer a {
+  color: #ff5a5f;
+}
 
-    .container {
-        padding: 1rem;
-        margin: 1rem;
-    }
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .skydeal-cta {
+    margin: 1.4rem 0;
+  }
 
-    header h1 {
-        font-size: 1.5rem;
-    }
+  .skydeal-cta a {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.95rem;
+  }
 
-    h2 {
-        font-size: 1.25rem;
-    }
-
-    .cta {
-        width: 100%;
-        text-align: center;
-        padding: 0.75rem;
-    }
+  body {
+    padding: 1rem;
+  }
 }
