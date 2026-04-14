@@ -1,265 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Find Cheap Flights & Flight Deals • AI-Powered Flight Search</title>
-<meta name="description" content="Discover cheap flights worldwide, compare airfare, and find budget plane tickets instantly using AI. Save money on every trip!">
-<meta name="keywords" content="cheap flights, budget flights, last minute flights, international flights, domestic flights, plane tickets, airfare deals, flight deals, travel discounts, airline offers, cheap tickets, best airfare, flight comparison, low cost airlines, flight search engine, Skyscanner alternative, flight booking online, travel deals, last minute airfare, cheap flights today, travel tips, airfare savings, flight planner, airline price alerts, cheap airline tickets, student flights, budget travel, family flights, vacation deals, airline promotions, flight coupons, flight booking, cheap destinations, holiday flights, cheap summer flights, flight alerts, airline comparison, cheap airline routes, low cost carriers, travel hacks, flight cost optimization, AI flight search, flexible dates flights, cheap round trips, one way cheap flights, travel discounts 2026, cheap flights US, cheap flights Europe, cheap flights Asia, cheap flights Australia, cheap flights Africa, cheap flights South America, affordable airfare, last minute deals, flight bundles, flight + hotel deals, cheap flights today online, Skyscanner deals, Skyscanner price alerts, Skyscanner low cost flights, Skyscanner AI search, flight savings, travel budget hacks, flight deals newsletter, cheap vacation flights, travel tips cheap airfare, flight hacks 2026, travel AI tools, cheapest flight routes, budget airline deals, real-time airfare, airfare comparison tool, flight timetable deals, seasonal flight savings, cheap tropical flights, cheap city break flights, airline discount codes, Skyscanner travel deals, flight tips for families, student airfare discounts, senior airfare discounts, business class deals, premium economy deals, flexible booking flights, refundable flight deals, last minute flight search">
+  <meta charset="UTF-8" />
+  <title>Cheap Flights & Flight Deals • SkyDeals</title>
+  <meta name="description" content="Find the cheapest flights worldwide with Skyscanner‑powered deals. Expert guides, best times to book, and city‑to‑city routes." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-<style>
-/* Global Styles */
-* {margin:0;padding:0;box-sizing:border-box;}
-body {font-family:'Inter',sans-serif;background:#fdfdfd;color:#222;line-height:1.7;}
-a {text-decoration:none;color:#ff6b00;}
-a:hover {text-decoration:underline;}
-h1,h2,h3,h4,h5 {color:#1a1a1a;margin-bottom:12px;}
-section {max-width:900px;margin:40px auto;padding:25px;border-radius:12px;background:#fff;box-shadow:0 5px 25px rgba(0,0,0,0.05);}
-ul, dl {margin-left:20px; margin-bottom:15px;}
-li {margin-bottom:8px;}
-p {margin-bottom:15px;}
-
-/* CTA Buttons */
-.cta-main, .bottom-cta a {display:inline-block;padding:15px 45px;background:linear-gradient(90deg,#ff6b00,#ff8500);color:#fff;border-radius:15px;font-weight:700;box-shadow:0 12px 25px rgba(255,107,0,0.3);transition:all 0.3s ease;}
-.cta-main:hover, .bottom-cta a:hover {transform: translateY(-3px) scale(1.02);box-shadow:0 15px 30px rgba(255,107,0,0.5);}
-
-/* AI Input */
-.ai-input-group {display:flex;gap:10px;flex-wrap:wrap;margin:15px 0;}
-#userQuestionInline {flex:1;padding:12px;border-radius:8px;border:1px solid #ccc;}
-#askAIButton {padding:12px 20px;background:#ff6b00;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;transition:all 0.3s;}
-#askAIButton:hover {background:#ff8500;transform: scale(1.02);}
-#aiAnswerInline {background:#f9f9f9;padding:15px;border-radius:8px;max-height:400px;overflow-y:auto;margin-top:10px;}
-
-/* FAQ */
-#faq dt {font-weight:700;margin-top:15px;}
-#faq dd {margin-bottom:10px;margin-left:20px;}
-
-/* Table Styles */
-table {width:100%;border-collapse:collapse;margin-bottom:20px;}
-table th, table td {border:1px solid #ddd;padding:10px;text-align:left;}
-table th {background:#f4f4f4;}
-
-/* Bottom CTA */
-.bottom-cta {text-align:center;margin:40px 0;}
-.sticky {position:fixed;bottom:15px;left:50%;transform:translateX(-50%);background:#ff6b00;color:#fff;padding:15px 35px;border-radius:30px;font-weight:700;z-index:999;}
-
-/* Responsive */
-@media(max-width:768px){.ai-input-group{flex-direction:column;}#askAIButton{width:100%;}h2{font-size:1.6rem;}h3{font-size:1.1rem;}}
-</style>
-
-<!-- FAQ Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is Skyscanner free to use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes! Skyscanner is completely free. Start here: https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I trust the prices on Skyscanner?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely. Skyscanner provides real-time prices directly from airlines and travel agencies. Compare Flights: https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does Skyscanner show budget airlines?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, it includes major and low-cost carriers worldwide. Explore: https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885"
-      }
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1rem 1.2rem;
     }
-  ]
-}
-</script>
-
+    h1, h2, h3 {
+      margin-top: 1.8rem;
+      margin-bottom: 0.6rem;
+    }
+    .hero {
+      text-align: center;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+    .skydeal-cta {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: #f8f9ff;
+      border: 1px solid #e0e0ff;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+    }
+    .skydeal-cta a {
+      display: inline-block;
+      padding: 0.8rem 1.4rem;
+      text-decoration: none;
+      color: #fff;
+      background: #ff5a5f;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+    .skydeal-cta a:hover {
+      background: #e04044;
+    }
+    .article-preview {
+      margin: 1.5rem 0;
+      padding: 1rem 1.2rem;
+      background: #f9f9f9;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+    }
+    footer {
+      margin-top: 3rem;
+      padding: 1rem 0;
+      border-top: 1px solid #eee;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
 
-<!-- HERO -->
-<section id="hero">
-<h1>Find Cheap Flights Instantly ✈️</h1>
-<p>Compare airfare, find budget plane tickets, and book flights worldwide with our AI-powered flight search.</p>
-<p>Today’s Date: <span id="currentDate"></span></p>
-<a class="cta-main" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">🔥 Book Cheap Flights Now</a>
-<p style="font-size:0.85rem;color:#666;margin-top:10px;">Affiliate Disclosure: We earn a small commission for bookings made through our links at no extra cost to you.</p>
-</section>
+  <div class="hero">
+    <h1>Cheap Flights & Flight Deals</h1>
+    <p>
+      Find the cheapest flights from anywhere to the world’s most popular destinations.  
+      Every route leads to savings via our special flight‑deals link.
+    </p>
+  </div>
 
-<!-- Skyscanner Article -->
-<section id="skyscanner-article">
-<h2>🌟 Why Skyscanner is the #1 Choice for Flight Search in 2026</h2>
-<p>Finding the perfect flight can be overwhelming. With hundreds of airlines and thousands of routes, it's easy to miss the best deal. That's where Skyscanner comes in. Skyscanner is not just a flight search engine; it is a full AI-powered travel assistant that helps millions of travelers find the cheapest and most convenient flights daily.</p>
+  <!-- Main Skyscanner‑style CTA (top of page, high‑click zone) -->
+  <div class="skydeal-cta">
+    <a href="#" data-skydeal data-origin="anywhere" data-destination="anywhere">
+      Find the cheapest flights worldwide
+    </a>
+  </div>
 
-<p>Skyscanner excels by providing a simple interface, price alerts, and the flexibility to search across multiple airlines and dates in seconds. Unlike other competitors, Skyscanner gives you real-time fare comparisons, notifying you when prices drop and ensuring you never overpay. <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Book Flights Here</a>.</p>
+  <h2>Popular flight routes</h2>
 
-<h3>Key Advantages of Using Skyscanner</h3>
-<ul>
-<li><strong>AI-Powered Search:</strong> Advanced algorithms suggest the cheapest flights for your desired routes.</li>
-<li><strong>Price Alerts:</strong> Track flights and get notifications for fare drops directly to your email.</li>
-<li><strong>Flexible Search:</strong> Compare multiple dates, airports, and airlines easily.</li>
-<li><strong>Worldwide Coverage:</strong> Access flights from hundreds of airlines and travel providers globally.</li>
-<li><strong>Mobile-Friendly:</strong> Search on desktop or the Skyscanner app for seamless booking on the go.</li>
-<li><strong>No Hidden Fees:</strong> Transparent pricing ensures the fare you see is what you pay.</li>
-<li><strong>Additional Services:</strong> Hotels, car rentals, and travel packages are all integrated for convenience.</li>
-</ul>
+  <div class="article-preview">
+    <h3>New York → Miami</h3>
+    <p>
+      Ready to book cheap flights from New York to Miami?  
+      <a href="#" data-skydeal data-origin="NYC" data-destination="MIA">
+        See the best deals now
+      </a>.
+    </p>
+  </div>
 
-<h3>Why Skyscanner Beats the Competition</h3>
-<p>For travelers seeking low-cost carriers or last-minute deals, Skyscanner combines ease of use, speed, and real-time alerts effectively. If you are searching for flights from New York to London, Skyscanner will instantly compare prices across multiple airlines, highlight the cheapest days to fly, and even suggest alternative nearby airports to save you hundreds.</p>
+  <div class="article-preview">
+    <h3>Philadelphia → Orlando</h3>
+    <p>
+      Affordable flights from Philadelphia to Orlando are easier than you think.  
+      <a href="#" data-skydeal data-origin="PHL" data-destination="MCO">
+        Find low‑fare options
+      </a>.
+    </p>
+  </div>
 
-<h3>Top Tips to Maximize Savings</h3>
-<ul>
-<li>Book midweek flights (Tuesday–Thursday) to take advantage of lower fares.</li>
-<li>Use Skyscanner’s price alerts to monitor fare fluctuations.</li>
-<li>Be flexible with departure and arrival airports to find hidden savings.</li>
-<li>Travel during shoulder or off-peak seasons to reduce costs.</li>
-<li>Bundle flights with hotels or car rentals when possible using Skyscanner.</li>
-</ul>
+  <div class="article-preview">
+    <h3>Cheap international flights</h3>
+    <p>
+      Whether you’re flying to Europe, Asia, or the Caribbean,  
+      <a href="#" data-skydeal data-origin="anywhere" data-destination="anywhere">
+        check live prices
+      </a> and see how low you can go.
+    </p>
+  </div>
 
-<h3>FAQs About Booking Flights with Skyscanner</h3>
-<div id="faq">
-<dl>
-<dt>Is Skyscanner free to use?</dt>
-<dd>Yes! Skyscanner is completely free. Start here: <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Skyscanner Free Search</a>.</dd>
+  <!-- Footer link (soft CTA, keeps your URL present) -->
+  <footer>
+    <p>
+      © 2026 SkyDeals • Flight deals powered by 
+      <a href="#" data-skydeal data-origin="anywhere" data-destination="anywhere">
+        special flight‑deals offers
+      </a>.
+    </p>
+  </footer>
 
-<dt>Can I trust the prices on Skyscanner?</dt>
-<dd>Absolutely. Skyscanner provides real-time prices directly from airlines and travel agencies. Check fares here: <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Compare Flights Now</a>.</dd>
+  <!-- JS that converts data-skydeal links into your real affiliate URL -->
+  <script>
+    // THE MASTER AFFILIATE LINK — YOU SAID: DO NOT FORGET IT
+    const SKYDEALS_AFFILIATE_URL = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
 
-<dt>Does Skyscanner show budget airlines?</dt>
-<dd>Yes, it includes major and low-cost carriers worldwide. Explore budget airlines: <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Budget Flights Search</a>.</dd>
+    function injectAffiliateLinks() {
+      document.querySelectorAll("a[data-skydeal]").forEach((link) => {
+        link.href = SKYDEALS_AFFILIATE_URL;
+        link.target = "_blank";
+        link.rel = "noopener sponsored";
+      });
+    }
 
-<dt>Can I book hotels and car rentals with Skyscanner?</dt>
-<dd>Yes. Skyscanner integrates hotel bookings and car rentals. Book now: <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Flights + Hotels</a>.</dd>
-
-<dt>Why is Skyscanner better than other flight search sites?</dt>
-<dd>Skyscanner provides AI-based recommendations, price alerts, and the widest coverage of airlines and routes. Start saving: <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Compare Flights Instantly</a>.</dd>
-</dl>
-</div>
-</section>
-
-<!-- 50 Competitor Comparisons -->
-<section id="competitors">
-<h2>🛫 Competitor Comparison: Why Skyscanner is the Smart Choice</h2>
-<div style="margin-bottom:20px;">
-<p>Below is a full list of 50 competitor sites and why Skyscanner provides superior coverage, pricing, and flexibility:</p>
-</div>
-
-<div style="line-height:1.6;">
-<!-- Example pattern repeated up to 50 competitors -->
-<script>
-const competitors = [
-  "Google Flights|Fast and shows trends but misses low-cost carriers.",
-  "KAYAK|Predictive pricing but complex interface for multi-city trips.",
-  "Momondo|Highlights hidden deals but sometimes misses small carriers.",
-  "Expedia|Bundles but less transparent for flight-only searches.",
-  "Priceline|Deals but limited airline visibility.",
-  "Orbitz|Loyalty points but limited international low-cost options.",
-  "CheapOair|Deals but may add fees or hide costs.",
-  "Hopper|Price prediction but cannot search all airlines.",
-  "Kiwi.com|Virtual interline combos but limited customer support.",
-  "Skiplagged|Hidden city flights risky with checked luggage.",
-  "Ebookers|Bundles flights with hotels but misses budget carriers.",
-  "eDreams|Packages but sometimes adds extra fees.",
-  "StudentUniverse|Student discounts only for certain ages.",
-  "FlightHub|Aggregates deals but may miss regional carriers.",
-  "Airfarewatchdog|Tracks deals but limited search flexibility.",
-  "Going.com|Regional deals only.",
-  "Travelzoo|Curated deals, limited carriers.",
-  "Wego|Focus on Asia.",
-  "Liligo|Europe only.",
-  "Cleartrip|India focus.",
-  "Ixigo|India domestic focus.",
-  "TravelSupermarket|Limited multi-city search.",
-  "FlightList.io|Limited airline coverage.",
-  "AirAsia Direct|Own flights only.",
-  "ITA Matrix|Advanced search but no booking.",
-  "CheapFlights|Misses smaller carriers.",
-  "Travelocity|Bundles but lacks transparency.",
-  "Despegar|Latin America focus.",
-  "JetCost|Limited multi-leg trips.",
-  "Southwest Airlines|Own flights only.",
-  "United Airlines|Direct booking only.",
-  "Delta Airlines|Own flights only.",
-  "Emirates|Own flights only.",
-  "Qatar Airways|Own flights only.",
-  "Ryanair|Ultra-low fares, own routes.",
-  "EasyJet|Europe only.",
-  "Vueling Airlines|Europe only.",
-  "Norwegian Air Shuttle|Budget long-haul only.",
-  "Allegiant Air|Specific US routes only.",
-  "Wizz Air|Europe only.",
-  "Traveloka|Southeast Asia focus.",
-  "CheapTickets|Hides some fees.",
-  "Trip.com|Strong in Asia only.",
-  "Ctrip|China and Asia focus.",
-  "MakeMyTrip|India focus only.",
-  "Opodo|Adds hidden fees sometimes.",
-  "Airwander|Niche layover trips only.",
-  "JustFly|Additional fees at checkout.",
-  "BudgetAir|Low-cost focus but limited global reach.",
-  "OneTravel|Bundles but misses small carriers."
-];
-document.write('<ol>');
-competitors.forEach(c=>{
-  const parts=c.split('|');
-  document.write(`<li><strong>${parts[0]}:</strong> ${parts[1]} 🔗 <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Book Flights via Skyscanner</a></li>`);
-});
-document.write('</ol>');
-</script>
-</div>
-</section>
-
-<!-- Bottom AI Flight Assistant -->
-<section id="ai-travel-inline">
-<h2>✈️ AI-Powered Flight Assistant</h2>
-<p>Ask our AI to find the cheapest flights for any route. Prices are simulated but fully lifelike and include your affiliate link for booking.</p>
-<div class="ai-input-group">
-<input type="text" id="userQuestionInline" placeholder="e.g., Cheapest time to fly NYC → Paris?">
-<button id="askAIButton">Ask AI</button>
-</div>
-<div id="aiAnswerInline"></div>
-</section>
-
-<!-- Bottom CTA -->
-<div class="bottom-cta">
-<a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">✈️ Unlock Cheap Flights & Flight Deals Now</a>
-</div>
-
-<script>
-// Current date
-document.getElementById('currentDate').textContent = new Date().toLocaleDateString(undefined, { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-
-// AI Flight Simulation
-function generatePrice(){return `$${Math.floor(Math.random()*1050+150)}`;}
-function detectRoute(q){const c=q.match(/\b([A-Z][a-zA-Z]+)\b/g);return(c&&c.length>=2)?`${c[0]} → ${c[1]}`:"your route";}
-function getAIAnswerInline(){
-  const input=document.getElementById("userQuestionInline");
-  const answerDiv=document.getElementById("aiAnswerInline");
-  const question=input.value.trim();
-  if(!question){answerDiv.innerHTML="<em>Type a question.</em>";return;}
-  answerDiv.innerHTML="<em>🤖 Thinking...</em>";
-  const route=detectRoute(question);
-  const price=generatePrice();
-  let answer="";
-  if(/cheap|cheapest|lowest/.test(question.toLowerCase())){
-    answer=`The cheapest flights for <strong>${route}</strong> start at <strong>${price}</strong>. Fly midweek for best savings.`;}
-  else if(/best time|when/.test(question.toLowerCase())){
-    answer=`The best time to fly <strong>${route}</strong> is midweek. Prices start from <strong>${price}</strong>.`;}
-  else{answer=`To save on flights for <strong>${route}</strong>, compare airlines and be flexible. Example fare: <strong>${price}</strong>.`;}
-  setTimeout(()=>{answerDiv.innerHTML=`<p>${answer}</p><p>✈️ <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Book Flights for ${route}</a></p>`;},500);
-}
-document.getElementById("askAIButton").addEventListener("click",getAIAnswerInline);
-document.getElementById("userQuestionInline").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();getAIAnswerInline();}});
-</script>
-
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", injectAffiliateLinks);
+    } else {
+      injectAffiliateLinks();
+    }
+  </script>
 </body>
 </html>
