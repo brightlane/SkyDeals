@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flight Deals Blog • SkyDeals</title>
+  <meta name="description" content="Daily flight deals, route guides, best time to book tips, and airline hacks." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="hero">
+    <h1>Flight Deals Blog</h1>
+    <p>
+      Articles about cheap flights, best times to book, and airline strategies — all wired to our flight‑deals offers.
+    </p>
+  </div>
+
+  <!-- Main CTA (top of blog) -->
+  <div class="skydeal-cta">
+    <a href="#" data-skydeal data-origin="anywhere" data-destination="anywhere">
+      Check the best flight deals today
+    </a>
+  </div>
+
+  <div class="article-list">
+    <h2>Latest articles</h2>
+
+    <!-- Example article 1 -->
+    <article class="article-preview">
+      <h3><a href="best-time-to-book-flights.html">Best Time to Book Flights • Cheap Flight Hacks</a></h3>
+      <p>
+        Learn when to book for the lowest fares and how to avoid price spikes.
+      </p>
+    </article>
+
+    <!-- Example article 2 -->
+    <article class="article-preview">
+      <h3><a href="cheap-flights-new-york-miami.html">Cheap Flights from New York to Miami</a></h3>
+      <p>
+        How to find and time bookings for NYC → MIA at the lowest prices.
+      </p>
+    </article>
+
+    <!-- Example article 3 -->
+    <article class="article-preview">
+      <h3><a href="cheap-flights-philadelphia-to-orlando.html">Cheap Flights from Philadelphia to Orlando</a></h3>
+      <p>
+        Affordable options from PHL to MCO and seasonal price patterns.
+      </p>
+    </article>
+
+    <!-- Example article 4 -->
+    <article class="article-preview">
+      <h3><a href="cheap-international-flights.htmls">Cheap International Flights Worldwide</a></h3>
+      <p>
+        Buying low‑cost tickets to Europe, Asia, and the Caribbean.
+      </p>
+    </article>
+
+    <!-- Example article 5 -->
+    <article class="article-preview">
+      <h3><a href="cheap-flights-faq.html">Cheap Flights FAQ • Flight Deals Help</a></h3>
+      <p>
+        Answers to common questions about booking and pricing.
+      </p>
+    </article>
+
+    <!-- You can auto‑generate more entries here via JS or server‑side listing later -->
+  </div>
+
+  <!-- Footer (with legal + Skyscanner‑style disclaimer) -->
+  <footer>
+    © 2026 SkyDeals • Flight deals and information powered by 
+    <a href="#" data-skydeal>special flight‑deals offers</a>.
+
+    <p style="font-size: 0.85rem; color: #777; margin: 0.8rem 0 0 0;">
+      This site is not operated by Skyscanner Limited.  
+      "Skyscanner" is a trademark of Skyscanner Limited and is used for reference only.  
+      Some links on this site are affiliate links; when you click and book, we may earn a commission at no extra cost to you.  
+      For full details, see our <a href="legal.html">Legal & Affiliate Disclosure</a>.
+    </p>
+  </footer>
+
+  <!-- ========== ALL‑IN‑ONE WIRING (same as every other page) ========== -->
+
+  <!-- 1. Your affiliate link — I WILL NOT FORGET IT -->
+  <script>
+    const SKYDEALS_AFFILIATE_URL = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+  </script>
+
+  <!-- 2. Auto‑inject affiliate link into all data-skydeal anchors -->
+  <script>
+    function injectAffiliateLinks() {
+      document.querySelectorAll("a[data-skydeal]").forEach((link) => {
+        link.href = SKYDEALS_AFFILIATE_URL;
+        link.target = "_blank";
+        link.rel = "noopener sponsored";
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", injectAffiliateLinks);
+    } else {
+      injectAffiliateLinks();
+    }
+  </script>
+
+  <!-- 3. Optional: click tracker (logs to console) -->
+  <script>
+    function trackSkyscannerClick(event) {
+      if (console && console.log) {
+        console.log("[SkyDeals] Skyscanner‑style CTA clicked:", {
+          page: document.title,
+          origin: event.target.getAttribute("data-origin"),
+          destination: event.target.getAttribute("data-destination"),
+          timestamp: new Date().toISOString(),
+        });
+      }
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll("a[data-skydeal]").forEach((link) => {
+          link.addEventListener("click", trackSkyscannerClick);
+        });
+      });
+    } else {
+      document.querySelectorAll("a[data-skydeal]").forEach((link) => {
+        link.addEventListener("click", trackSkyscannerClick);
+      });
+    }
+  </script>
+</body>
+</html>
