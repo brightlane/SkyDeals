@@ -1,0 +1,33 @@
+<!-- ---------- CLICK TRACKER FOR data-skydeal LINKS (optional, non‑invasive) ---------- -->
+<script>
+  // Simple click tracker for Skyscanner‑style CTAs
+  function trackSkyscannerClick(event) {
+    const link = event.target;
+
+    // Optional: send hit to browser console (for you)
+    if (console && console.log) {
+      console.log("[SkyDeals] Skyscanner CTA clicked:", {
+        page: document.title,
+        origin: link.getAttribute("data-origin"),
+        destination: link.getAttribute("data-destination"),
+        timestamp: new Date().toISOString(),
+      });
+    }
+
+    // Optional: later you can plug in Google Analytics / GA4 / custom endpoint here
+    // For now, just a passive log.
+  }
+
+  // Attach to all data-skydeal links after DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("a[data-skydeal]").forEach((link) => {
+        link.addEventListener("click", trackSkyscannerClick);
+      });
+    });
+  } else {
+    document.querySelectorAll("a[data-skydeal]").forEach((link) => {
+      link.addEventListener("click", trackSkyscannerClick);
+    });
+  }
+</script>
