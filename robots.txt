@@ -1,0 +1,16 @@
+# robots.txt for SkyDeals
+
+User-agent: *
+Disallow: /admin/
+Disallow: /cgi-bin/
+
+# Allow everything else (your flight articles and landing pages)
+Allow: /
+
+# Sitemap (add your real URL once you have one)
+# Sitemap: https://yourdomain.com/sitemap.xml
+
+# Prefer desktop, but allow mobile crawling
+Allow: /$ 
+
+# No need to block your affiliate link; it's just a redirect
