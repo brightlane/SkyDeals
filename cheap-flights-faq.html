@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cheap Flights FAQ • Flight Deals Help</title>
+  <meta name="description" content="Answers to common questions about cheap flights, booking times, and how to find the best flight deals." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="hero">
+    <h1>Cheap Flights FAQ</h1>
+    <p>
+      Get quick answers to the most common questions about finding and booking cheap flights.
+    </p>
+  </div>
+
+  <!-- Main CTA (top of page) -->
+  <div class="skydeal-cta">
+    <a href="#" data-skydeal data-origin="anywhere" data-destination="anywhere">
+      Check current flight deals before you book
+    </a>
+  </div>
+
+  <div class="article-body">
+    <h2>How far in advance should I book a flight?</h2>
+    <p>
+      For most domestic flights, booking <strong>1–3 months</strong> in advance is ideal.  
+      For international routes, consider <strong>2–6 months</strong> to catch the best prices.
+    </p>
+
+    <h2>What are the cheapest days to fly?</h2>
+    <p>
+      <strong>Tuesdays and Wednesdays</strong> often show the lowest fares.  
+      Weekends can be more expensive, especially on popular routes.
+    </p>
+
+    <h2>How can I get cheaper international flights?</h2>
+    <p>
+      Try:
+    </p>
+    <ul>
+      <li>Booking in shoulder or off‑peak seasons.</li>
+      <li>Using alternative airports near your city or destination.</li>
+      <li>Checking a variety of dates and airlines.</li>
+    </ul>
+    <p>
+      <a href="#" data-skydeal data-origin="anywhere" data-destination="anywhere">
+        Compare live prices
+      </a> across many routes to see what’s really cheapest.
+    </p>
+
+    <h2>Why do some routes have much lower prices than others?</h2>
+    <p>
+      Routes with heavy competition, budget airlines, or high demand on certain days often have lower fares.  
+      <a href="#" data-skydeal data-origin="anywhere" data-destination="anywhere">
+        Use this flight‑deals link
+      </a> to see how different origins and destinations compare.
+    </p>
+
+    <!-- Secondary CTA (mid‑page) -->
+    <div class="skydeal-cta">
+      <a href="#" data-skydeal data-origin="anywhere" data-destination="anywhere">
+        Ready to book your next flight? See the best deals now
+      </a>
+    </div>
+
+    <h2>What should I do if I see a price drop after buying my ticket?</h2>
+    <p>
+      Some airlines and tools allow refunds or price‑match policies within a short window.  
+      Check your airline’s policy and consider using multi‑search tools to track prices.
+    </p>
+  </div>
+
+  <footer>
+    © 2026 SkyDeals • Flight FAQ powered by 
+    <a href="#" data-skydeal data-origin="anywhere" data-destination="anywhere">
+      special flight‑deals offers
+    </a>.
+  </footer>
+
+  <!-- Your affiliate JS (same in every page) -->
+  <script>
+    // YOUR AFFILIATE LINK AND ID — I WILL NOT FORGET
+    const SKYDEALS_AFFILIATE_URL = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+
+    function injectAffiliateLinks() {
+      document.querySelectorAll("a[data-skydeal]").forEach((link) => {
+        link.href = SKYDEALS_AFFILIATE_URL;
+        link.target = "_blank";
+        link.rel = "noopener sponsored";
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", injectAffiliateLinks);
+    } else {
+      injectAffiliateLinks();
+    }
+  </script>
+</body>
+</html>
