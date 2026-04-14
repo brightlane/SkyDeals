@@ -1,0 +1,13 @@
+{
+  "name": "skydeals",
+  "version": "1.0.0",
+  "description": "SkyDeals flight‑deal generator",
+  "main": "scripts/generateDailyArticle.js",
+  "scripts": {
+    "generate": "node scripts/generateDailyArticle.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "license": "MIT"
+}
