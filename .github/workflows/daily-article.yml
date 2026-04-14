@@ -3,25 +3,15 @@ name: Generate Daily Article
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"   # once per day at midnight
+    - cron: "0 0 * * *"   # run once per day at midnight
 
 jobs:
   generate-daily-article:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "lts/*"
-
-      - name: Install deps (if you ever add any)
-        run: npm ci
-
-      - name: Generate daily pages
+      - name: Generate pages
         run: node ./scripts/generateDailyArticle.js
