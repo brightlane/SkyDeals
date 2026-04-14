@@ -1,11 +1,27 @@
+// generateDailyArticle.js
+
+const fs = require("fs");
+const path = require("path");
+
+// THE MASTER AFFILIATE LINK — YOU SAID: DO NOT FORGET IT
+const SKYDEALS_AFFILIATE_URL = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+
+// --- 1. Build article HTML around flights + destinations + airlines ---
+function generateDailyArticle({ title, intro, body, metadata }) {
+  const origin = metadata.origin || "anywhere";
+  const destination = metadata.destination || "anywhere";
+  const airline = metadata.airline || "multiple airlines";
+  const days = metadata.days || "7–14 days";
+  const month = metadata.month || "late summer";
+
+  const html = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Cheap Flights & Flight Deals • SkyDeals</title>
-  <meta name="description" content="Find the cheapest flights worldwide with Skyscanner‑powered deals. Expert guides, best times to book, and city‑to‑city routes." />
+  <title>${title}</title>
+  <meta name="description" content="Explore the best ${origin} to ${destination} flight deals and when to book for the lowest fares." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -21,13 +37,9 @@
     }
     .hero {
       text-align: center;
-      padding: 1.5rem 0;
+      padding: 1rem 0;
       border-bottom: 1px solid #eee;
       margin-bottom: 2rem;
-    }
-    .hero h1 {
-      font-size: 2rem;
-      margin-bottom: 0.4rem;
     }
     .hero p {
       font-size: 1.1rem;
@@ -55,86 +67,44 @@
     .skydeal-cta a:hover {
       background: #e04044;
     }
-    .article-preview {
-      margin: 1.5rem 0;
-      padding: 1rem 1.2rem;
-      background: #f9f9f9;
-      border-radius: 8px;
-      border: 1px solid #e0e0e0;
-    }
-    footer {
-      margin-top: 3rem;
-      padding: 1rem 0;
-      border-top: 1px solid #eee;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #777;
-    }
   </style>
 </head>
 <body>
 
   <div class="hero">
-    <h1>Cheap Flights & Flight Deals</h1>
-    <p>
-      Find the cheapest flights from anywhere to the world’s most popular destinations.  
-      Every route leads to savings via our special flight‑deals link.
-    </p>
+    <h1>${title}</h1>
+    <p>${intro}</p>
   </div>
 
-  <!-- Main Skyscanner‑style CTA (top of page, high‑click zone) -->
+  <!-- Main Skyscanner‑style CTA (top of article) -->
   <div class="skydeal-cta">
-    <a href="#" data-skydeal data-origin="anywhere" data-destination="anywhere">
-      Find the cheapest flights worldwide
+    <a href="#" data-skydeal data-origin="${origin}" data-destination="${destination}">
+      Find the cheapest flights from ${origin} to ${destination}
     </a>
   </div>
 
-  <h2>Popular flight routes</h2>
-
-  <div class="article-preview">
-    <h3>New York → Miami</h3>
-    <p>
-      Ready to book cheap flights from New York to Miami?  
-      <a href="#" data-skydeal data-origin="NYC" data-destination="MIA">
-        See the best deals now
-      </a>.
-    </p>
+  <div class="article-body">
+    ${body}
   </div>
 
-  <div class="article-preview">
-    <h3>Philadelphia → Orlando</h3>
-    <p>
-      Affordable flights from Philadelphia to Orlando are easier than you think.  
-      <a href="#" data-skydeal data-origin="PHL" data-destination="MCO">
-        Find low‑fare options
-      </a>.
-    </p>
+  <!-- Footer‑style CTA -->
+  <div class="skydeal-cta">
+    <a href="#" data-skydeal data-origin="${origin}" data-destination="${destination}">
+      Ready to book? Click here for the best deals
+    </a>
   </div>
 
-  <div class="article-preview">
-    <h3>Cheap international flights</h3>
-    <p>
-      Whether you’re flying to Europe, Asia, or the Caribbean,  
-      <a href="#" data-skydeal data-origin="anywhere" data-destination="anywhere">
-        check live prices
-      </a> and see how low you can go.
-    </p>
-  </div>
-
-  <!-- Footer link (soft CTA, keeps your URL present) -->
-  <footer>
-    <p>
-      © 2026 SkyDeals • Flight deals powered by 
-      <a href="#" data-skydeal data-origin="anywhere" data-destination="anywhere">
-        special flight‑deals offers
-      </a>.
-    </p>
+  <!-- Footer -->
+  <footer style="margin-top: 3rem; padding: 1rem 0; border-top: 1px solid #eee; text-align: center; font-size: 0.9rem; color: #777;">
+    © 2026 SkyDeals • Flight deals powered by 
+    <a href="#" data-skydeal data-origin="anywhere" data-destination="anywhere">
+      special flight‑deals offers
+    </a>.
   </footer>
 
   <!-- JS that converts data-skydeal links into your real affiliate URL -->
   <script>
-    // THE MASTER AFFILIATE LINK — YOU SAID: DO NOT FORGET IT
-    const SKYDEALS_AFFILIATE_URL = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+    const SKYDEALS_AFFILIATE_URL = "${SKYDEALS_AFFILIATE_URL}";
 
     function injectAffiliateLinks() {
       document.querySelectorAll("a[data-skydeal]").forEach((link) => {
@@ -151,4 +121,14 @@
     }
   </script>
 </body>
-</html>
+</html>`;
+
+  return html;
+}
+
+// --- 2. Expose to Node.js / GitHub Actions ---
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    generateDailyArticle,
+  };
+}
