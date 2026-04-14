@@ -1,0 +1,18 @@
+<!-- ---------- INLINE TITLE BOOSTER (no extra .js file) ---------- -->
+<script>
+  const origin = document.querySelector("[data-origin]")?.getAttribute("data-origin") || "anywhere";
+  const destination = document.querySelector("[data-destination]")?.getAttribute("data-destination") || "anywhere";
+  const bodyClass = document.body.className;
+
+  if (bodyClass.includes("route-page") && origin !== "anywhere" && destination !== "anywhere") {
+    document.title = `Cheap Flights from ${origin} to ${destination} • Lowest Fares Today`;
+  } else if (bodyClass.includes("guide-page")) {
+    document.title = `Best Time to Book Flights • Cheap Flight Deals & Tips`;
+  } else if (bodyClass.includes("international-page")) {
+    document.title = `Cheap International Flights • Best Deals Worldwide`;
+  } else if (bodyClass.includes("faq-page")) {
+    document.title = `Cheap Flights FAQ • Flight Deals Help & Tips`;
+  } else {
+    document.title = `Cheap Flights & Flight Deals • SkyDeals`;
+  }
+</script>
