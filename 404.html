@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Page Not Found • SkyDeals</title>
+  <meta name="description" content="The page you requested could not be found. Return to our main cheap flights and flight deals page." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.2rem;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.6rem;
+    }
+    p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+    .links {
+      margin-top: 1.8rem;
+    }
+    .links a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.8rem 1.2rem;
+      text-decoration: none;
+      color: #fff;
+      background: #ff5a5f;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    .links a:hover {
+      background: #e04044;
+    }
+    footer {
+      margin-top: 3rem;
+      padding: 1rem 0;
+      border-top: 1px solid #eee;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Page Not Found</h1>
+  <p>
+    The page you’re looking for doesn’t exist or has moved.
+  </p>
+
+  <div class="links">
+    <a href="/">Go to homepage</a>
+    <a href="cheap-flights-new-york-miami.html">Cheap flights from NYC to Miami</a>
+    <a href="cheap-flights-philadelphia-to-orlando.html">Cheap flights from PHL to Orlando</a>
+    <a href="cheap-international-flights.htmls">Cheap international flights</a>
+  </div>
+
+  <footer>
+    © 2026 SkyDeals • Flight deals powered by 
+    <a href="#" data-skydeal>special flight‑deals offers</a>.
+  </footer>
+
+  <!-- Your affiliate link (stays intact on this page too) -->
+  <script>
+    const SKYDEALS_AFFILIATE_URL = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+
+    function injectAffiliateLinks() {
+      document.querySelectorAll("a[data-skydeal]").forEach((link) => {
+        link.href = SKYDEALS_AFFILIATE_URL;
+        link.target = "_blank";
+        link.rel = "noopener sponsored";
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", injectAffiliateLinks);
+    } else {
+      injectAffiliateLinks();
+    }
+  </script>
+</body>
+</html>
