@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title data-i18n="title">Cheap Flights & Flight Deals</title>
+  <meta name="description" content="Find the cheapest flights worldwide." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Optional: lang selector (only if you want user‑clickable language switch) -->
+  <div class="lang-select">
+    <small>Language:</small>
+    <a href="?lang=en">English</a> |
+    <a href="?lang=es">Español</a> |
+    <a href="?lang=fr">Français</a> |
+    <a href="?lang=it">Italiano</a> |
+    <a href="?lang=pt">Português</a>
+  </div>
+
+  <div class="hero">
+    <h1 id="title">Cheap Flights & Flight Deals</h1>
+    <p id="intro">Find the cheapest flights worldwide.</p>
+  </div>
+
+  <!-- Main CTA (auto‑translated, but affiliate link stays the same) -->
+  <div class="skydeal-cta">
+    <a href="#" data-skydeal id="cta-link">Find the cheapest flights worldwide</a>
+  </div>
+
+  <div class="article-body">
+    <!-- YOUR ARTICLE CONTENT GOES HERE -->
+    <!-- e.g., route text, FAQs, tips, etc. -->
+
+    <h2 id="section-1">Best Time to Book Flights</h2>
+    <p id="section-1-text">
+      When is the best time to book a flight for the lowest fares?
+    </p>
+
+    <h2 id="section-2">Cheap International Flights</h2>
+    <p id="section-2-text">
+      Find the cheapest international flights to Europe, Asia, and the Caribbean.
+    </p>
+
+    <!-- You can add more sections and IDs here -->
+  </div>
+
+  <!-- Footer (with legal + Skyscanner‑style disclaimer) -->
+  <footer>
+    © 2026 SkyDeals • Flight deals powered by 
+    <a href="#" data-skydeal>special flight‑deals offers</a>.
+
+    <p style="font-size: 0.85rem; color: #777; margin: 0.8rem 0 0 0;">
+      This site is not operated by Skyscanner Limited.  
+      "Skyscanner" is a trademark of Skyscanner Limited and is used for reference only.  
+      Some links on this site are affiliate links; when you click and book, we may earn a commission at no extra cost to you.  
+      For full details, see our <a href="privacy.html">Privacy & Disclaimer</a>.
+    </p>
+  </footer>
+
+  <!-- ========== ALL‑IN‑ONE JS WIRING (COPY THIS BLOCK INTO EVERY PAGE) ========== -->
+
+  <!-- 1. Your affiliate link — I WILL NOT FORGET IT -->
+  <script>
+    const SKYDEALS_AFFILIATE_URL = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+  </script>
+
+  <!-- 2. Language detection + text translation -->
+  <script>
+    // Language strings (you can expand per page / article)
+    const translations = {
+      en: {
+        title: "Cheap Flights & Flight Deals",
+        intro: "Find the cheapest flights worldwide.",
+        "cta-text": "Find the cheapest flights worldwide",
+        "section-1": "Best Time to Book Flights",
+        "section-1-text": "When is the best time to book a flight for the lowest fares?",
+        "section-2": "Cheap International Flights",
+        "section-2-text": "Find the cheapest international flights to Europe, Asia, and the Caribbean.",
+      },
+      es: {
+        title: "Vuelos Baratos y Ofertas de Vuelos",
+        intro: "Encuentre los vuelos más baratos en todo el mundo.",
+        "cta-text": "Encuentra los vuelos más baratos del mundo",
+        "section-1": "Mejor momento para reservar vuelos",
+        "section-1-text": "¿Cuándo es el mejor momento para reservar un vuelo con las tarifas más bajas?",
+        "section-2": "Vuelos internacionales baratos",
+        "section-2-text": "Encuentre los vuelos internacionales más baratos a Europa, Asia y el Caribe.",
+      },
+      fr: {
+        title: "Vols pas chers et offres de vols",
+        intro: "Trouvez les vols les moins chers du monde.",
+        "cta-text": "Trouvez les vols les plus économiques du monde",
+        "section-1": "Meilleur moment pour réserver un vol",
+        "section-1-text": "Quand est‑il préférable de réserver un vol pour obtenir les tarifs les plus bas ?",
+        "section-2": "Vols internationaux pas chers",
+        "section-2-text": "Découvrez les vols internationaux les moins chers vers l’Europe, l’Asie et les Caraïbes.",
+      },
+      it: {
+        title: "Biglietti aerei economici e offerte di volo",
+        intro: "Trova i voli più economici in tutto il mondo.",
+        "cta-text": "Trova i voli più economici in tutto il mondo",
+        "section-1": "Momento migliore per prenotare un volo",
+        "section-1-text": "Quando conviene prenotare un volo per avere le tariffe più basse?",
+        "section-2": "Voli internazionali economici",
+        "section-2-text": "Trova i voli internazionali più economici verso Europa, Asia e Caraibi.",
+      },
+      pt: {
+        title: "Voos baratos e ofertas de voos",
+        intro: "Encontre os voos mais baratos em todo o mundo.",
+        "cta-text": "Encontre os voos mais baratos do mundo",
+        "section-1": "Melhor momento para reservar voos",
+        "section-1-text": "Quando é melhor reservar um voo para obter as tarifas mais baixas?",
+        "section-2": "Voos internacionais baratos",
+        "section-2-text": "Encontre voos internacionais baratos para a Europa, Ásia e Caribe.",
+      },
+    };
+
+    // Detect language (URL param > browser > fallback)
+    function getLanguage() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get("lang");
+      if (urlLang && translations[urlLang]) return urlLang;
+
+      const browserLang = navigator.language.split("-")[0];
+      if (translations[browserLang]) return browserLang;
+
+      return "en";
+    }
+
+    const lang = getLanguage();
+
+    // Apply translations to all IDs (expand this map as you add sections)
+    const textKeys = {
+      title: "title",
+      intro: "intro",
+      "cta-text": "cta-link",
+      "section-1": "section-1",
+      "section-1-text": "section-1-text",
+      "section-2": "section-2",
+      "section-2-text": "section-2-text",
+    };
+
+    Object.keys(textKeys).forEach((key) => {
+      const id = textKeys[key];
+      const el = document.getElementById(id);
+      if (el && translations[lang][key]) {
+        if (key === "cta-text") {
+          el.textContent = translations[lang][key];
+        } else {
+          el.textContent = translations[lang][key];
+        }
+      }
+    });
+  </script>
+
+  <!-- 3. Auto‑inject your affiliate link (same in all languages) -->
+  <script>
+    function injectAffiliateLinks() {
+      document.querySelectorAll("a[data-skydeal]").forEach((link) => {
+        link.href = SKYDEALS_AFFILIATE_URL;
+        link.target = "_blank";
+        link.rel = "noopener sponsored";
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", injectAffiliateLinks);
+    } else {
+      injectAffiliateLinks();
+    }
+  </script>
+
+  <!-- 4. Optional: click tracker (logs to console) -->
+  <script>
+    function trackSkyscannerClick(event) {
+      if (console && console.log) {
+        console.log("[SkyDeals] Skyscanner‑style CTA clicked:", {
+          page: document.title,
+          origin: event.target.getAttribute("data-origin"),
+          destination: event.target.getAttribute("data-destination"),
+          lang,
+          timestamp: new Date().toISOString(),
+        });
+      }
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll("a[data-skydeal]").forEach((link) => {
+          link.addEventListener("click", trackSkyscannerClick);
+        });
+      });
+    } else {
+      document.querySelectorAll("a[data-skydeal]").forEach((link) => {
+        link.addEventListener("click", trackSkyscannerClick);
+      });
+    }
+  </script>
+</body>
+</html>
