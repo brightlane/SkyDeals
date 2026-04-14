@@ -3,10 +3,10 @@
 const fs = require("fs");
 const path = require("path");
 
-// --- 1. Skyscanner affiliate config ---
+// --- 1. Skyscanner affiliate config (you'll fill in your real link below) ---
 const SkyscannerConfig = {
-  baseUrl: "https://partners.skyscanner.net/...", // replace with your real Skyscanner partner URL
-  aid: "YOUR-SKYSCANNER-AID",                    // your personal affiliate ID
+  baseUrl: "https://partners.skyscanner.net/...", // ⚠️ replace with your exact Skyscanner partner URL
+  aid: "YOUR-SKYSCANNER-AID",                    // ⚠️ replace with your real affiliate ID (e.g., 12345)
   utmSource: "skydeals",
   utmMedium: "web",
   utmCampaign: "daily-article",
@@ -30,45 +30,60 @@ function buildSkyscannerUrl({ origin, destination, airline, outboundDate, return
   return `${SkyscannerConfig.baseUrl}?${params.toString()}`;
 }
 
-// --- 3. Inject Skyscanner hook into generated HTML ---
+// --- 3. Inject Skyscanner hook into generated HTML (button + inline link) ---
 function injectSkyscannerHook(html, metadata) {
-  const origin    = metadata.origin || "anywhere";
+  const origin      = metadata.origin      || "anywhere";
   const destination = metadata.destination || "anywhere";
-  const airline   = metadata.airline || "any";
+  const airline     = metadata.airline     || "any";
 
-  const skydealAnchor = `<a href="#" data-skydeal data-origin="${origin}" data-destination="${destination}" data-airline="${airline}">`;
+  const skydealAnchor = `<a href="#" data-skydeal data-origin="${origin}" data-destination="${destination}" data-airline="${airline}" data-placement="top">`;
 
-  // Replace a placeholder in your template
+  // --- Top CTA button (high‑click zone) ---
+  const skydealButton = `
+<div class="skydeal-cta skydeal-top-cta">
+  ${skydealAnchor}Find the cheapest flights from ${origin} to ${destination} on Skyscanner</a>
+</div>
+`;
+
+  // --- Inline text link (natural read‑through) ---
+  const skydealInlineLink = `
+<a href="#" data-skydeal data-origin="${origin}" data-destination="${destination}" data-airline="${airline}" data-placement="inline">
+  Skyscanner
+</a>
+`;
+
   const withHook = html
-    .replace(/<!-- SKYDEAL_HOOK -->/g, skydealAnchor + "Find the cheapest flights on Skyscanner</a>")
-    .replace(/<!-- SKYDEAL_HOOK_BUTTON -->/g, skydealAnchor + "Check live prices on Skyscanner</a>");
+    // Top CTA button
+    .replace(/<!-- SKYDEAL_BUTTON -->/g, skydealButton)
+    // Inline text link
+    .replace(/<!-- SKYDEAL_INLINE -->/g, skydealInlineLink);
 
   return withHook;
 }
 
-// --- 4. Example generateDailyArticle that includes your article + Skyscanner link ---
+// --- 4. Main article generator -- use this in your GitHub Actions job ---
 function generateDailyArticle({ title, content, metadata }) {
-  // Example HTML template (you can adapt this to your real template)
+  // Example article template (you can adapt this to your real layout)
   const articleHtml = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>${title}</title>
-  <meta name="description" content="${title}" />
+  <meta name="description" content="Cheap flights and deals for ${title}" />
 </head>
 <body>
   <h1>${title}</h1>
   <div class="article-body">
     ${content}
   </div>
-  <div class="skydeal-cta">
-    <!-- SKYDEAL_HOOK_BUTTON -->
-  </div>
+  <!-- SKYDEAL_BUTTON -->
+  <p>
+    Ready to book? Compare prices with <!-- SKYDEAL_INLINE --> now.
+  </p>
 </body>
 </html>`;
 
-  // Inject Skyscanner hook into HTML
   const finalHtml = injectSkyscannerHook(articleHtml, metadata);
 
   return finalHtml;
