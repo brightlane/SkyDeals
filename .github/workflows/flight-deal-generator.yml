@@ -2,75 +2,34 @@ name: FlightDealGenerator
 
 on:
   schedule:
-    - cron: '0 3 * * *'  # 3AM UTC = 11PM EDT daily
-  workflow_dispatch:      # Manual run button
+    - cron: '0 3 * * *'
+  workflow_dispatch:
   push:
     branches: [ main ]
 
 jobs:
-  generate-premium-deals:
+  generate-deals:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
     
     steps:
-    - name: 🔍 Checkout repository
+    - name: Checkout
       uses: actions/checkout@v4
       
-    - name: ⚙️ Setup Node.js 20
+    - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
-        cache: false
+        node-version: 20
         
-    - name: 📊 Debug - List files
-      run: |
-        echo "Repository files:"
-        ls -la *.js || echo "No JS files"
-        ls -la || true
-        
-    - name: 🚀 Generate 100+ premium deal pages
+    - name: Generate deals
       run: node flight-deal-generator.js
       
-    - name: ✅ Verify generation success
+    - name: Results
       run: |
-        echo "📁 Generated files:"
-        find output -name "*.html" | head -10 || echo "No HTML files found"
-        HTML_COUNT=\$(find output -name '*.html' 2>/dev/null | wc -l || echo 0)
-        XML_COUNT=\$(find output -name '*.xml' 2>/dev/null | wc -l || echo 0)
-        echo "📈 TOTAL: \$HTML_COUNT HTML + \$XML_COUNT XML files"
-        echo "::notice title=Success::\$HTML_COUNT premium flight deal pages ready for traffic!"
+        echo "✅ Pages:"
+        find output -name "*.html" | head -3
+        echo "Total: $(find output -name '*.html' | wc -l)"
         
-    - name: 🕵️ Show sample deal
+    - name: Ping search engines
       run: |
-        if [ -d "output" ]; then
-          echo "✨ Sample deal filename:"
-          ls output/*/*.html | head -1 || echo "Check output folder"
-          echo "📱 Social posts ready in: output/*/social-ready.txt"
-        fi
-        
-    - name: 🔗 Ping Google Sitemaps
-      run: |
-        SITEMAP_URL="https://flights.yourdomain.com/output/sitemap-deals.xml"
-        curl -s -m 10 -I "https://www.google.com/ping?sitemap=\${SITEMAP_URL}" || true
-        echo "✅ Google notified (or ignored - normal)"
-        
-    - name: 🔗 Ping Bing/Yandex
-      run: |
-        SITEMAP_URL="https://flights.yourdomain.com/output/sitemap-deals.xml"
-        curl -s -m 10 "https://www.bing.com/ping?sitemap=\${SITEMAP_URL}" || true
-        curl -s -m 10 "https://www.yandex.com/ping?sitemap=\${SITEMAP_URL}" || true
-        echo "✅ Bing + Yandex pinged"
-        
-    - name: 🎉 Final success report
-      run: |
-        TOTAL_PAGES=\$(find output -name '*.html' 2>/dev/null | wc -l || echo 0)
-        DATE_FOLDER=\$(ls output/ 2>/dev/null | head -1 || echo "latest")
-        echo ""
-        echo "=================================="
-        echo "✅ FLIGHTDEALGENERATOR COMPLETE!"
-        echo "📊 \$TOTAL_PAGES premium pages"
-        echo "📁 output/\$DATE_FOLDER/"
-        echo "🚀 Ready for: TikTok/Reddit/Twitter"
-        echo "💰 Edit affiliate link in script"
-        echo "=================================="
-        echo "::success title=Empire Active::Daily deal machine running!"
+        curl -s "https://www.google.com/ping?sitemap=https://flights.yourdomain.com/output/sitemap-deals.xml" || true
+        echo "✅ Pings sent"
