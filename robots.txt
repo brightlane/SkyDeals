@@ -1,16 +1,47 @@
-# robots.txt for SkyDeals
-
+# Global access for all bots
 User-agent: *
-Disallow: /admin/
-Disallow: /cgi-bin/
-
-# Allow everything else (your flight articles and landing pages)
 Allow: /
 
-# Sitemap (add your real URL once you have one)
-# Sitemap: https://yourdomain.com/sitemap.xml
+# Major international search engines
 
-# Prefer desktop, but allow mobile crawling
-Allow: /$ 
+User-agent: Googlebot
+Allow: /
 
-# No need to block your affiliate link; it's just a redirect
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: Sogou
+Allow: /
+
+User-agent: Exabot
+Allow: /
+
+User-agent: facebot
+Allow: /
+
+User-agent: ia_archiver
+Allow: /
+
+# Crawl delay (optional — some bots respect it)
+Crawl-delay: 5
+
+# Sitemap (VERY important)
+Sitemap: https://yourdomain.com/sitemap.xml
