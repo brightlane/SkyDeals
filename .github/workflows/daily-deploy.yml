@@ -12,24 +12,28 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout code
+    - name: Checkout
       uses: actions/checkout@v4
       
-    - name: Setup Node.js
+    - name: Setup Node
       uses: actions/setup-node@v4
       with:
         node-version: '20'
         
-    - name: Generate empire (NO NPM)
+    - name: List files (debug)
       run: |
-        echo "🚀 Pure Node.js deploy - zero deps"
-        node skyscanner-empire.js
+        echo "Files in repo:"
+        ls -la *.js
+        ls -la || true
         
+    - name: Run empire generator
+      run: node skyscanner-empire.js
+      
     - name: Verify output
       run: |
-        echo "Generated files:"
-        find output -name "*.html" | head -10 || echo "No HTML files"
-        echo "Total HTML: $(find output -name '*.html' 2>/dev/null | wc -l || echo 0)"
+        echo "Output files:"
+        find output -name "*.html" | head -5 || echo "No HTML"
+        echo "Total: $(find output -name '*.html' 2>/dev/null | wc -l || echo 0)"
         
-    - name: Success badge
-      run: echo "::notice title=Success::$(find output -name '*.html' 2>/dev/null | wc -l || echo 0) pages generated"
+    - name: Success
+      run: echo "✅ Empire deployed - check output folder"
