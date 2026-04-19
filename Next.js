@@ -1,0 +1,9 @@
+app/
+  [lang]/
+    page.jsx
+    deals/
+      [slug]/
+        page.jsx
+lib/
+  data.js
+  seo.js
