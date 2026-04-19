@@ -1,66 +1,133 @@
-name: FlightDealGenerator
+#!/usr/bin/env node
 
-on:
-  schedule:
-    - cron: '0 3 * * *'  # 3AM UTC daily
-  workflow_dispatch:
+const fs = require("fs");
+const path = require("path");
 
-jobs:
-  generate-and-post:
-    runs-on: ubuntu-latest
+// ===============================
+// 🔗 YOUR AFFILIATE URL (DO NOT CHANGE)
+// ===============================
+const AFFILIATE_URL =
+  "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
 
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+// ===============================
+// 🚀 START SCRIPT
+// ===============================
+console.log("✈️ Flight Deal Generator Starting...");
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
+// ===============================
+// 📁 OUTPUT FOLDERS
+// ===============================
+const outputDir = path.join(__dirname, "output");
+const pagesDir = path.join(outputDir, "deals");
 
-    - name: Install dependencies
-      run: npm install
+// Create folders if they don't exist
+fs.mkdirSync(pagesDir, { recursive: true });
 
-    - name: Generate deals
-      run: node flight-deal-generator.js
+// ===============================
+// 🌍 FLIGHT ROUTES (expand anytime)
+// ===============================
+const routes = [
+  { from: "JFK", to: "LON" },
+  { from: "LAX", to: "PAR" },
+  { from: "MIA", to: "DXB" },
+  { from: "SFO", to: "TOK" },
+  { from: "ORD", to: "ROM" },
+  { from: "DFW", to: "BER" },
+  { from: "ATL", to: "MAD" },
+  { from: "SEA", to: "SIN" },
+  { from: "BOS", to: "FRA" },
+  { from: "LAS", to: "AMS" }
+];
 
-    - name: Auto-post to Twitter/X
-      env:
-        TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
-        TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
-        TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-        TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
-        TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
-      run: |
-        TWEET="✈️ HOT DEAL: $(ls output/*/*.html | head -1 | xargs basename) | flights.yourdomain.com #FlightDeals #TravelHacks"
-        
-        curl -X POST "https://api.twitter.com/2/tweets" \
-          -H "Authorization: Bearer $TWITTER_BEARER_TOKEN" \
-          -H "Content-Type: application/json" \
-          -d "{\"text\":\"$TWEET\"}"
+// ===============================
+// 💰 PRICE GENERATOR
+// ===============================
+function generatePrice() {
+  return Math.floor(120 + Math.random() * 600);
+}
 
-    - name: Post to Reddit (via webhook)
-      if: ${{ secrets.REDDIT_WEBHOOK != '' }}
-      run: |
-        curl -X POST "${{ secrets.REDDIT_WEBHOOK }}" \
-          -H "Content-Type: application/json" \
-          -d '{
-            "content_title": "Fresh Flight Deals Today!",
-            "content": "New deals generated: flights.yourdomain.com/output/",
-            "username": "FlightDealBot"
-          }'
+// ===============================
+// 📄 HTML PAGE BUILDER
+// ===============================
+function buildHTML(from, to, price) {
+  return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>${from} → ${to} Cheap Flights</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
-    - name: Slack notification (optional)
-      if: ${{ secrets.SLACK_WEBHOOK_URL != '' }}
-      uses: 8398a7/action-slack@v3
-      with:
-        status: ${{ job.status }}
-        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+<body style="font-family:Arial;background:#f4f4f4;padding:40px;">
 
-    - name: Verify & ping
-      run: |
-        echo "✅ $(find output -name '*.html' | wc -l) pages generated"
+  <div style="max-width:700px;margin:auto;background:white;padding:30px;border-radius:10px;">
 
-        curl -s "https://www.google.com/ping?sitemap=https://flights.yourdomain.com/output/sitemap-deals.xml" || true
+    <h1>✈️ Flight Deal</h1>
+
+    <h2>${from} → ${to}</h2>
+
+    <p style="font-size:20px;">
+      💰 Price: <strong>$${price}</strong>
+    </p>
+
+    <p>Book now before prices increase!</p>
+
+    <!-- ========================= -->
+    <!-- 🔥 AFFILIATE BUTTON -->
+    <!-- ========================= -->
+    <a href="${AFFILIATE_URL}" target="_blank"
+       style="
+         display:inline-block;
+         background:#ff6b35;
+         color:white;
+         padding:15px 25px;
+         text-decoration:none;
+         border-radius:6px;
+         font-size:18px;
+         margin-top:20px;
+       ">
+       ✈️ Book Flight Now
+    </a>
+
+    <hr style="margin:30px 0;">
+
+    <p style="font-size:12px;color:#777;">
+      Prices are estimates and may change. Affiliate link powered by travel deals system.
+    </p>
+
+  </div>
+
+</body>
+</html>
+`;
+}
+
+// ===============================
+// 🔄 GENERATE ALL PAGES
+// ===============================
+let count = 0;
+
+for (const route of routes) {
+  const price = generatePrice();
+
+  const html = buildHTML(route.from, route.to, price);
+
+  const filename = `${route.from}-${route.to}.html`;
+
+  fs.writeFileSync(
+    path.join(pagesDir, filename),
+    html
+  );
+
+  console.log(`✅ Created: ${filename}`);
+
+  count++;
+}
+
+// ===============================
+// 🎉 DONE
+// ===============================
+console.log(`\n🚀 DONE: ${count} flight deal pages generated`);
+console.log(`📂 Output folder: ${pagesDir}`);
+console.log(`🔗 Affiliate link active in all pages`);
