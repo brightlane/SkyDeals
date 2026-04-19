@@ -1,80 +1,66 @@
-#!/usr/bin/env node
+name: FlightDealGenerator
 
-const fs = require("fs");
-const path = require("path");
+on:
+  schedule:
+    - cron: '0 3 * * *'  # 3AM UTC daily
+  workflow_dispatch:
 
-// ✅ YOUR AFFILIATE URL (kept intact)
-const AFFILIATE_URL =
-  "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+jobs:
+  generate-and-post:
+    runs-on: ubuntu-latest
 
-class FlightDealGenerator {
-  constructor() {
-    this.outputDir = path.join(__dirname, "output");
-    this.pagesDir = path.join(this.outputDir, "deals");
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
 
-    this.routes = [
-      { from: "JFK", to: "LON" },
-      { from: "LAX", to: "PAR" },
-      { from: "MIA", to: "DXB" },
-      { from: "SFO", to: "TOK" },
-      { from: "ORD", to: "ROM" }
-    ];
-  }
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
 
-  run() {
-    console.log("✈️ Generating flight deals...");
+    - name: Install dependencies
+      run: npm install
 
-    fs.mkdirSync(this.pagesDir, { recursive: true });
+    - name: Generate deals
+      run: node flight-deal-generator.js
 
-    let count = 0;
+    - name: Auto-post to Twitter/X
+      env:
+        TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+        TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+        TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+        TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
+        TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
+      run: |
+        TWEET="✈️ HOT DEAL: $(ls output/*/*.html | head -1 | xargs basename) | flights.yourdomain.com #FlightDeals #TravelHacks"
+        
+        curl -X POST "https://api.twitter.com/2/tweets" \
+          -H "Authorization: Bearer $TWITTER_BEARER_TOKEN" \
+          -H "Content-Type: application/json" \
+          -d "{\"text\":\"$TWEET\"}"
 
-    for (const route of this.routes) {
-      const price = this.generatePrice();
+    - name: Post to Reddit (via webhook)
+      if: ${{ secrets.REDDIT_WEBHOOK != '' }}
+      run: |
+        curl -X POST "${{ secrets.REDDIT_WEBHOOK }}" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "content_title": "Fresh Flight Deals Today!",
+            "content": "New deals generated: flights.yourdomain.com/output/",
+            "username": "FlightDealBot"
+          }'
 
-      const html = this.buildPage(route, price);
+    - name: Slack notification (optional)
+      if: ${{ secrets.SLACK_WEBHOOK_URL != '' }}
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
-      const filename = `${route.from}-${route.to}.html`;
-      const filepath = path.join(this.pagesDir, filename);
+    - name: Verify & ping
+      run: |
+        echo "✅ $(find output -name '*.html' | wc -l) pages generated"
 
-      fs.writeFileSync(filepath, html);
-
-      count++;
-    }
-
-    console.log(`✅ Generated ${count} pages in ${this.pagesDir}`);
-  }
-
-  generatePrice() {
-    return Math.floor(120 + Math.random() * 400);
-  }
-
-  buildPage(route, price) {
-    return `
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>${route.from} → ${route.to} Flight Deal</title>
-</head>
-
-<body style="font-family: Arial; padding: 40px;">
-
-  <h1>✈️ Flight Deal: ${route.from} → ${route.to}</h1>
-
-  <p><strong>Price:</strong> $${price}</p>
-
-  <p>Find the best deal now:</p>
-
-  <!-- ✅ AFFILIATE LINK USED HERE -->
-  <a href="${AFFILIATE_URL}" target="_blank"
-     style="background:#ff6b35;color:white;padding:15px 25px;text-decoration:none;">
-     Book Flight
-  </a>
-
-</body>
-</html>
-`;
-  }
-}
-
-new FlightDealGenerator().run();
+        curl -s "https://www.google.com/ping?sitemap=https://flights.yourdomain.com/output/sitemap-deals.xml" || true
