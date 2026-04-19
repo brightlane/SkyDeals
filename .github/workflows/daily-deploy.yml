@@ -1,0 +1,73 @@
+name: Daily Skyscanner Empire Deploy
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # 2AM UTC daily (10PM EDT)
+  workflow_dispatch:     # Manual trigger button
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy-empire:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Generate 240K pages
+      run: npm run deploy
+      
+    - name: Setup Vercel CLI
+      if: env.USE_VERCEL == 'true'
+      uses: vercel/action@v1
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-args: '--prod'
+        vercel-working-directory: './output'
+        
+    - name: Deploy to Netlify
+      if: env.USE_NETLIFY == 'true'
+      uses: nwtgck/actions-netlify@v3.0
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      with:
+        publish-dir: './output'
+        production-branch: main
+        production-deploy: true
+        
+    - name: Ping Search Engines
+      run: |
+        curl "https://www.google.com/ping?sitemap=https://flights.yourdomain.com/output/sitemap-1.xml"
+        curl "https://www.bing.com/ping?sitemap=https://flights.yourdomain.com/output/sitemap-1.xml"
+        curl "https://www.yandex.com/ping?sitemap=https://flights.yourdomain.com/output/sitemap-1.xml"
+        
+    - name: Update status
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.repos.createCommitStatus({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            sha: context.sha,
+            state: 'success',
+            target_url: 'https://flights.yourdomain.com',
+            description: '240K pages deployed',
+            context: 'Skyscanner Empire'
+          });
+
+    - name: Notify Discord (optional)
+      if: always()
+      uses: Ilshidur/action-discord@master
+      with:
+        args: '🚀 Skyscanner Empire deployed {{ github.repository }} - ${{ job.status }}'
