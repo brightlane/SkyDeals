@@ -1,154 +1,668 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Cheap Flights & Flight Deals • SkyDeals</title>
-  <meta name="description" content="Find the cheapest flights worldwide with Skyscanner‑powered deals. Expert guides, best times to book, and city‑to‑city routes." />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wander – Find Your Next Flight</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --coral:#FF5C3A;
+  --coral-light:#FF7A5C;
+  --coral-pale:#FFF0ED;
+  --teal:#00C6B2;
+  --teal-pale:#E0FAF7;
+  --sun:#FFD600;
+  --sun-pale:#FFFACC;
+  --ink:#1A1212;
+  --body:#3D2E2E;
+  --muted:#8B7070;
+  --border:#EDE0DC;
+  --surface:#FDF8F6;
+  --white:#FFFFFF;
+}
+body{font-family:'Manrope',sans-serif;background:var(--surface);color:var(--ink);overflow-x:hidden}
 
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 1rem 1.2rem;
-    }
-    h1, h2, h3 {
-      margin-top: 1.8rem;
-      margin-bottom: 0.6rem;
-    }
-    .hero {
-      text-align: center;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid #eee;
-      margin-bottom: 2rem;
-    }
-    .hero h1 {
-      font-size: 2rem;
-      margin-bottom: 0.4rem;
-    }
-    .hero p {
-      font-size: 1.1rem;
-      color: #555;
-    }
-    .skydeal-cta {
-      margin: 1.5rem 0;
-      padding: 1rem;
-      background: #f8f9ff;
-      border: 1px solid #e0e0ff;
-      border-radius: 8px;
-      text-align: center;
-      font-weight: 600;
-    }
-    .skydeal-cta a {
-      display: inline-block;
-      padding: 0.8rem 1.4rem;
-      text-decoration: none;
-      color: #fff;
-      background: #ff5a5f;
-      border-radius: 6px;
-      font-weight: 600;
-      transition: background 0.2s ease;
-    }
-    .skydeal-cta a:hover {
-      background: #e04044;
-    }
-    .article-preview {
-      margin: 1.5rem 0;
-      padding: 1rem 1.2rem;
-      background: #f9f9f9;
-      border-radius: 8px;
-      border: 1px solid #e0e0e0;
-    }
-    footer {
-      margin-top: 3rem;
-      padding: 1rem 0;
-      border-top: 1px solid #eee;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #777;
-    }
-  </style>
+/* ── NAV ── */
+nav{
+  background:var(--white);border-bottom:1px solid var(--border);
+  padding:0 48px;height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+}
+.logo{display:flex;align-items:center;gap:3px;text-decoration:none}
+.logo-w{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--coral);letter-spacing:-1px}
+.logo-rest{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--ink);letter-spacing:-1px}
+.logo-dot{width:8px;height:8px;background:var(--teal);border-radius:50%;margin-left:2px;margin-bottom:12px}
+.nl{display:flex;gap:2px}
+.nl a{color:var(--muted);text-decoration:none;padding:6px 14px;border-radius:8px;font-size:14px;font-weight:500;transition:all 0.15s}
+.nl a:hover{color:var(--ink);background:var(--surface)}
+.nl a.on{color:var(--coral);font-weight:600}
+.nr{display:flex;gap:8px;align-items:center}
+.btn{text-decoration:none;padding:8px 18px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:'Manrope',sans-serif;transition:all 0.15s}
+.btn-ghost{background:transparent;color:var(--muted);border:1.5px solid var(--border)}
+.btn-ghost:hover{color:var(--ink);border-color:var(--ink)}
+.btn-fill{background:var(--coral);color:#fff}
+.btn-fill:hover{background:var(--coral-light);transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{
+  display:grid;grid-template-columns:1fr 420px;min-height:580px;
+  background:var(--white);
+  overflow:hidden;
+}
+.hero-left{
+  padding:64px 56px 0;
+  display:flex;flex-direction:column;justify-content:flex-start;
+}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--sun-pale);border:1.5px solid var(--sun);
+  color:#7A6000;font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;
+  padding:6px 14px;border-radius:40px;margin-bottom:28px;width:fit-content;
+}
+h1{
+  font-family:'Syne',sans-serif;font-size:62px;font-weight:800;
+  line-height:1.0;letter-spacing:-2px;color:var(--ink);margin-bottom:20px;
+}
+h1 .accent{color:var(--coral);display:block}
+h1 .accent2{color:var(--teal)}
+.hero-desc{font-size:16px;color:var(--muted);line-height:1.7;font-weight:400;max-width:400px;margin-bottom:36px}
+.hero-stats{display:flex;gap:32px;margin-bottom:48px}
+.stat-n{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--ink)}
+.stat-l{font-size:12px;color:var(--muted);font-weight:500;margin-top:2px}
+
+.hero-right{
+  background:linear-gradient(160deg,#FF5C3A 0%,#FF8C5A 40%,#FFB347 100%);
+  position:relative;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;
+  padding-bottom:0;
+}
+.hero-right::before{
+  content:'';position:absolute;
+  top:-80px;right:-80px;
+  width:320px;height:320px;
+  background:rgba(255,255,255,0.1);border-radius:50%;
+}
+.hero-right::after{
+  content:'';position:absolute;
+  bottom:-60px;left:-60px;
+  width:220px;height:220px;
+  background:rgba(0,198,178,0.25);border-radius:50%;
+}
+.plane-art{
+  position:relative;z-index:1;
+  font-size:140px;line-height:1;
+  animation:float 4s ease-in-out infinite;
+  filter:drop-shadow(0 20px 40px rgba(0,0,0,0.2));
+}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-16px) rotate(-5deg)}}
+.cloud1,.cloud2{position:absolute;background:rgba(255,255,255,0.2);border-radius:40px}
+.cloud1{width:120px;height:36px;top:80px;left:30px;animation:drift 6s ease-in-out infinite}
+.cloud2{width:80px;height:24px;top:140px;right:40px;animation:drift 8s ease-in-out infinite reverse}
+@keyframes drift{0%,100%{transform:translateX(0)}50%{transform:translateX(12px)}}
+.dest-badge{
+  position:absolute;top:60px;right:30px;z-index:2;
+  background:rgba(255,255,255,0.95);border-radius:16px;padding:14px 18px;
+  backdrop-filter:blur(8px);
+  box-shadow:0 8px 32px rgba(0,0,0,0.15);
+}
+.db-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px}
+.db-route{font-size:15px;font-weight:700;color:var(--ink)}
+.db-price{font-size:22px;font-weight:800;color:var(--coral);font-family:'Syne',sans-serif}
+.db-tag{font-size:11px;background:var(--teal-pale);color:#008070;font-weight:600;padding:2px 8px;border-radius:6px;display:inline-block;margin-top:4px}
+
+/* ── SEARCH STRIP ── */
+.search-strip{
+  background:var(--ink);
+  padding:28px 48px;
+}
+.search-inner{max-width:1100px;margin:0 auto}
+.strip-tabs{display:flex;gap:4px;margin-bottom:20px}
+.stab{
+  background:transparent;border:none;color:rgba(255,255,255,0.45);
+  padding:7px 18px;border-radius:8px;font-size:13px;font-weight:600;
+  cursor:pointer;font-family:'Manrope',sans-serif;transition:all 0.15s;
+  display:flex;align-items:center;gap:6px;
+}
+.stab:hover{color:#fff;background:rgba(255,255,255,0.08)}
+.stab.on{background:var(--coral);color:#fff}
+.stab svg{width:14px;height:14px}
+
+.fields{display:grid;grid-template-columns:1fr 1fr 140px 140px 200px auto;gap:10px;align-items:end}
+.f{display:flex;flex-direction:column;gap:5px}
+.f-label{font-size:10px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px}
+.f-input{
+  background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.1);
+  color:#fff;font-size:15px;font-weight:500;padding:13px 16px;border-radius:10px;
+  outline:none;font-family:'Manrope',sans-serif;width:100%;transition:all 0.15s;
+}
+.f-input::placeholder{color:rgba(255,255,255,0.25);font-weight:400}
+.f-input:focus{border-color:var(--coral);background:rgba(255,92,58,0.08)}
+.f-input:hover{border-color:rgba(255,255,255,0.2)}
+input[type="date"].f-input{color-scheme:dark}
+.go-btn{
+  background:var(--coral);color:#fff;border:none;
+  padding:14px 28px;border-radius:10px;font-size:15px;font-weight:700;
+  cursor:pointer;font-family:'Manrope',sans-serif;white-space:nowrap;
+  transition:all 0.2s;display:flex;align-items:center;gap:8px;
+  height:48px;align-self:end;
+}
+.go-btn:hover{background:var(--coral-light);transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,92,58,0.4)}
+.go-btn svg{width:17px;height:17px}
+
+/* ── CONTENT ── */
+.content{max-width:1140px;margin:0 auto;padding:56px 24px}
+
+/* destination cards */
+.dest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:64px}
+@media(max-width:900px){.dest-grid{grid-template-columns:repeat(2,1fr)}}
+.dest-card{border-radius:20px;overflow:hidden;text-decoration:none;display:block;position:relative;height:260px;transition:transform 0.25s}
+.dest-card:hover{transform:scale(1.02)}
+.dest-card:hover .dc-overlay{opacity:1}
+.dc-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:80px;position:absolute;inset:0}
+.dc-bg.g1{background:linear-gradient(145deg,#FF6B6B,#FE8C00)}
+.dc-bg.g2{background:linear-gradient(145deg,#4ECDC4,#44A08D)}
+.dc-bg.g3{background:linear-gradient(145deg,#7B2FF7,#F107A3)}
+.dc-bg.g4{background:linear-gradient(145deg,#11998E,#38EF7D)}
+.dc-bg.g5{background:linear-gradient(145deg,#F7971E,#FFD200)}
+.dc-bg.g6{background:linear-gradient(145deg,#2980B9,#6DD5FA)}
+.dc-bg.g7{background:linear-gradient(145deg,#C94B4B,#4B134F)}
+.dc-bg.g8{background:linear-gradient(145deg,#FDC830,#F37335)}
+.dc-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,0.75) 0%,rgba(0,0,0,0.1) 60%,transparent 100%);
+  opacity:0.85;transition:opacity 0.25s;
+}
+.dc-info{position:absolute;bottom:0;left:0;right:0;padding:20px;z-index:1}
+.dc-city{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#fff;margin-bottom:2px}
+.dc-country{font-size:12px;color:rgba(255,255,255,0.7);font-weight:400;margin-bottom:10px}
+.dc-footer{display:flex;align-items:center;justify-content:space-between}
+.dc-price{font-size:18px;font-weight:700;color:#fff}
+.dc-tag{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+.dc-tag.hot{background:var(--coral);color:#fff}
+.dc-tag.new{background:var(--teal);color:#fff}
+.dc-tag.pop{background:var(--sun);color:#7A6000}
+
+/* section heads */
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.sh-left{display:flex;align-items:center;gap:12px}
+.sh-title{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--ink);letter-spacing:-0.5px}
+.sh-pill{background:var(--coral-pale);color:var(--coral);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px}
+.sh-link{color:var(--coral);font-size:14px;font-weight:600;text-decoration:none}
+.sh-link:hover{text-decoration:underline}
+.sec-sub{font-size:14px;color:var(--muted);margin-bottom:28px;font-weight:400}
+
+/* ROUTES */
+.routes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:64px}
+@media(max-width:760px){.routes{grid-template-columns:1fr}}
+.route-card{
+  background:var(--white);border:1.5px solid var(--border);border-radius:14px;
+  padding:18px 20px;text-decoration:none;display:flex;align-items:center;gap:16px;
+  transition:all 0.15s;
+}
+.route-card:hover{border-color:var(--coral);background:var(--coral-pale);transform:translateX(4px)}
+.route-emoji{font-size:28px;flex-shrink:0}
+.route-info{flex:1}
+.route-name{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.route-airline{font-size:12px;color:var(--muted);font-weight:400}
+.route-price{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--coral);flex-shrink:0}
+
+/* PERKS */
+.perks{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:64px}
+@media(max-width:760px){.perks{grid-template-columns:1fr}}
+.perk{background:var(--white);border:1.5px solid var(--border);border-radius:18px;padding:28px;transition:all 0.2s}
+.perk:hover{border-color:var(--teal);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,198,178,0.1)}
+.perk-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
+.pi-coral{background:var(--coral-pale)}
+.pi-teal{background:var(--teal-pale)}
+.pi-sun{background:var(--sun-pale)}
+.perk-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--ink);margin-bottom:8px}
+.perk-text{font-size:13px;color:var(--muted);line-height:1.6;font-weight:400}
+
+/* CTA BANNER */
+.cta-banner{
+  background:linear-gradient(135deg,var(--coral) 0%,#FF8C5A 50%,var(--sun) 100%);
+  border-radius:24px;padding:48px;display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:64px;position:relative;overflow:hidden;
+}
+.cta-banner::before{content:'✈';position:absolute;right:160px;top:50%;transform:translateY(-50%);font-size:120px;opacity:0.12}
+.cta-left h2{font-family:'Syne',sans-serif;font-size:34px;font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:10px}
+.cta-left p{font-size:15px;color:rgba(255,255,255,0.85);font-weight:400}
+.cta-btn{
+  background:#fff;color:var(--coral);border:none;
+  padding:16px 36px;border-radius:12px;font-size:16px;font-weight:700;
+  cursor:pointer;font-family:'Manrope',sans-serif;white-space:nowrap;
+  text-decoration:none;display:inline-block;flex-shrink:0;
+  transition:all 0.2s;
+}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+
+/* FOOTER */
+footer{background:var(--ink);padding:48px;margin-top:20px}
+.footer-inner{max-width:1140px;margin:0 auto}
+.ft{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+@media(max-width:768px){.ft{grid-template-columns:1fr 1fr}}
+.flogo{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:12px}
+.flogo span{color:var(--coral)}
+.fdesc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;font-weight:300;max-width:240px}
+.fc h5{font-size:11px;font-weight:700;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:16px}
+.fc a{display:block;color:rgba(255,255,255,0.55);text-decoration:none;font-size:13px;margin-bottom:10px;font-weight:400;transition:color 0.15s}
+.fc a:hover{color:#fff}
+.fb{border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,0.25)}
+
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(26,18,18,0.7);z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+.overlay.show{display:flex}
+.modal{background:var(--white);border-radius:24px;width:640px;max-height:88vh;overflow:auto;box-shadow:0 32px 80px rgba(0,0,0,0.3)}
+.mhead{background:linear-gradient(135deg,var(--coral),var(--coral-light));padding:24px 28px;border-radius:24px 24px 0 0;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
+.mhead h3{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#fff}
+.mhead p{font-size:13px;color:rgba(255,255,255,0.8);margin-top:2px}
+.xbtn{background:rgba(255,255,255,0.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;transition:background 0.15s;flex-shrink:0}
+.xbtn:hover{background:rgba(255,255,255,0.35)}
+.mitem{padding:20px 28px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;transition:background 0.15s}
+.mitem:hover{background:var(--surface)}
+.mairline{font-size:12px;color:var(--muted);font-weight:400;margin-bottom:4px}
+.mtimes{font-size:18px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.mmeta{font-size:12px;color:var(--muted)}
+.mr{text-align:right}
+.mprice{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--coral)}
+.mpp{font-size:11px;color:var(--muted);margin-bottom:10px}
+.mbtn{background:var(--coral);color:#fff;border:none;padding:10px 22px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;text-decoration:none;display:inline-block;transition:all 0.15s}
+.mbtn:hover{background:var(--coral-light)}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .fields{grid-template-columns:1fr 1fr}
+  .modal{width:95vw;margin:0 10px}
+  nav{padding:0 20px}
+}
+</style>
 </head>
 <body>
 
-  <div class="hero">
-    <h1>Cheap Flights & Flight Deals</h1>
-    <p>
-      Find the cheapest flights from anywhere to the world’s most popular destinations.  
-      Every route leads to savings via our special flight‑deals link.
-    </p>
+<!-- NAV -->
+<nav>
+  <a class="logo" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+    <span class="logo-w">W</span><span class="logo-rest">ander</span>
+    <div class="logo-dot"></div>
+  </a>
+  <div class="nl">
+    <a href="#" class="on">Flights</a>
+    <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Hotels</a>
+    <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Cars</a>
+    <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Packages</a>
+    <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Inspiration</a>
+  </div>
+  <div class="nr">
+    <a class="btn btn-ghost" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Log in</a>
+    <a class="btn btn-fill" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Sign up free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="pill">🌴 Summer deals just landed</div>
+    <h1>Your next<br><span class="accent">adventure</span><br>starts <span class="accent2">here</span></h1>
+    <p class="hero-desc">Search thousands of airlines in one shot. No markups, no nonsense — just the cheapest flights on the planet.</p>
+    <div class="hero-stats">
+      <div><div class="stat-n">900+</div><div class="stat-l">Airlines searched</div></div>
+      <div><div class="stat-n">$0</div><div class="stat-l">Hidden fees</div></div>
+      <div><div class="stat-n">2M+</div><div class="stat-l">Happy travellers</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="cloud1"></div>
+    <div class="cloud2"></div>
+    <div class="dest-badge">
+      <div class="db-label">🔥 Today's best deal</div>
+      <div class="db-route">NYC → Bali</div>
+      <div class="db-price">$487</div>
+      <div class="db-tag">-34% off</div>
+    </div>
+    <div class="plane-art">✈️</div>
+  </div>
+</div>
+
+<!-- SEARCH STRIP -->
+<div class="search-strip">
+  <div class="search-inner">
+    <div class="strip-tabs">
+      <button class="stab on" onclick="tabClick(this,'flights')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-2-5.5-.5L10 5 1.8 6.2l4 3.8L3.5 14l2.5 2 2.5 2 3.6-2.3 3.8 4z"/></svg>
+        Flights
+      </button>
+      <button class="stab" onclick="goAff()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Hotels
+      </button>
+      <button class="stab" onclick="goAff()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Cars
+      </button>
+      <button class="stab" onclick="goAff()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="18" rx="2"/><path d="M16 3v4M8 3v4M1 11h22"/></svg>
+        Packages
+      </button>
+    </div>
+    <div class="fields">
+      <div class="f">
+        <div class="f-label">From</div>
+        <input class="f-input" type="text" id="fi" placeholder="e.g. New York (JFK)">
+      </div>
+      <div class="f">
+        <div class="f-label">To</div>
+        <input class="f-input" type="text" id="ti" placeholder="e.g. London (LHR)">
+      </div>
+      <div class="f">
+        <div class="f-label">Depart</div>
+        <input class="f-input" type="date" id="dd">
+      </div>
+      <div class="f">
+        <div class="f-label">Return</div>
+        <input class="f-input" type="date" id="rd">
+      </div>
+      <div class="f">
+        <div class="f-label">Passengers</div>
+        <div class="f-input" id="pd" onclick="cyclePax()" style="cursor:pointer;line-height:1.5">1 Adult · Economy</div>
+      </div>
+      <button class="go-btn" onclick="doSearch()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- DESTINATIONS -->
+  <div class="sh">
+    <div class="sh-left">
+      <div class="sh-title">Top Destinations</div>
+      <div class="sh-pill">Trending now</div>
+    </div>
+    <a class="sh-link" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">See all →</a>
+  </div>
+  <div class="sec-sub">Where everyone's flying this season</div>
+  <div class="dest-grid">
+
+    <a class="dest-card" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+      <div class="dc-bg g1">🗽</div>
+      <div class="dc-overlay"></div>
+      <div class="dc-info">
+        <div class="dc-city">New York</div>
+        <div class="dc-country">United States</div>
+        <div class="dc-footer"><div class="dc-price">from £198</div><span class="dc-tag hot">Hot</span></div>
+      </div>
+    </a>
+
+    <a class="dest-card" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+      <div class="dc-bg g2">🏝</div>
+      <div class="dc-overlay"></div>
+      <div class="dc-info">
+        <div class="dc-city">Bali</div>
+        <div class="dc-country">Indonesia</div>
+        <div class="dc-footer"><div class="dc-price">from $487</div><span class="dc-tag pop">Popular</span></div>
+      </div>
+    </a>
+
+    <a class="dest-card" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+      <div class="dc-bg g3">🗼</div>
+      <div class="dc-overlay"></div>
+      <div class="dc-info">
+        <div class="dc-city">Paris</div>
+        <div class="dc-country">France</div>
+        <div class="dc-footer"><div class="dc-price">from $312</div><span class="dc-tag new">New deal</span></div>
+      </div>
+    </a>
+
+    <a class="dest-card" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+      <div class="dc-bg g4">🌸</div>
+      <div class="dc-overlay"></div>
+      <div class="dc-info">
+        <div class="dc-city">Tokyo</div>
+        <div class="dc-country">Japan</div>
+        <div class="dc-footer"><div class="dc-price">from $562</div><span class="dc-tag pop">Popular</span></div>
+      </div>
+    </a>
+
+    <a class="dest-card" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+      <div class="dc-bg g5">🏙</div>
+      <div class="dc-overlay"></div>
+      <div class="dc-info">
+        <div class="dc-city">Dubai</div>
+        <div class="dc-country">UAE</div>
+        <div class="dc-footer"><div class="dc-price">from A$699</div><span class="dc-tag hot">Hot</span></div>
+      </div>
+    </a>
+
+    <a class="dest-card" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+      <div class="dc-bg g6">🎭</div>
+      <div class="dc-overlay"></div>
+      <div class="dc-info">
+        <div class="dc-city">Amsterdam</div>
+        <div class="dc-country">Netherlands</div>
+        <div class="dc-footer"><div class="dc-price">from £39</div><span class="dc-tag new">New deal</span></div>
+      </div>
+    </a>
+
+    <a class="dest-card" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+      <div class="dc-bg g7">🥐</div>
+      <div class="dc-overlay"></div>
+      <div class="dc-info">
+        <div class="dc-city">Barcelona</div>
+        <div class="dc-country">Spain</div>
+        <div class="dc-footer"><div class="dc-price">from €88</div><span class="dc-tag pop">Popular</span></div>
+      </div>
+    </a>
+
+    <a class="dest-card" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+      <div class="dc-bg g8">🦁</div>
+      <div class="dc-overlay"></div>
+      <div class="dc-info">
+        <div class="dc-city">Nairobi</div>
+        <div class="dc-country">Kenya</div>
+        <div class="dc-footer"><div class="dc-price">from £420</div><span class="dc-tag new">New deal</span></div>
+      </div>
+    </a>
+
   </div>
 
-  <!-- Main Skyscanner‑style CTA (top of page, high‑click zone) -->
-  <div class="skydeal-cta">
-    <a href="#" data-skydeal data-origin="anywhere" data-destination="anywhere">
-      Find the cheapest flights worldwide
+  <!-- ROUTES -->
+  <div class="sh">
+    <div class="sh-left">
+      <div class="sh-title">Popular Routes</div>
+    </div>
+    <a class="sh-link" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">View all →</a>
+  </div>
+  <div class="sec-sub">Most booked flight routes this week</div>
+  <div class="routes">
+    <a class="route-card" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+      <div class="route-emoji">🇬🇧</div>
+      <div class="route-info"><div class="route-name">London → Amsterdam</div><div class="route-airline">Multiple airlines · 1h 15m</div></div>
+      <div class="route-price">£39</div>
+    </a>
+    <a class="route-card" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+      <div class="route-emoji">🇺🇸</div>
+      <div class="route-info"><div class="route-name">NYC → Miami</div><div class="route-airline">American, JetBlue · 3h 10m</div></div>
+      <div class="route-price">$49</div>
+    </a>
+    <a class="route-card" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+      <div class="route-emoji">🇫🇷</div>
+      <div class="route-info"><div class="route-name">Paris → Rome</div><div class="route-airline">Air France, ITA · 2h 5m</div></div>
+      <div class="route-price">€61</div>
+    </a>
+    <a class="route-card" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+      <div class="route-emoji">🇦🇺</div>
+      <div class="route-info"><div class="route-name">Sydney → Melbourne</div><div class="route-airline">Qantas, Virgin · 1h 25m</div></div>
+      <div class="route-price">A$79</div>
+    </a>
+    <a class="route-card" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+      <div class="route-emoji">🇦🇪</div>
+      <div class="route-info"><div class="route-name">Dubai → Singapore</div><div class="route-airline">Emirates, SIA · 7h 25m</div></div>
+      <div class="route-price">$215</div>
+    </a>
+    <a class="route-card" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+      <div class="route-emoji">🇨🇦</div>
+      <div class="route-info"><div class="route-name">Toronto → London</div><div class="route-airline">Air Canada, BA · 7h 30m</div></div>
+      <div class="route-price">CA$398</div>
+    </a>
+    <a class="route-card" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+      <div class="route-emoji">🇸🇬</div>
+      <div class="route-info"><div class="route-name">Singapore → Tokyo</div><div class="route-airline">SIA, ANA · 7h 10m</div></div>
+      <div class="route-price">$180</div>
+    </a>
+    <a class="route-card" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+      <div class="route-emoji">🇪🇸</div>
+      <div class="route-info"><div class="route-name">Madrid → Lisbon</div><div class="route-airline">Iberia, TAP · 1h 20m</div></div>
+      <div class="route-price">€44</div>
+    </a>
+    <a class="route-card" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">
+      <div class="route-emoji">🇹🇭</div>
+      <div class="route-info"><div class="route-name">Bangkok → Bali</div><div class="route-airline">Thai, Garuda · 4h 30m</div></div>
+      <div class="route-price">$95</div>
     </a>
   </div>
 
-  <h2>Popular flight routes</h2>
-
-  <div class="article-preview">
-    <h3>New York → Miami</h3>
-    <p>
-      Ready to book cheap flights from New York to Miami?  
-      <a href="#" data-skydeal data-origin="NYC" data-destination="MIA">
-        See the best deals now
-      </a>.
-    </p>
+  <!-- PERKS -->
+  <div class="sh-title" style="margin-bottom:8px">Why Wander?</div>
+  <div class="sec-sub">Built for real travellers who hate overpaying</div>
+  <div class="perks">
+    <div class="perk">
+      <div class="perk-icon pi-coral">🔍</div>
+      <div class="perk-title">900+ airlines, one search</div>
+      <div class="perk-text">We scan every major carrier and booking site simultaneously. You get the full picture, not a curated shortlist.</div>
+    </div>
+    <div class="perk">
+      <div class="perk-icon pi-teal">🔔</div>
+      <div class="perk-title">Price drop alerts</div>
+      <div class="perk-text">Watch any route and we'll email you the instant fares drop. Book at the perfect moment, every time.</div>
+    </div>
+    <div class="perk">
+      <div class="perk-icon pi-sun">⚡</div>
+      <div class="perk-title">Zero hidden fees</div>
+      <div class="perk-text">What you see is what you pay. No booking surcharges. No surprise extras. Just honest prices, always.</div>
+    </div>
   </div>
 
-  <div class="article-preview">
-    <h3>Philadelphia → Orlando</h3>
-    <p>
-      Affordable flights from Philadelphia to Orlando are easier than you think.  
-      <a href="#" data-skydeal data-origin="PHL" data-destination="MCO">
-        Find low‑fare options
-      </a>.
-    </p>
+  <!-- CTA BANNER -->
+  <div class="cta-banner">
+    <div class="cta-left">
+      <h2>Ready to go somewhere new?</h2>
+      <p>Join 2 million+ travellers who find better flights with Wander every day.</p>
+    </div>
+    <a class="cta-btn" href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Search flights now →</a>
   </div>
 
-  <div class="article-preview">
-    <h3>Cheap international flights</h3>
-    <p>
-      Whether you’re flying to Europe, Asia, or the Caribbean,  
-      <a href="#" data-skydeal data-origin="anywhere" data-destination="anywhere">
-        check live prices
-      </a> and see how low you can go.
-    </p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="ft">
+      <div>
+        <div class="flogo"><span>W</span>ander.</div>
+        <div class="fdesc">The smarter way to search flights worldwide. Compare, save and fly with confidence.</div>
+      </div>
+      <div class="fc">
+        <h5>Company</h5>
+        <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">About</a>
+        <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Careers</a>
+        <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Press</a>
+        <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Partners</a>
+      </div>
+      <div class="fc">
+        <h5>Explore</h5>
+        <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Cheap Flights</a>
+        <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Hotels</a>
+        <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Car Hire</a>
+        <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Inspiration</a>
+      </div>
+      <div class="fc">
+        <h5>Support</h5>
+        <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Help Centre</a>
+        <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Privacy</a>
+        <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Terms</a>
+        <a href="https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885" target="_blank">Cookies</a>
+      </div>
+    </div>
+    <div class="fb">
+      <span>© 2026 Wander. All rights reserved.</span>
+      <span>🌍 Available worldwide · 100+ currencies</span>
+    </div>
   </div>
+</footer>
 
-  <!-- Footer link (soft CTA, keeps your URL present) -->
-  <footer>
-    <p>
-      © 2026 SkyDeals • Flight deals powered by 
-      <a href="#" data-skydeal data-origin="anywhere" data-destination="anywhere">
-        special flight‑deals offers
-      </a>.
-    </p>
-  </footer>
+<!-- RESULTS MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="mhead">
+      <div>
+        <h3 id="mt">Flights found</h3>
+        <p id="ms">Sorted by best price</p>
+      </div>
+      <button class="xbtn" onclick="closeModal()">✕</button>
+    </div>
+    <div id="mb"></div>
+  </div>
+</div>
 
-  <!-- JS that converts data-skydeal links into your real affiliate URL -->
-  <script>
-    // THE MASTER AFFILIATE LINK — YOU SAID: DO NOT FORGET IT
-    const SKYDEALS_AFFILIATE_URL = "https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885";
+<script>
+const AFF='https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885';
+function goAff(){window.open(AFF,'_blank')}
 
-    function injectAffiliateLinks() {
-      document.querySelectorAll("a[data-skydeal]").forEach((link) => {
-        link.href = SKYDEALS_AFFILIATE_URL;
-        link.target = "_blank";
-        link.rel = "noopener sponsored";
-      });
-    }
+function tabClick(el,tab){
+  document.querySelectorAll('.stab').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  if(tab!=='flights'){window.open(AFF,'_blank');el.classList.remove('on');document.querySelector('.stab').classList.add('on')}
+}
 
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", injectAffiliateLinks);
-    } else {
-      injectAffiliateLinks();
-    }
-  </script>
+let px=0;
+const po=['1 Adult · Economy','2 Adults · Economy','2 Adults · Business','1 Adult · Business','Family (2+2) · Economy','1 Adult · First Class'];
+function cyclePax(){px=(px+1)%po.length;document.getElementById('pd').textContent=po[px]}
+
+const t=new Date();
+const d1=new Date(t);d1.setDate(t.getDate()+14);
+const d2=new Date(t);d2.setDate(t.getDate()+21);
+document.getElementById('dd').value=d1.toISOString().split('T')[0];
+document.getElementById('rd').value=d2.toISOString().split('T')[0];
+
+const rs=[
+  {al:'British Airways',dep:'08:00',arr:'20:30',dur:'12h 30m',st:'Direct',pr:'$342'},
+  {al:'Qatar Airways',dep:'10:30',arr:'19:15',dur:'20h 45m',st:'1 stop · Doha',pr:'$244'},
+  {al:'Emirates',dep:'13:15',arr:'07:45+1',dur:'18h 30m',st:'1 stop · Dubai',pr:'$271'},
+  {al:'Lufthansa',dep:'15:45',arr:'10:20+1',dur:'18h 35m',st:'1 stop · Frankfurt',pr:'$263'},
+  {al:'United Airlines',dep:'19:00',arr:'07:00+1',dur:'14h 00m',st:'Direct',pr:'$398'},
+];
+
+function doSearch(){
+  const f=document.getElementById('fi').value||'New York';
+  const tt=document.getElementById('ti').value||'London';
+  document.getElementById('mt').textContent=f+' → '+tt;
+  document.getElementById('ms').textContent=rs.length+' flights · Sorted by best price';
+  document.getElementById('mb').innerHTML=rs.map(r=>`
+    <div class="mitem">
+      <div>
+        <div class="mairline">${r.al}</div>
+        <div class="mtimes">${r.dep} → ${r.arr}</div>
+        <div class="mmeta">${r.dur} &nbsp;·&nbsp; ${r.st}</div>
+      </div>
+      <div class="mr">
+        <div class="mprice">${r.pr}</div>
+        <div class="mpp">per person · return</div>
+        <a class="mbtn" href="${AFF}" target="_blank">Select →</a>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('overlay').classList.add('show');
+}
+
+function closeModal(){document.getElementById('overlay').classList.remove('show')}
+document.getElementById('overlay').addEventListener('click',function(e){if(e.target===this)closeModal()});
+</script>
 </body>
 </html>
