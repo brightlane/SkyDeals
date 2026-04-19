@@ -1,13 +1,12 @@
 {
-  "name": "skydeals",
+  "name": "skyscanner-empire",
   "version": "1.0.0",
-  "description": "SkyDeals flight‑deal generator",
-  "main": "scripts/generateDailyArticle.js",
+  "main": "skyscanner-global-empire.js",
   "scripts": {
-    "generate": "node scripts/generateDailyArticle.js"
+    "deploy": "node skyscanner-global-empire.js",
+    "deploy:watch": "nodemon skyscanner-global-empire.js"
   },
-  "engines": {
-    "node": ">=20.0.0"
-  },
-  "license": "MIT"
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
 }
