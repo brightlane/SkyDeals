@@ -2,77 +2,34 @@ name: Daily Skyscanner Empire
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # Daily 2AM UTC
-  workflow_dispatch:     # Manual button
+    - cron: '0 2 * * *'
+  workflow_dispatch:
   push:
     branches: [ main ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
-
+    
     steps:
-    - name: Checkout
+    - name: Checkout code
       uses: actions/checkout@v4
       
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 20
-        cache: 'npm'
+        node-version: '20'
         
-    - name: Cache node modules
-      uses: actions/cache@v4
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-          
-    - name: Install dependencies
-      run: npm ci --only=production
-      
-    - name: Generate fresh pages
-      run: npm run deploy
-      
-    - name: List generated files
+    - name: Generate empire (NO NPM)
       run: |
-        echo "Generated pages:"
-        ls -la output/*/*.html | head -20
-        echo "Total pages: $(find output -name '*.html' | wc -l)"
+        echo "🚀 Pure Node.js deploy - zero deps"
+        node skyscanner-empire.js
         
-    # VERCEL DEPLOY (Optional - uncomment + add secret)
-    #- name: Deploy to Vercel
-    #  uses: vercel/action@v1.3.1
-    #  with:
-    #    vercel-token: ${{ secrets.VERCEL_TOKEN }}
-    #    vercel-org-id: ${{ secrets.ORG_ID}}
-    #    vercel-project-id: ${{ secrets.PROJECT_ID}}
-    #    working-directory: './output'
-        
-    # NETLIFY DEPLOY (Optional - uncomment + add secrets)
-    #- name: Deploy to Netlify
-    #  uses: nwtgck/actions-netlify@v3.1
-    #  env:
-    #    NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-    #    NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-    #  with:
-    #    publish-dir: './output'
-    
-    - name: Success notification
+    - name: Verify output
       run: |
-        echo "🚀 SUCCESS: $(find output -name '*.html' | wc -l) pages generated"
-        echo "::notice::Skyscanner Empire deployed successfully"
+        echo "Generated files:"
+        find output -name "*.html" | head -10 || echo "No HTML files"
+        echo "Total HTML: $(find output -name '*.html' 2>/dev/null | wc -l || echo 0)"
         
-    - name: Ping Google
-      run: |
-        curl -s "https://www.google.com/ping?sitemap=https://flights.yourdomain.com/output/sitemap.xml" > /dev/null
-        echo "✅ Google pinged"
-        
-    - name: Ping Bing  
-      run: |
-        curl -s "https://www.bing.com/ping?sitemap=https://flights.yourdomain.com/output/sitemap.xml" > /dev/null
-        echo "✅ Bing pinged"
+    - name: Success badge
+      run: echo "::notice title=Success::$(find output -name '*.html' 2>/dev/null | wc -l || echo 0) pages generated"
