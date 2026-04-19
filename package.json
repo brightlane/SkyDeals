@@ -1,12 +1,17 @@
 {
-  "name": "skyscanner-empire",
+  "name": "skyscanner-global-empire",
   "version": "1.0.0",
-  "main": "skyscanner-global-empire.js",
+  "description": "Programmatic SEO flight page generator",
+  "main": "index.js",
+  "type": "commonjs",
   "scripts": {
-    "deploy": "node skyscanner-global-empire.js",
-    "deploy:watch": "nodemon skyscanner-global-empire.js"
+    "start": "node index.js",
+    "build": "node index.js"
   },
   "dependencies": {
     "node-fetch": "^3.3.2"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
