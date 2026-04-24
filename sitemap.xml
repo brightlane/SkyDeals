@@ -1,48 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- GLOBAL HOMEPAGE -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- 🏠 HOME -->
   <url>
-    <loc>https://yourdomain.com/</loc>
-
-    <!-- Language versions -->
-    <xhtml:link rel="alternate" hreflang="en" href="https://yourdomain.com/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://yourdomain.com/es/" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://yourdomain.com/fr/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://yourdomain.com/de/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourdomain.com/" />
-
-    <lastmod>2026-04-19</lastmod>
+    <loc>https://brightlane.github.io/SkyDeals/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- DEALS PAGE -->
+  <!-- ✈️ MAIN SEARCH / DEALS HUB -->
   <url>
-    <loc>https://yourdomain.com/deals</loc>
+    <loc>https://brightlane.github.io/SkyDeals/search.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
 
-    <xhtml:link rel="alternate" hreflang="en" href="https://yourdomain.com/deals" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://yourdomain.com/es/deals" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://yourdomain.com/fr/deals" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://yourdomain.com/de/deals" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourdomain.com/deals" />
-
-    <lastmod>2026-04-19</lastmod>
+  <!-- 💰 CORE MONEY PAGES -->
+  <url>
+    <loc>https://brightlane.github.io/SkyDeals/cheap-flights.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- ABOUT PAGE -->
   <url>
-    <loc>https://yourdomain.com/about</loc>
+    <loc>https://brightlane.github.io/SkyDeals/flight-deals.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
 
-    <xhtml:link rel="alternate" hreflang="en" href="https://yourdomain.com/about" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://yourdomain.com/es/about" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://yourdomain.com/fr/about" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://yourdomain.com/de/about" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://yourdomain.com/about" />
+  <url>
+    <loc>https://brightlane.github.io/SkyDeals/last-minute-flights.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
 
-    <lastmod>2026-04-19</lastmod>
-    <priority>0.7</priority>
+  <url>
+    <loc>https://brightlane.github.io/SkyDeals/international-flights.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 🚀 HIGH-CONVERSION CONTENT -->
+  <url>
+    <loc>https://brightlane.github.io/SkyDeals/best-flight-booking.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://brightlane.github.io/SkyDeals/travel-hacks.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 📘 BLOG HUB -->
+  <url>
+    <loc>https://brightlane.github.io/SkyDeals/blog.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 📄 TRUST / SUPPORT -->
+  <url>
+    <loc>https://brightlane.github.io/SkyDeals/about.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://brightlane.github.io/SkyDeals/contact.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- ⚠️ ERROR PAGE -->
+  <url>
+    <loc>https://brightlane.github.io/SkyDeals/404.html</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
   </url>
 
 </urlset>
