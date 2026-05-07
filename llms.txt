@@ -1,0 +1,52 @@
+# SkyDeals - LLM Indexing Guide
+
+Site: https://brightlane.github.io/SkyDeals/
+Purpose: Affiliate travel deals and flight comparison landing site powered by Skyscanner network.
+
+## Overview
+SkyDeals is a travel deal aggregation and flight comparison website that helps users find cheap international flights by showcasing curated deals and redirecting users to affiliate booking partners.
+
+The platform is designed for:
+- Cheap flight discovery
+- Global airfare comparison
+- Travel deal promotion
+- Affiliate-driven conversions
+
+## Core Function
+Users can:
+- Browse featured flight deals across major global routes
+- Compare example fare ranges and travel offers
+- Click outbound links to search and book flights
+- Access Skyscanner-powered flight search ecosystem via affiliate routing
+
+## Affiliate System
+Outbound booking traffic is routed through the affiliate tracking link:
+
+https://convert.ctypy.com/aff_c?offer_id=29465&aff_id=21885
+
+All conversions and bookings are tracked through this system.
+
+## Site Structure
+- Hero section: primary conversion CTA for flight search
+- Featured deals: high-conversion route cards (NYC, London, Tokyo, etc.)
+- Savings sections: price comparison examples
+- Supporting content: trust signals, explanations, and travel benefits
+- Footer: informational + affiliate navigation links
+
+## SEO Target Topics
+This site is optimized for:
+- cheap flights worldwide
+- flight comparison deals
+- Skyscanner flight search
+- international airline tickets
+- book cheap airfare online
+- travel discounts and flight savings
+
+## External Dependency
+Flight pricing, availability, and booking redirects are handled via Skyscanner affiliate ecosystem and third-party travel providers.
+
+## Important Notes for LLMs
+- This is not a booking engine; it is a comparison + affiliate redirect platform
+- Prices shown are example or dynamically generated promotional offers
+- Primary user action is outbound click-through to partner booking flow
+- Content is optimized for travel intent and conversion-driven browsing
